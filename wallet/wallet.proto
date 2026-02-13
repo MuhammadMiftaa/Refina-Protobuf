@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package wallet;
 
-option go_package = "github.com/MuhammadMiftaa/Golang-Refina-Protobuf/wallet";
+option go_package = "github.com/MuhammadMiftaa/Refina-Protobuf/wallet";
 
 service WalletService {
     rpc GetUserWallets (UserID) returns (stream Wallet);

@@ -252,7 +252,7 @@ const file_wallet_wallet_proto_rawDesc = "" +
 	"\rWalletService\x122\n" +
 	"\x0eGetUserWallets\x12\x0e.wallet.UserID\x1a\x0e.wallet.Wallet0\x01\x121\n" +
 	"\rGetWalletByID\x12\x10.wallet.WalletID\x1a\x0e.wallet.Wallet\x12.\n" +
-	"\fUpdateWallet\x12\x0e.wallet.Wallet\x1a\x0e.wallet.WalletB9Z7github.com/MuhammadMiftaa/Golang-Refina-Protobuf/walletb\x06proto3"
+	"\fUpdateWallet\x12\x0e.wallet.Wallet\x1a\x0e.wallet.WalletB2Z0github.com/MuhammadMiftaa/Refina-Protobuf/walletb\x06proto3"
 
 var (
 	file_wallet_wallet_proto_rawDescOnce sync.Once

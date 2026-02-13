@@ -213,7 +213,7 @@ const file_transaction_transaction_proto_rawDesc = "" +
 	"\aWallets\x12\x1b\n" +
 	"\twallet_id\x18\x01 \x03(\tR\bwalletId2]\n" +
 	"\x12TransactionService\x12G\n" +
-	"\x13GetUserTransactions\x12\x14.transaction.Wallets\x1a\x18.transaction.Transaction0\x01B>Z<github.com/MuhammadMiftaa/Golang-Refina-Protobuf/transactionb\x06proto3"
+	"\x13GetUserTransactions\x12\x14.transaction.Wallets\x1a\x18.transaction.Transaction0\x01B7Z5github.com/MuhammadMiftaa/Refina-Protobuf/transactionb\x06proto3"
 
 var (
 	file_transaction_transaction_proto_rawDescOnce sync.Once

@@ -1,4 +1,4 @@
-module github.com/MuhammadMiftaa/Golang-Refina-Protobuf
+module github.com/MuhammadMiftaa/Refina-Protobuf
 
 go 1.24.4
 
