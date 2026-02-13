@@ -1,0 +1,24 @@
+# Generated files (optional - some commit, some don't)
+# *_pb.js
+# *_grpc_pb.js
+# *.pb.go
+# *_grpc.pb.go
+
+# Dependencies
+node_modules/
+node_modules
+vendor/
+
+# Go
+*.exe
+*.dll
+*.so
+*.dylib
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store

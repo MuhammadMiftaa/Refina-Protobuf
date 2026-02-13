@@ -1,0 +1,30 @@
+{
+  "name": "@muhammadmiftaa/refina-protobuf",
+  "version": "1.0.0",
+  "description": "Shared Protocol Buffer definitions for Refina microservices",
+  "main": "index.js",
+  "scripts": {
+    "generate:wallet:go": "./generate.sh wallet go",
+    "generate:wallet:node": "./generate.sh wallet node",
+    "generate:wallet:all": "./generate.sh wallet all",
+    "generate:transaction:go": "./generate.sh transaction go",
+    "generate:transaction:node": "./generate.sh transaction node",
+    "generate:transaction:all": "./generate.sh transaction all",
+    "generate:all": "./generate.sh wallet all && ./generate.sh transaction all"
+  },
+  "keywords": [
+    "protobuf",
+    "grpc",
+    "refina"
+  ],
+  "author": "Muhammad Mifta",
+  "license": "MIT",
+  "dependencies": {
+    "@grpc/grpc-js": "^1.14.3",
+    "@grpc/proto-loader": "^0.8.0",
+    "google-protobuf": "^4.0.1"
+  },
+  "devDependencies": {
+    "grpc-tools": "^1.13.1"
+  }
+}

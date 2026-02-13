@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package wallet;
+
+option go_package = "github.com/MuhammadMiftaa/Golang-Refina-Protobuf/wallet";
+
+service WalletService {
+    rpc GetUserWallets (UserID) returns (stream Wallet);
+    rpc GetWalletByID (WalletID) returns (Wallet);
+    rpc UpdateWallet (Wallet) returns (Wallet);
+}
+
+message Wallet {
+    string id = 1;
+    string user_id = 2;
+    string name = 3;
+    string number = 4;
+    double balance = 5;
+    string wallet_type_id = 6;
+    string wallet_type = 7;
+    string wallet_type_name = 8;
+    string created_at = 9;
+    string updated_at = 10;
+}
+
+message WalletID {
+    string id = 1;
+}
+
+message UserID {
+    string id = 1;
+}
