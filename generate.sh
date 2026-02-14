@@ -74,10 +74,20 @@ generate_node() {
         sed -i "s/var grpc = require('@grpc\/grpc-js');/import * as grpc from '@grpc\/grpc-js';/g" "${PROTO_NAME}/${PROTO_NAME}_grpc_pb.js"
         sed -i "s/var ${PROTO_NAME}_${PROTO_NAME}_pb = require('..\/${PROTO_NAME}\/${PROTO_NAME}_pb.js');/import * as ${PROTO_NAME}_${PROTO_NAME}_pb from '..\/${PROTO_NAME}\/${PROTO_NAME}_pb.js';/g" "${PROTO_NAME}/${PROTO_NAME}_grpc_pb.js"
         
+        sed -i "s/^var \([A-Za-z]*Service\) = exports\.\1/const \1/g" "${PROTO_NAME}/${PROTO_NAME}_grpc_pb.js"
+        sed -i "s/^exports\.\([A-Za-z]*Client\) = /const \1 = /g" "${PROTO_NAME}/${PROTO_NAME}_grpc_pb.js"
+        
+        SERVICES=$(grep -E '^const [A-Za-z]+Service(Service)? =' ${PROTO_NAME}/${PROTO_NAME}_grpc_pb.js | sed 's/^const //g' | sed 's/ =.*//g' | sort -u | tr '\n' ',' | sed 's/,$//')
+        CLIENTS=$(grep -E '^const [A-Za-z]+Client =' ${PROTO_NAME}/${PROTO_NAME}_grpc_pb.js | sed 's/^const //g' | sed 's/ =.*//g' | sort -u | tr '\n' ',' | sed 's/,$//')
+        
         # Export at the end
         echo "" >> "${PROTO_NAME}/${PROTO_NAME}_grpc_pb.js"
         echo "// ES Module exports" >> "${PROTO_NAME}/${PROTO_NAME}_grpc_pb.js"
-        echo "export { $(grep 'exports\.' ${PROTO_NAME}/${PROTO_NAME}_grpc_pb.js | grep 'Service' | sed 's/.*exports\.//g' | sed 's/ =.*//g' | tr '\n' ',' | sed 's/,$//') };" >> "${PROTO_NAME}/${PROTO_NAME}_grpc_pb.js"
+        if [ -n "$CLIENTS" ]; then
+            echo "export { ${SERVICES},${CLIENTS} };" >> "${PROTO_NAME}/${PROTO_NAME}_grpc_pb.js"
+        else
+            echo "export { ${SERVICES} };" >> "${PROTO_NAME}/${PROTO_NAME}_grpc_pb.js"
+        fi
     fi
 
     if [ $? -eq 0 ]; then

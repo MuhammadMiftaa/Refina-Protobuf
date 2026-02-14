@@ -38,7 +38,7 @@ function deserialize_transaction_Wallets(buffer_arg) {
 }
 
 
-var TransactionServiceService = exports.TransactionServiceService = {
+const TransactionServiceService = {
   getTransactions: {
     path: '/transaction.TransactionService/GetTransactions',
     requestStream: false,
@@ -63,7 +63,7 @@ var TransactionServiceService = exports.TransactionServiceService = {
   },
 };
 
-exports.TransactionServiceClient = grpc.makeGenericClientConstructor(TransactionServiceService, 'TransactionService');
+const TransactionServiceClient = grpc.makeGenericClientConstructor(TransactionServiceService, 'TransactionService');
 
 // ES Module exports
 export { TransactionServiceService,TransactionServiceClient };

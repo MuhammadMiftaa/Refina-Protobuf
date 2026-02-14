@@ -49,7 +49,7 @@ function deserialize_wallet_WalletID(buffer_arg) {
 }
 
 
-var WalletServiceService = exports.WalletServiceService = {
+const WalletServiceService = {
   getWallets: {
     path: '/wallet.WalletService/GetWallets',
     requestStream: false,
@@ -96,7 +96,7 @@ var WalletServiceService = exports.WalletServiceService = {
   },
 };
 
-exports.WalletServiceClient = grpc.makeGenericClientConstructor(WalletServiceService, 'WalletService');
+const WalletServiceClient = grpc.makeGenericClientConstructor(WalletServiceService, 'WalletService');
 
 // ES Module exports
 export { WalletServiceService,WalletServiceClient };
