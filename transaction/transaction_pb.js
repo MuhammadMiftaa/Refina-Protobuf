@@ -21,7 +21,7 @@ var global = (function() {
   return Function('return this')();
 }.call(null));
 
-goog.exportSymbol('proto.transaction.Options', null, global);
+goog.exportSymbol('proto.transaction.GetTransactionOptions', null, global);
 goog.exportSymbol('proto.transaction.Transaction', null, global);
 goog.exportSymbol('proto.transaction.Wallets', null, global);
 /**
@@ -76,16 +76,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.transaction.Options = function(opt_data) {
+proto.transaction.GetTransactionOptions = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.transaction.Options, jspb.Message);
+goog.inherits(proto.transaction.GetTransactionOptions, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.transaction.Options.displayName = 'proto.transaction.Options';
+  proto.transaction.GetTransactionOptions.displayName = 'proto.transaction.GetTransactionOptions';
 }
 
 
@@ -689,8 +689,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.transaction.Options.prototype.toObject = function(opt_includeInstance) {
-  return proto.transaction.Options.toObject(opt_includeInstance, this);
+proto.transaction.GetTransactionOptions.prototype.toObject = function(opt_includeInstance) {
+  return proto.transaction.GetTransactionOptions.toObject(opt_includeInstance, this);
 };
 
 
@@ -699,11 +699,11 @@ proto.transaction.Options.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.transaction.Options} msg The msg instance to transform.
+ * @param {!proto.transaction.GetTransactionOptions} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.transaction.Options.toObject = function(includeInstance, msg) {
+proto.transaction.GetTransactionOptions.toObject = function(includeInstance, msg) {
   var f, obj = {
     limit: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
@@ -719,23 +719,23 @@ proto.transaction.Options.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.transaction.Options}
+ * @return {!proto.transaction.GetTransactionOptions}
  */
-proto.transaction.Options.deserializeBinary = function(bytes) {
+proto.transaction.GetTransactionOptions.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.transaction.Options;
-  return proto.transaction.Options.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.transaction.GetTransactionOptions;
+  return proto.transaction.GetTransactionOptions.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.transaction.Options} msg The message object to deserialize into.
+ * @param {!proto.transaction.GetTransactionOptions} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.transaction.Options}
+ * @return {!proto.transaction.GetTransactionOptions}
  */
-proto.transaction.Options.deserializeBinaryFromReader = function(msg, reader) {
+proto.transaction.GetTransactionOptions.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -759,9 +759,9 @@ proto.transaction.Options.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.transaction.Options.prototype.serializeBinary = function() {
+proto.transaction.GetTransactionOptions.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.transaction.Options.serializeBinaryToWriter(this, writer);
+  proto.transaction.GetTransactionOptions.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -769,11 +769,11 @@ proto.transaction.Options.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.transaction.Options} message
+ * @param {!proto.transaction.GetTransactionOptions} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.transaction.Options.serializeBinaryToWriter = function(message, writer) {
+proto.transaction.GetTransactionOptions.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getLimit();
   if (f !== 0) {
@@ -789,16 +789,16 @@ proto.transaction.Options.serializeBinaryToWriter = function(message, writer) {
  * optional int32 limit = 1;
  * @return {number}
  */
-proto.transaction.Options.prototype.getLimit = function() {
+proto.transaction.GetTransactionOptions.prototype.getLimit = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.transaction.Options} returns this
+ * @return {!proto.transaction.GetTransactionOptions} returns this
  */
-proto.transaction.Options.prototype.setLimit = function(value) {
+proto.transaction.GetTransactionOptions.prototype.setLimit = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
 };
 

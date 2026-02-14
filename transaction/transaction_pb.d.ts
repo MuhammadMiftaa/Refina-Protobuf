@@ -78,21 +78,21 @@ export namespace Wallets {
     }
 }
 
-export class Options extends jspb.Message { 
+export class GetTransactionOptions extends jspb.Message { 
     getLimit(): number;
-    setLimit(value: number): Options;
+    setLimit(value: number): GetTransactionOptions;
 
     serializeBinary(): Uint8Array;
-    toObject(includeInstance?: boolean): Options.AsObject;
-    static toObject(includeInstance: boolean, msg: Options): Options.AsObject;
+    toObject(includeInstance?: boolean): GetTransactionOptions.AsObject;
+    static toObject(includeInstance: boolean, msg: GetTransactionOptions): GetTransactionOptions.AsObject;
     static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
     static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
-    static serializeBinaryToWriter(message: Options, writer: jspb.BinaryWriter): void;
-    static deserializeBinary(bytes: Uint8Array): Options;
-    static deserializeBinaryFromReader(message: Options, reader: jspb.BinaryReader): Options;
+    static serializeBinaryToWriter(message: GetTransactionOptions, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): GetTransactionOptions;
+    static deserializeBinaryFromReader(message: GetTransactionOptions, reader: jspb.BinaryReader): GetTransactionOptions;
 }
 
-export namespace Options {
+export namespace GetTransactionOptions {
     export type AsObject = {
         limit: number,
     }

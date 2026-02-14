@@ -225,27 +225,27 @@ func (x *UserID) GetId() string {
 	return ""
 }
 
-type Options struct {
+type GetWalletOptions struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Limit         int32                  `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *Options) Reset() {
-	*x = Options{}
+func (x *GetWalletOptions) Reset() {
+	*x = GetWalletOptions{}
 	mi := &file_wallet_wallet_proto_msgTypes[3]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *Options) String() string {
+func (x *GetWalletOptions) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Options) ProtoMessage() {}
+func (*GetWalletOptions) ProtoMessage() {}
 
-func (x *Options) ProtoReflect() protoreflect.Message {
+func (x *GetWalletOptions) ProtoReflect() protoreflect.Message {
 	mi := &file_wallet_wallet_proto_msgTypes[3]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -257,12 +257,12 @@ func (x *Options) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Options.ProtoReflect.Descriptor instead.
-func (*Options) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetWalletOptions.ProtoReflect.Descriptor instead.
+func (*GetWalletOptions) Descriptor() ([]byte, []int) {
 	return file_wallet_wallet_proto_rawDescGZIP(), []int{3}
 }
 
-func (x *Options) GetLimit() int32 {
+func (x *GetWalletOptions) GetLimit() int32 {
 	if x != nil {
 		return x.Limit
 	}
@@ -292,12 +292,12 @@ const file_wallet_wallet_proto_rawDesc = "" +
 	"\bWalletID\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"\x18\n" +
 	"\x06UserID\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\"\x1f\n" +
-	"\aOptions\x12\x14\n" +
-	"\x05limit\x18\x01 \x01(\x05R\x05limit2\xd7\x01\n" +
-	"\rWalletService\x12/\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"(\n" +
+	"\x10GetWalletOptions\x12\x14\n" +
+	"\x05limit\x18\x01 \x01(\x05R\x05limit2\xe0\x01\n" +
+	"\rWalletService\x128\n" +
 	"\n" +
-	"GetWallets\x12\x0f.wallet.Options\x1a\x0e.wallet.Wallet0\x01\x122\n" +
+	"GetWallets\x12\x18.wallet.GetWalletOptions\x1a\x0e.wallet.Wallet0\x01\x122\n" +
 	"\x0eGetUserWallets\x12\x0e.wallet.UserID\x1a\x0e.wallet.Wallet0\x01\x121\n" +
 	"\rGetWalletByID\x12\x10.wallet.WalletID\x1a\x0e.wallet.Wallet\x12.\n" +
 	"\fUpdateWallet\x12\x0e.wallet.Wallet\x1a\x0e.wallet.WalletB2Z0github.com/MuhammadMiftaa/Refina-Protobuf/walletb\x06proto3"
@@ -316,13 +316,13 @@ func file_wallet_wallet_proto_rawDescGZIP() []byte {
 
 var file_wallet_wallet_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_wallet_wallet_proto_goTypes = []any{
-	(*Wallet)(nil),   // 0: wallet.Wallet
-	(*WalletID)(nil), // 1: wallet.WalletID
-	(*UserID)(nil),   // 2: wallet.UserID
-	(*Options)(nil),  // 3: wallet.Options
+	(*Wallet)(nil),           // 0: wallet.Wallet
+	(*WalletID)(nil),         // 1: wallet.WalletID
+	(*UserID)(nil),           // 2: wallet.UserID
+	(*GetWalletOptions)(nil), // 3: wallet.GetWalletOptions
 }
 var file_wallet_wallet_proto_depIdxs = []int32{
-	3, // 0: wallet.WalletService.GetWallets:input_type -> wallet.Options
+	3, // 0: wallet.WalletService.GetWallets:input_type -> wallet.GetWalletOptions
 	2, // 1: wallet.WalletService.GetUserWallets:input_type -> wallet.UserID
 	1, // 2: wallet.WalletService.GetWalletByID:input_type -> wallet.WalletID
 	0, // 3: wallet.WalletService.UpdateWallet:input_type -> wallet.Wallet

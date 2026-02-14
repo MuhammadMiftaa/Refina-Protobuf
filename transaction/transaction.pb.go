@@ -189,27 +189,27 @@ func (x *Wallets) GetWalletId() []string {
 	return nil
 }
 
-type Options struct {
+type GetTransactionOptions struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Limit         int32                  `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
 
-func (x *Options) Reset() {
-	*x = Options{}
+func (x *GetTransactionOptions) Reset() {
+	*x = GetTransactionOptions{}
 	mi := &file_transaction_transaction_proto_msgTypes[2]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
 
-func (x *Options) String() string {
+func (x *GetTransactionOptions) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*Options) ProtoMessage() {}
+func (*GetTransactionOptions) ProtoMessage() {}
 
-func (x *Options) ProtoReflect() protoreflect.Message {
+func (x *GetTransactionOptions) ProtoReflect() protoreflect.Message {
 	mi := &file_transaction_transaction_proto_msgTypes[2]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -221,12 +221,12 @@ func (x *Options) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use Options.ProtoReflect.Descriptor instead.
-func (*Options) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetTransactionOptions.ProtoReflect.Descriptor instead.
+func (*GetTransactionOptions) Descriptor() ([]byte, []int) {
 	return file_transaction_transaction_proto_rawDescGZIP(), []int{2}
 }
 
-func (x *Options) GetLimit() int32 {
+func (x *GetTransactionOptions) GetLimit() int32 {
 	if x != nil {
 		return x.Limit
 	}
@@ -255,11 +255,11 @@ const file_transaction_transaction_proto_rawDesc = "" +
 	"\n" +
 	"updated_at\x18\v \x01(\tR\tupdatedAt\"&\n" +
 	"\aWallets\x12\x1b\n" +
-	"\twallet_id\x18\x01 \x03(\tR\bwalletId\"\x1f\n" +
-	"\aOptions\x12\x14\n" +
-	"\x05limit\x18\x01 \x01(\x05R\x05limit2\xa2\x01\n" +
-	"\x12TransactionService\x12C\n" +
-	"\x0fGetTransactions\x12\x14.transaction.Options\x1a\x18.transaction.Transaction0\x01\x12G\n" +
+	"\twallet_id\x18\x01 \x03(\tR\bwalletId\"-\n" +
+	"\x15GetTransactionOptions\x12\x14\n" +
+	"\x05limit\x18\x01 \x01(\x05R\x05limit2\xb0\x01\n" +
+	"\x12TransactionService\x12Q\n" +
+	"\x0fGetTransactions\x12\".transaction.GetTransactionOptions\x1a\x18.transaction.Transaction0\x01\x12G\n" +
 	"\x13GetUserTransactions\x12\x14.transaction.Wallets\x1a\x18.transaction.Transaction0\x01B7Z5github.com/MuhammadMiftaa/Refina-Protobuf/transactionb\x06proto3"
 
 var (
@@ -276,12 +276,12 @@ func file_transaction_transaction_proto_rawDescGZIP() []byte {
 
 var file_transaction_transaction_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_transaction_transaction_proto_goTypes = []any{
-	(*Transaction)(nil), // 0: transaction.Transaction
-	(*Wallets)(nil),     // 1: transaction.Wallets
-	(*Options)(nil),     // 2: transaction.Options
+	(*Transaction)(nil),           // 0: transaction.Transaction
+	(*Wallets)(nil),               // 1: transaction.Wallets
+	(*GetTransactionOptions)(nil), // 2: transaction.GetTransactionOptions
 }
 var file_transaction_transaction_proto_depIdxs = []int32{
-	2, // 0: transaction.TransactionService.GetTransactions:input_type -> transaction.Options
+	2, // 0: transaction.TransactionService.GetTransactions:input_type -> transaction.GetTransactionOptions
 	1, // 1: transaction.TransactionService.GetUserTransactions:input_type -> transaction.Wallets
 	0, // 2: transaction.TransactionService.GetTransactions:output_type -> transaction.Transaction
 	0, // 3: transaction.TransactionService.GetUserTransactions:output_type -> transaction.Transaction

@@ -21,7 +21,7 @@ var global = (function() {
   return Function('return this')();
 }.call(null));
 
-goog.exportSymbol('proto.wallet.Options', null, global);
+goog.exportSymbol('proto.wallet.GetWalletOptions', null, global);
 goog.exportSymbol('proto.wallet.UserID', null, global);
 goog.exportSymbol('proto.wallet.Wallet', null, global);
 goog.exportSymbol('proto.wallet.WalletID', null, global);
@@ -98,16 +98,16 @@ if (goog.DEBUG && !COMPILED) {
  * @extends {jspb.Message}
  * @constructor
  */
-proto.wallet.Options = function(opt_data) {
+proto.wallet.GetWalletOptions = function(opt_data) {
   jspb.Message.initialize(this, opt_data, 0, -1, null, null);
 };
-goog.inherits(proto.wallet.Options, jspb.Message);
+goog.inherits(proto.wallet.GetWalletOptions, jspb.Message);
 if (goog.DEBUG && !COMPILED) {
   /**
    * @public
    * @override
    */
-  proto.wallet.Options.displayName = 'proto.wallet.Options';
+  proto.wallet.GetWalletOptions.displayName = 'proto.wallet.GetWalletOptions';
 }
 
 
@@ -785,8 +785,8 @@ if (jspb.Message.GENERATE_TO_OBJECT) {
  *     http://goto/soy-param-migration
  * @return {!Object}
  */
-proto.wallet.Options.prototype.toObject = function(opt_includeInstance) {
-  return proto.wallet.Options.toObject(opt_includeInstance, this);
+proto.wallet.GetWalletOptions.prototype.toObject = function(opt_includeInstance) {
+  return proto.wallet.GetWalletOptions.toObject(opt_includeInstance, this);
 };
 
 
@@ -795,11 +795,11 @@ proto.wallet.Options.prototype.toObject = function(opt_includeInstance) {
  * @param {boolean|undefined} includeInstance Deprecated. Whether to include
  *     the JSPB instance for transitional soy proto support:
  *     http://goto/soy-param-migration
- * @param {!proto.wallet.Options} msg The msg instance to transform.
+ * @param {!proto.wallet.GetWalletOptions} msg The msg instance to transform.
  * @return {!Object}
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.wallet.Options.toObject = function(includeInstance, msg) {
+proto.wallet.GetWalletOptions.toObject = function(includeInstance, msg) {
   var f, obj = {
     limit: jspb.Message.getFieldWithDefault(msg, 1, 0)
   };
@@ -815,23 +815,23 @@ proto.wallet.Options.toObject = function(includeInstance, msg) {
 /**
  * Deserializes binary data (in protobuf wire format).
  * @param {jspb.ByteSource} bytes The bytes to deserialize.
- * @return {!proto.wallet.Options}
+ * @return {!proto.wallet.GetWalletOptions}
  */
-proto.wallet.Options.deserializeBinary = function(bytes) {
+proto.wallet.GetWalletOptions.deserializeBinary = function(bytes) {
   var reader = new jspb.BinaryReader(bytes);
-  var msg = new proto.wallet.Options;
-  return proto.wallet.Options.deserializeBinaryFromReader(msg, reader);
+  var msg = new proto.wallet.GetWalletOptions;
+  return proto.wallet.GetWalletOptions.deserializeBinaryFromReader(msg, reader);
 };
 
 
 /**
  * Deserializes binary data (in protobuf wire format) from the
  * given reader into the given message object.
- * @param {!proto.wallet.Options} msg The message object to deserialize into.
+ * @param {!proto.wallet.GetWalletOptions} msg The message object to deserialize into.
  * @param {!jspb.BinaryReader} reader The BinaryReader to use.
- * @return {!proto.wallet.Options}
+ * @return {!proto.wallet.GetWalletOptions}
  */
-proto.wallet.Options.deserializeBinaryFromReader = function(msg, reader) {
+proto.wallet.GetWalletOptions.deserializeBinaryFromReader = function(msg, reader) {
   while (reader.nextField()) {
     if (reader.isEndGroup()) {
       break;
@@ -855,9 +855,9 @@ proto.wallet.Options.deserializeBinaryFromReader = function(msg, reader) {
  * Serializes the message to binary data (in protobuf wire format).
  * @return {!Uint8Array}
  */
-proto.wallet.Options.prototype.serializeBinary = function() {
+proto.wallet.GetWalletOptions.prototype.serializeBinary = function() {
   var writer = new jspb.BinaryWriter();
-  proto.wallet.Options.serializeBinaryToWriter(this, writer);
+  proto.wallet.GetWalletOptions.serializeBinaryToWriter(this, writer);
   return writer.getResultBuffer();
 };
 
@@ -865,11 +865,11 @@ proto.wallet.Options.prototype.serializeBinary = function() {
 /**
  * Serializes the given message to binary data (in protobuf wire
  * format), writing to the given BinaryWriter.
- * @param {!proto.wallet.Options} message
+ * @param {!proto.wallet.GetWalletOptions} message
  * @param {!jspb.BinaryWriter} writer
  * @suppress {unusedLocalVariables} f is only used for nested messages
  */
-proto.wallet.Options.serializeBinaryToWriter = function(message, writer) {
+proto.wallet.GetWalletOptions.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
   f = message.getLimit();
   if (f !== 0) {
@@ -885,16 +885,16 @@ proto.wallet.Options.serializeBinaryToWriter = function(message, writer) {
  * optional int32 limit = 1;
  * @return {number}
  */
-proto.wallet.Options.prototype.getLimit = function() {
+proto.wallet.GetWalletOptions.prototype.getLimit = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
 
 /**
  * @param {number} value
- * @return {!proto.wallet.Options} returns this
+ * @return {!proto.wallet.GetWalletOptions} returns this
  */
-proto.wallet.Options.prototype.setLimit = function(value) {
+proto.wallet.GetWalletOptions.prototype.setLimit = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
 };
 

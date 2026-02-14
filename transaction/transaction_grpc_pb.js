@@ -4,15 +4,15 @@
 var grpc = require('@grpc/grpc-js');
 var transaction_transaction_pb = require('../transaction/transaction_pb.js');
 
-function serialize_transaction_Options(arg) {
-  if (!(arg instanceof transaction_transaction_pb.Options)) {
-    throw new Error('Expected argument of type transaction.Options');
+function serialize_transaction_GetTransactionOptions(arg) {
+  if (!(arg instanceof transaction_transaction_pb.GetTransactionOptions)) {
+    throw new Error('Expected argument of type transaction.GetTransactionOptions');
   }
   return Buffer.from(arg.serializeBinary());
 }
 
-function deserialize_transaction_Options(buffer_arg) {
-  return transaction_transaction_pb.Options.deserializeBinary(new Uint8Array(buffer_arg));
+function deserialize_transaction_GetTransactionOptions(buffer_arg) {
+  return transaction_transaction_pb.GetTransactionOptions.deserializeBinary(new Uint8Array(buffer_arg));
 }
 
 function serialize_transaction_Transaction(arg) {
@@ -43,10 +43,10 @@ var TransactionServiceService = exports.TransactionServiceService = {
     path: '/transaction.TransactionService/GetTransactions',
     requestStream: false,
     responseStream: true,
-    requestType: transaction_transaction_pb.Options,
+    requestType: transaction_transaction_pb.GetTransactionOptions,
     responseType: transaction_transaction_pb.Transaction,
-    requestSerialize: serialize_transaction_Options,
-    requestDeserialize: deserialize_transaction_Options,
+    requestSerialize: serialize_transaction_GetTransactionOptions,
+    requestDeserialize: deserialize_transaction_GetTransactionOptions,
     responseSerialize: serialize_transaction_Transaction,
     responseDeserialize: deserialize_transaction_Transaction,
   },
