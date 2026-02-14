@@ -1,8 +1,8 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 'use strict';
-var grpc = require('@grpc/grpc-js');
-var wallet_wallet_pb = require('../wallet/wallet_pb.js');
+import * as grpc from '@grpc/grpc-js';
+import * as wallet_wallet_pb from '../wallet/wallet_pb.js';
 
 function serialize_wallet_GetWalletOptions(arg) {
   if (!(arg instanceof wallet_wallet_pb.GetWalletOptions)) {
@@ -97,3 +97,6 @@ var WalletServiceService = exports.WalletServiceService = {
 };
 
 exports.WalletServiceClient = grpc.makeGenericClientConstructor(WalletServiceService, 'WalletService');
+
+// ES Module exports
+export { WalletServiceService,WalletServiceClient };

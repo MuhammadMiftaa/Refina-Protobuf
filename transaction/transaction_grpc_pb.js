@@ -1,8 +1,8 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 'use strict';
-var grpc = require('@grpc/grpc-js');
-var transaction_transaction_pb = require('../transaction/transaction_pb.js');
+import * as grpc from '@grpc/grpc-js';
+import * as transaction_transaction_pb from '../transaction/transaction_pb.js';
 
 function serialize_transaction_GetTransactionOptions(arg) {
   if (!(arg instanceof transaction_transaction_pb.GetTransactionOptions)) {
@@ -64,3 +64,6 @@ var TransactionServiceService = exports.TransactionServiceService = {
 };
 
 exports.TransactionServiceClient = grpc.makeGenericClientConstructor(TransactionServiceService, 'TransactionService');
+
+// ES Module exports
+export { TransactionServiceService,TransactionServiceClient };

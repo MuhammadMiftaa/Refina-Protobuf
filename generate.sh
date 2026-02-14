@@ -61,6 +61,25 @@ generate_node() {
         --ts_out=grpc_js:. \
         "$PROTO_FILE"
 
+    # Convert _pb.js files
+    if [ -f "${PROTO_NAME}/${PROTO_NAME}_pb.js" ]; then
+        # Add export statement at the end
+        echo "" >> "${PROTO_NAME}/${PROTO_NAME}_pb.js"
+        echo "// ES Module exports" >> "${PROTO_NAME}/${PROTO_NAME}_pb.js"
+        echo "export const { $(grep 'goog.exportSymbol' ${PROTO_NAME}/${PROTO_NAME}_pb.js | sed "s/goog.exportSymbol('proto.${PROTO_NAME}.//g" | sed "s/'.*//g" | tr '\n' ',' | sed 's/,$//') } = proto.${PROTO_NAME};" >> "${PROTO_NAME}/${PROTO_NAME}_pb.js"
+    fi
+    
+    # Convert _grpc_pb.js files  
+    if [ -f "${PROTO_NAME}/${PROTO_NAME}_grpc_pb.js" ]; then
+        sed -i "s/var grpc = require('@grpc\/grpc-js');/import * as grpc from '@grpc\/grpc-js';/g" "${PROTO_NAME}/${PROTO_NAME}_grpc_pb.js"
+        sed -i "s/var ${PROTO_NAME}_${PROTO_NAME}_pb = require('..\/${PROTO_NAME}\/${PROTO_NAME}_pb.js');/import * as ${PROTO_NAME}_${PROTO_NAME}_pb from '..\/${PROTO_NAME}\/${PROTO_NAME}_pb.js';/g" "${PROTO_NAME}/${PROTO_NAME}_grpc_pb.js"
+        
+        # Export at the end
+        echo "" >> "${PROTO_NAME}/${PROTO_NAME}_grpc_pb.js"
+        echo "// ES Module exports" >> "${PROTO_NAME}/${PROTO_NAME}_grpc_pb.js"
+        echo "export { $(grep 'exports\.' ${PROTO_NAME}/${PROTO_NAME}_grpc_pb.js | grep 'Service' | sed 's/.*exports\.//g' | sed 's/ =.*//g' | tr '\n' ',' | sed 's/,$//') };" >> "${PROTO_NAME}/${PROTO_NAME}_grpc_pb.js"
+    fi
+
     if [ $? -eq 0 ]; then
         echo "✅ Node.js proto files generated!"
         echo "📁 ${PROTO_NAME}/${PROTO_NAME}_pb.js"
