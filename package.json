@@ -1,6 +1,7 @@
 {
   "name": "@muhammadmiftaa/refina-protobuf",
   "version": "1.0.0",
+  "type": "module",
   "description": "Shared Protocol Buffer definitions for Refina microservices",
   "main": "index.js",
   "scripts": {
