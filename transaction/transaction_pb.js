@@ -804,6 +804,3 @@ proto.transaction.GetTransactionOptions.prototype.setLimit = function(value) {
 
 
 goog.object.extend(exports, proto.transaction);
-
-// ES Module exports
-export const { GetTransactionOptions,Transaction,Wallets } = proto.transaction;

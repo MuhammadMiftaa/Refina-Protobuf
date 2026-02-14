@@ -1,8 +1,8 @@
 // GENERATED CODE -- DO NOT EDIT!
 
 'use strict';
-import * as grpc from '@grpc/grpc-js';
-import * as transaction_transaction_pb from '../transaction/transaction_pb.js';
+var grpc = require('@grpc/grpc-js');
+var transaction_transaction_pb = require('../transaction/transaction_pb.js');
 
 function serialize_transaction_GetTransactionOptions(arg) {
   if (!(arg instanceof transaction_transaction_pb.GetTransactionOptions)) {
@@ -38,7 +38,7 @@ function deserialize_transaction_Wallets(buffer_arg) {
 }
 
 
-const TransactionServiceService = {
+var TransactionServiceService = exports.TransactionServiceService = {
   getTransactions: {
     path: '/transaction.TransactionService/GetTransactions',
     requestStream: false,
@@ -63,7 +63,4 @@ const TransactionServiceService = {
   },
 };
 
-const TransactionServiceClient = grpc.makeGenericClientConstructor(TransactionServiceService, 'TransactionService');
-
-// ES Module exports
-export { TransactionServiceService,TransactionServiceClient };
+exports.TransactionServiceClient = grpc.makeGenericClientConstructor(TransactionServiceService, 'TransactionService');

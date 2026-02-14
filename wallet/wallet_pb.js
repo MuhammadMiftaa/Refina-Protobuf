@@ -900,6 +900,3 @@ proto.wallet.GetWalletOptions.prototype.setLimit = function(value) {
 
 
 goog.object.extend(exports, proto.wallet);
-
-// ES Module exports
-export const { GetWalletOptions,UserID,Wallet,WalletID } = proto.wallet;
