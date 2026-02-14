@@ -5,6 +5,7 @@ package wallet;
 option go_package = "github.com/MuhammadMiftaa/Refina-Protobuf/wallet";
 
 service WalletService {
+    rpc GetWallets (Options) returns (stream Wallet);
     rpc GetUserWallets (UserID) returns (stream Wallet);
     rpc GetWalletByID (WalletID) returns (Wallet);
     rpc UpdateWallet (Wallet) returns (Wallet);
@@ -29,4 +30,8 @@ message WalletID {
 
 message UserID {
     string id = 1;
+}
+
+message Options {
+    int32 limit = 1;
 }

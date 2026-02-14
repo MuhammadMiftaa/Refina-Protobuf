@@ -4,6 +4,17 @@
 var grpc = require('@grpc/grpc-js');
 var wallet_wallet_pb = require('../wallet/wallet_pb.js');
 
+function serialize_wallet_Options(arg) {
+  if (!(arg instanceof wallet_wallet_pb.Options)) {
+    throw new Error('Expected argument of type wallet.Options');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_wallet_Options(buffer_arg) {
+  return wallet_wallet_pb.Options.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_wallet_UserID(arg) {
   if (!(arg instanceof wallet_wallet_pb.UserID)) {
     throw new Error('Expected argument of type wallet.UserID');
@@ -39,6 +50,17 @@ function deserialize_wallet_WalletID(buffer_arg) {
 
 
 var WalletServiceService = exports.WalletServiceService = {
+  getWallets: {
+    path: '/wallet.WalletService/GetWallets',
+    requestStream: false,
+    responseStream: true,
+    requestType: wallet_wallet_pb.Options,
+    responseType: wallet_wallet_pb.Wallet,
+    requestSerialize: serialize_wallet_Options,
+    requestDeserialize: deserialize_wallet_Options,
+    responseSerialize: serialize_wallet_Wallet,
+    responseDeserialize: deserialize_wallet_Wallet,
+  },
   getUserWallets: {
     path: '/wallet.WalletService/GetUserWallets',
     requestStream: false,

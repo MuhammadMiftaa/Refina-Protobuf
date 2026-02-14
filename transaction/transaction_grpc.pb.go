@@ -19,6 +19,7 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
+	TransactionService_GetTransactions_FullMethodName     = "/transaction.TransactionService/GetTransactions"
 	TransactionService_GetUserTransactions_FullMethodName = "/transaction.TransactionService/GetUserTransactions"
 )
 
@@ -26,6 +27,7 @@ const (
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TransactionServiceClient interface {
+	GetTransactions(ctx context.Context, in *Options, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Transaction], error)
 	GetUserTransactions(ctx context.Context, in *Wallets, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Transaction], error)
 }
 
@@ -37,9 +39,28 @@ func NewTransactionServiceClient(cc grpc.ClientConnInterface) TransactionService
 	return &transactionServiceClient{cc}
 }
 
+func (c *transactionServiceClient) GetTransactions(ctx context.Context, in *Options, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Transaction], error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	stream, err := c.cc.NewStream(ctx, &TransactionService_ServiceDesc.Streams[0], TransactionService_GetTransactions_FullMethodName, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	x := &grpc.GenericClientStream[Options, Transaction]{ClientStream: stream}
+	if err := x.ClientStream.SendMsg(in); err != nil {
+		return nil, err
+	}
+	if err := x.ClientStream.CloseSend(); err != nil {
+		return nil, err
+	}
+	return x, nil
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type TransactionService_GetTransactionsClient = grpc.ServerStreamingClient[Transaction]
+
 func (c *transactionServiceClient) GetUserTransactions(ctx context.Context, in *Wallets, opts ...grpc.CallOption) (grpc.ServerStreamingClient[Transaction], error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	stream, err := c.cc.NewStream(ctx, &TransactionService_ServiceDesc.Streams[0], TransactionService_GetUserTransactions_FullMethodName, cOpts...)
+	stream, err := c.cc.NewStream(ctx, &TransactionService_ServiceDesc.Streams[1], TransactionService_GetUserTransactions_FullMethodName, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -60,6 +81,7 @@ type TransactionService_GetUserTransactionsClient = grpc.ServerStreamingClient[T
 // All implementations must embed UnimplementedTransactionServiceServer
 // for forward compatibility.
 type TransactionServiceServer interface {
+	GetTransactions(*Options, grpc.ServerStreamingServer[Transaction]) error
 	GetUserTransactions(*Wallets, grpc.ServerStreamingServer[Transaction]) error
 	mustEmbedUnimplementedTransactionServiceServer()
 }
@@ -71,6 +93,9 @@ type TransactionServiceServer interface {
 // pointer dereference when methods are called.
 type UnimplementedTransactionServiceServer struct{}
 
+func (UnimplementedTransactionServiceServer) GetTransactions(*Options, grpc.ServerStreamingServer[Transaction]) error {
+	return status.Error(codes.Unimplemented, "method GetTransactions not implemented")
+}
 func (UnimplementedTransactionServiceServer) GetUserTransactions(*Wallets, grpc.ServerStreamingServer[Transaction]) error {
 	return status.Error(codes.Unimplemented, "method GetUserTransactions not implemented")
 }
@@ -95,6 +120,17 @@ func RegisterTransactionServiceServer(s grpc.ServiceRegistrar, srv TransactionSe
 	s.RegisterService(&TransactionService_ServiceDesc, srv)
 }
 
+func _TransactionService_GetTransactions_Handler(srv interface{}, stream grpc.ServerStream) error {
+	m := new(Options)
+	if err := stream.RecvMsg(m); err != nil {
+		return err
+	}
+	return srv.(TransactionServiceServer).GetTransactions(m, &grpc.GenericServerStream[Options, Transaction]{ServerStream: stream})
+}
+
+// This type alias is provided for backwards compatibility with existing code that references the prior non-generic stream type by name.
+type TransactionService_GetTransactionsServer = grpc.ServerStreamingServer[Transaction]
+
 func _TransactionService_GetUserTransactions_Handler(srv interface{}, stream grpc.ServerStream) error {
 	m := new(Wallets)
 	if err := stream.RecvMsg(m); err != nil {
@@ -114,6 +150,11 @@ var TransactionService_ServiceDesc = grpc.ServiceDesc{
 	HandlerType: (*TransactionServiceServer)(nil),
 	Methods:     []grpc.MethodDesc{},
 	Streams: []grpc.StreamDesc{
+		{
+			StreamName:    "GetTransactions",
+			Handler:       _TransactionService_GetTransactions_Handler,
+			ServerStreams: true,
+		},
 		{
 			StreamName:    "GetUserTransactions",
 			Handler:       _TransactionService_GetUserTransactions_Handler,

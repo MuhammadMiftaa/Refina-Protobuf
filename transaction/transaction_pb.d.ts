@@ -77,3 +77,23 @@ export namespace Wallets {
         walletIdList: Array<string>,
     }
 }
+
+export class Options extends jspb.Message { 
+    getLimit(): number;
+    setLimit(value: number): Options;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): Options.AsObject;
+    static toObject(includeInstance: boolean, msg: Options): Options.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: Options, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): Options;
+    static deserializeBinaryFromReader(message: Options, reader: jspb.BinaryReader): Options;
+}
+
+export namespace Options {
+    export type AsObject = {
+        limit: number,
+    }
+}

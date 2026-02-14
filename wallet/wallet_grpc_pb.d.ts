@@ -8,11 +8,21 @@ import * as grpc from "@grpc/grpc-js";
 import * as wallet_wallet_pb from "../wallet/wallet_pb";
 
 interface IWalletServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
+    getWallets: IWalletServiceService_IGetWallets;
     getUserWallets: IWalletServiceService_IGetUserWallets;
     getWalletByID: IWalletServiceService_IGetWalletByID;
     updateWallet: IWalletServiceService_IUpdateWallet;
 }
 
+interface IWalletServiceService_IGetWallets extends grpc.MethodDefinition<wallet_wallet_pb.Options, wallet_wallet_pb.Wallet> {
+    path: "/wallet.WalletService/GetWallets";
+    requestStream: false;
+    responseStream: true;
+    requestSerialize: grpc.serialize<wallet_wallet_pb.Options>;
+    requestDeserialize: grpc.deserialize<wallet_wallet_pb.Options>;
+    responseSerialize: grpc.serialize<wallet_wallet_pb.Wallet>;
+    responseDeserialize: grpc.deserialize<wallet_wallet_pb.Wallet>;
+}
 interface IWalletServiceService_IGetUserWallets extends grpc.MethodDefinition<wallet_wallet_pb.UserID, wallet_wallet_pb.Wallet> {
     path: "/wallet.WalletService/GetUserWallets";
     requestStream: false;
@@ -44,12 +54,15 @@ interface IWalletServiceService_IUpdateWallet extends grpc.MethodDefinition<wall
 export const WalletServiceService: IWalletServiceService;
 
 export interface IWalletServiceServer extends grpc.UntypedServiceImplementation {
+    getWallets: grpc.handleServerStreamingCall<wallet_wallet_pb.Options, wallet_wallet_pb.Wallet>;
     getUserWallets: grpc.handleServerStreamingCall<wallet_wallet_pb.UserID, wallet_wallet_pb.Wallet>;
     getWalletByID: grpc.handleUnaryCall<wallet_wallet_pb.WalletID, wallet_wallet_pb.Wallet>;
     updateWallet: grpc.handleUnaryCall<wallet_wallet_pb.Wallet, wallet_wallet_pb.Wallet>;
 }
 
 export interface IWalletServiceClient {
+    getWallets(request: wallet_wallet_pb.Options, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<wallet_wallet_pb.Wallet>;
+    getWallets(request: wallet_wallet_pb.Options, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<wallet_wallet_pb.Wallet>;
     getUserWallets(request: wallet_wallet_pb.UserID, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<wallet_wallet_pb.Wallet>;
     getUserWallets(request: wallet_wallet_pb.UserID, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<wallet_wallet_pb.Wallet>;
     getWalletByID(request: wallet_wallet_pb.WalletID, callback: (error: grpc.ServiceError | null, response: wallet_wallet_pb.Wallet) => void): grpc.ClientUnaryCall;
@@ -62,6 +75,8 @@ export interface IWalletServiceClient {
 
 export class WalletServiceClient extends grpc.Client implements IWalletServiceClient {
     constructor(address: string, credentials: grpc.ChannelCredentials, options?: Partial<grpc.ClientOptions>);
+    public getWallets(request: wallet_wallet_pb.Options, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<wallet_wallet_pb.Wallet>;
+    public getWallets(request: wallet_wallet_pb.Options, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<wallet_wallet_pb.Wallet>;
     public getUserWallets(request: wallet_wallet_pb.UserID, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<wallet_wallet_pb.Wallet>;
     public getUserWallets(request: wallet_wallet_pb.UserID, metadata?: grpc.Metadata, options?: Partial<grpc.CallOptions>): grpc.ClientReadableStream<wallet_wallet_pb.Wallet>;
     public getWalletByID(request: wallet_wallet_pb.WalletID, callback: (error: grpc.ServiceError | null, response: wallet_wallet_pb.Wallet) => void): grpc.ClientUnaryCall;

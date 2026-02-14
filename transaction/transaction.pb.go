@@ -189,6 +189,50 @@ func (x *Wallets) GetWalletId() []string {
 	return nil
 }
 
+type Options struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Limit         int32                  `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Options) Reset() {
+	*x = Options{}
+	mi := &file_transaction_transaction_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Options) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Options) ProtoMessage() {}
+
+func (x *Options) ProtoReflect() protoreflect.Message {
+	mi := &file_transaction_transaction_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Options.ProtoReflect.Descriptor instead.
+func (*Options) Descriptor() ([]byte, []int) {
+	return file_transaction_transaction_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *Options) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
 var File_transaction_transaction_proto protoreflect.FileDescriptor
 
 const file_transaction_transaction_proto_rawDesc = "" +
@@ -211,8 +255,11 @@ const file_transaction_transaction_proto_rawDesc = "" +
 	"\n" +
 	"updated_at\x18\v \x01(\tR\tupdatedAt\"&\n" +
 	"\aWallets\x12\x1b\n" +
-	"\twallet_id\x18\x01 \x03(\tR\bwalletId2]\n" +
-	"\x12TransactionService\x12G\n" +
+	"\twallet_id\x18\x01 \x03(\tR\bwalletId\"\x1f\n" +
+	"\aOptions\x12\x14\n" +
+	"\x05limit\x18\x01 \x01(\x05R\x05limit2\xa2\x01\n" +
+	"\x12TransactionService\x12C\n" +
+	"\x0fGetTransactions\x12\x14.transaction.Options\x1a\x18.transaction.Transaction0\x01\x12G\n" +
 	"\x13GetUserTransactions\x12\x14.transaction.Wallets\x1a\x18.transaction.Transaction0\x01B7Z5github.com/MuhammadMiftaa/Refina-Protobuf/transactionb\x06proto3"
 
 var (
@@ -227,16 +274,19 @@ func file_transaction_transaction_proto_rawDescGZIP() []byte {
 	return file_transaction_transaction_proto_rawDescData
 }
 
-var file_transaction_transaction_proto_msgTypes = make([]protoimpl.MessageInfo, 2)
+var file_transaction_transaction_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
 var file_transaction_transaction_proto_goTypes = []any{
 	(*Transaction)(nil), // 0: transaction.Transaction
 	(*Wallets)(nil),     // 1: transaction.Wallets
+	(*Options)(nil),     // 2: transaction.Options
 }
 var file_transaction_transaction_proto_depIdxs = []int32{
-	1, // 0: transaction.TransactionService.GetUserTransactions:input_type -> transaction.Wallets
-	0, // 1: transaction.TransactionService.GetUserTransactions:output_type -> transaction.Transaction
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	2, // 0: transaction.TransactionService.GetTransactions:input_type -> transaction.Options
+	1, // 1: transaction.TransactionService.GetUserTransactions:input_type -> transaction.Wallets
+	0, // 2: transaction.TransactionService.GetTransactions:output_type -> transaction.Transaction
+	0, // 3: transaction.TransactionService.GetUserTransactions:output_type -> transaction.Transaction
+	2, // [2:4] is the sub-list for method output_type
+	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -253,7 +303,7 @@ func file_transaction_transaction_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_transaction_transaction_proto_rawDesc), len(file_transaction_transaction_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   2,
+			NumMessages:   3,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

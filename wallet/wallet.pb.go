@@ -225,6 +225,50 @@ func (x *UserID) GetId() string {
 	return ""
 }
 
+type Options struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Limit         int32                  `protobuf:"varint,1,opt,name=limit,proto3" json:"limit,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *Options) Reset() {
+	*x = Options{}
+	mi := &file_wallet_wallet_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *Options) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*Options) ProtoMessage() {}
+
+func (x *Options) ProtoReflect() protoreflect.Message {
+	mi := &file_wallet_wallet_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use Options.ProtoReflect.Descriptor instead.
+func (*Options) Descriptor() ([]byte, []int) {
+	return file_wallet_wallet_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *Options) GetLimit() int32 {
+	if x != nil {
+		return x.Limit
+	}
+	return 0
+}
+
 var File_wallet_wallet_proto protoreflect.FileDescriptor
 
 const file_wallet_wallet_proto_rawDesc = "" +
@@ -248,8 +292,12 @@ const file_wallet_wallet_proto_rawDesc = "" +
 	"\bWalletID\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"\x18\n" +
 	"\x06UserID\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id2\xa6\x01\n" +
-	"\rWalletService\x122\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\"\x1f\n" +
+	"\aOptions\x12\x14\n" +
+	"\x05limit\x18\x01 \x01(\x05R\x05limit2\xd7\x01\n" +
+	"\rWalletService\x12/\n" +
+	"\n" +
+	"GetWallets\x12\x0f.wallet.Options\x1a\x0e.wallet.Wallet0\x01\x122\n" +
 	"\x0eGetUserWallets\x12\x0e.wallet.UserID\x1a\x0e.wallet.Wallet0\x01\x121\n" +
 	"\rGetWalletByID\x12\x10.wallet.WalletID\x1a\x0e.wallet.Wallet\x12.\n" +
 	"\fUpdateWallet\x12\x0e.wallet.Wallet\x1a\x0e.wallet.WalletB2Z0github.com/MuhammadMiftaa/Refina-Protobuf/walletb\x06proto3"
@@ -266,21 +314,24 @@ func file_wallet_wallet_proto_rawDescGZIP() []byte {
 	return file_wallet_wallet_proto_rawDescData
 }
 
-var file_wallet_wallet_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_wallet_wallet_proto_msgTypes = make([]protoimpl.MessageInfo, 4)
 var file_wallet_wallet_proto_goTypes = []any{
 	(*Wallet)(nil),   // 0: wallet.Wallet
 	(*WalletID)(nil), // 1: wallet.WalletID
 	(*UserID)(nil),   // 2: wallet.UserID
+	(*Options)(nil),  // 3: wallet.Options
 }
 var file_wallet_wallet_proto_depIdxs = []int32{
-	2, // 0: wallet.WalletService.GetUserWallets:input_type -> wallet.UserID
-	1, // 1: wallet.WalletService.GetWalletByID:input_type -> wallet.WalletID
-	0, // 2: wallet.WalletService.UpdateWallet:input_type -> wallet.Wallet
-	0, // 3: wallet.WalletService.GetUserWallets:output_type -> wallet.Wallet
-	0, // 4: wallet.WalletService.GetWalletByID:output_type -> wallet.Wallet
-	0, // 5: wallet.WalletService.UpdateWallet:output_type -> wallet.Wallet
-	3, // [3:6] is the sub-list for method output_type
-	0, // [0:3] is the sub-list for method input_type
+	3, // 0: wallet.WalletService.GetWallets:input_type -> wallet.Options
+	2, // 1: wallet.WalletService.GetUserWallets:input_type -> wallet.UserID
+	1, // 2: wallet.WalletService.GetWalletByID:input_type -> wallet.WalletID
+	0, // 3: wallet.WalletService.UpdateWallet:input_type -> wallet.Wallet
+	0, // 4: wallet.WalletService.GetWallets:output_type -> wallet.Wallet
+	0, // 5: wallet.WalletService.GetUserWallets:output_type -> wallet.Wallet
+	0, // 6: wallet.WalletService.GetWalletByID:output_type -> wallet.Wallet
+	0, // 7: wallet.WalletService.UpdateWallet:output_type -> wallet.Wallet
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -297,7 +348,7 @@ func file_wallet_wallet_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_wallet_wallet_proto_rawDesc), len(file_wallet_wallet_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   4,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
