@@ -55,7 +55,12 @@ generate_node() {
         --grpc_out=grpc_js:. \
         --plugin=protoc-gen-grpc=$(which grpc_tools_node_protoc_plugin) \
         "$PROTO_FILE"
-    
+  
+    grpc_tools_node_protoc \
+        --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts \
+        --ts_out=grpc_js:. \
+        "$PROTO_FILE"
+
     if [ $? -eq 0 ]; then
         echo "✅ Node.js proto files generated!"
         echo "📁 ${PROTO_NAME}/${PROTO_NAME}_pb.js"
