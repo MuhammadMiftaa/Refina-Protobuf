@@ -11,7 +11,10 @@
     "generate:transaction:go": "./generate.sh transaction go",
     "generate:transaction:node": "./generate.sh transaction node",
     "generate:transaction:all": "./generate.sh transaction all",
-    "generate:all": "./generate.sh wallet all && ./generate.sh transaction all"
+    "generate:investment:go": "./generate.sh investment go",
+    "generate:investment:node": "./generate.sh investment node",
+    "generate:investment:all": "./generate.sh investment all",
+    "generate:all": "./generate.sh wallet all && ./generate.sh transaction all && ./generate.sh investment all"
   },
   "keywords": [
     "protobuf",

@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package investment;
+
+option go_package = "github.com/MuhammadMiftaa/Refina-Protobuf/investment";
+
+service InvestmentService {
+    rpc GetInvestments (GetInvestmentOptions) returns (stream Investment);
+    rpc GetUserInvestments (UserID) returns (stream Investment);
+}
+
+message AssetCode {
+    string code = 1;
+    string name = 2;
+    string unit = 3;
+    double toUSD = 4;
+    double toEUR = 5;
+    double toIDR = 6;
+    string createdAt = 7;
+    string updatedAt = 8;
+}
+
+message Investment {
+    string id = 1;
+    string code = 2;
+    string userId = 3;
+    double quantity = 4;
+    double initialValuation = 5;
+    double amount = 6;
+    string date = 7;
+    string description = 8;
+    AssetCode assetCode = 9;
+    string createdAt = 10;
+    string updatedAt = 11;
+}
+
+message InvestmentID {
+    string id = 1;
+}
+
+message UserID {
+    string id = 1;
+}
+
+message GetInvestmentOptions {
+    int32 limit = 1;
+}
