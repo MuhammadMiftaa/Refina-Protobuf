@@ -124,6 +124,7 @@ message CreateTransactionRequest {
     string transaction_date = 5;
     string description = 6;
     repeated string attachments = 7;
+    bool is_wallet_not_created = 8;
 }
 
 message CreateFundTransferRequest {

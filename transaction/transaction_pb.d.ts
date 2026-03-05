@@ -397,6 +397,8 @@ export class CreateTransactionRequest extends jspb.Message {
     getAttachmentsList(): Array<string>;
     setAttachmentsList(value: Array<string>): CreateTransactionRequest;
     addAttachments(value: string, index?: number): string;
+    getIsWalletNotCreated(): boolean;
+    setIsWalletNotCreated(value: boolean): CreateTransactionRequest;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): CreateTransactionRequest.AsObject;
@@ -417,6 +419,7 @@ export namespace CreateTransactionRequest {
         transactionDate: string,
         description: string,
         attachmentsList: Array<string>,
+        isWalletNotCreated: boolean,
     }
 }
 

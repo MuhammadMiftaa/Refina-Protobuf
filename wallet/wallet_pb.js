@@ -1800,7 +1800,8 @@ proto.wallet.UpdateWalletRequest.toObject = function(includeInstance, msg) {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     name: jspb.Message.getFieldWithDefault(msg, 2, ""),
     number: jspb.Message.getFieldWithDefault(msg, 3, ""),
-    walletTypeId: jspb.Message.getFieldWithDefault(msg, 4, "")
+    walletTypeId: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    balance: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0)
   };
 
   if (includeInstance) {
@@ -1852,6 +1853,10 @@ proto.wallet.UpdateWalletRequest.deserializeBinaryFromReader = function(msg, rea
     case 4:
       var value = /** @type {string} */ (reader.readString());
       msg.setWalletTypeId(value);
+      break;
+    case 5:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setBalance(value);
       break;
     default:
       reader.skipField();
@@ -1907,6 +1912,13 @@ proto.wallet.UpdateWalletRequest.serializeBinaryToWriter = function(message, wri
   if (f.length > 0) {
     writer.writeString(
       4,
+      f
+    );
+  }
+  f = message.getBalance();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      5,
       f
     );
   }
@@ -1982,6 +1994,24 @@ proto.wallet.UpdateWalletRequest.prototype.getWalletTypeId = function() {
  */
 proto.wallet.UpdateWalletRequest.prototype.setWalletTypeId = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
+};
+
+
+/**
+ * optional double balance = 5;
+ * @return {number}
+ */
+proto.wallet.UpdateWalletRequest.prototype.getBalance = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 5, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.wallet.UpdateWalletRequest} returns this
+ */
+proto.wallet.UpdateWalletRequest.prototype.setBalance = function(value) {
+  return jspb.Message.setProto3FloatField(this, 5, value);
 };
 
 

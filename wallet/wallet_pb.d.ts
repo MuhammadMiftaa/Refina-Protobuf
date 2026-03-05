@@ -215,6 +215,8 @@ export class UpdateWalletRequest extends jspb.Message {
     setNumber(value: string): UpdateWalletRequest;
     getWalletTypeId(): string;
     setWalletTypeId(value: string): UpdateWalletRequest;
+    getBalance(): number;
+    setBalance(value: number): UpdateWalletRequest;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): UpdateWalletRequest.AsObject;
@@ -232,6 +234,7 @@ export namespace UpdateWalletRequest {
         name: string,
         number: string,
         walletTypeId: string,
+        balance: number,
     }
 }
 

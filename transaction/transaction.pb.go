@@ -886,16 +886,17 @@ func (x *GetUserTransactionsRequest) GetCursorDate() string {
 }
 
 type CreateTransactionRequest struct {
-	state           protoimpl.MessageState `protogen:"open.v1"`
-	UserId          string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
-	WalletId        string                 `protobuf:"bytes,2,opt,name=wallet_id,json=walletId,proto3" json:"wallet_id,omitempty"`
-	CategoryId      string                 `protobuf:"bytes,3,opt,name=category_id,json=categoryId,proto3" json:"category_id,omitempty"`
-	Amount          float64                `protobuf:"fixed64,4,opt,name=amount,proto3" json:"amount,omitempty"`
-	TransactionDate string                 `protobuf:"bytes,5,opt,name=transaction_date,json=transactionDate,proto3" json:"transaction_date,omitempty"`
-	Description     string                 `protobuf:"bytes,6,opt,name=description,proto3" json:"description,omitempty"`
-	Attachments     []string               `protobuf:"bytes,7,rep,name=attachments,proto3" json:"attachments,omitempty"`
-	unknownFields   protoimpl.UnknownFields
-	sizeCache       protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	UserId             string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	WalletId           string                 `protobuf:"bytes,2,opt,name=wallet_id,json=walletId,proto3" json:"wallet_id,omitempty"`
+	CategoryId         string                 `protobuf:"bytes,3,opt,name=category_id,json=categoryId,proto3" json:"category_id,omitempty"`
+	Amount             float64                `protobuf:"fixed64,4,opt,name=amount,proto3" json:"amount,omitempty"`
+	TransactionDate    string                 `protobuf:"bytes,5,opt,name=transaction_date,json=transactionDate,proto3" json:"transaction_date,omitempty"`
+	Description        string                 `protobuf:"bytes,6,opt,name=description,proto3" json:"description,omitempty"`
+	Attachments        []string               `protobuf:"bytes,7,rep,name=attachments,proto3" json:"attachments,omitempty"`
+	IsWalletNotCreated bool                   `protobuf:"varint,8,opt,name=is_wallet_not_created,json=isWalletNotCreated,proto3" json:"is_wallet_not_created,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *CreateTransactionRequest) Reset() {
@@ -975,6 +976,13 @@ func (x *CreateTransactionRequest) GetAttachments() []string {
 		return x.Attachments
 	}
 	return nil
+}
+
+func (x *CreateTransactionRequest) GetIsWalletNotCreated() bool {
+	if x != nil {
+		return x.IsWalletNotCreated
+	}
+	return false
 }
 
 type CreateFundTransferRequest struct {
@@ -1780,7 +1788,7 @@ const file_transaction_transaction_proto_rawDesc = "" +
 	"\x06cursor\x18\v \x01(\tR\x06cursor\x12#\n" +
 	"\rcursor_amount\x18\f \x01(\x01R\fcursorAmount\x12\x1f\n" +
 	"\vcursor_date\x18\r \x01(\tR\n" +
-	"cursorDate\"\xf8\x01\n" +
+	"cursorDate\"\xab\x02\n" +
 	"\x18CreateTransactionRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1b\n" +
 	"\twallet_id\x18\x02 \x01(\tR\bwalletId\x12\x1f\n" +
@@ -1789,7 +1797,8 @@ const file_transaction_transaction_proto_rawDesc = "" +
 	"\x06amount\x18\x04 \x01(\x01R\x06amount\x12)\n" +
 	"\x10transaction_date\x18\x05 \x01(\tR\x0ftransactionDate\x12 \n" +
 	"\vdescription\x18\x06 \x01(\tR\vdescription\x12 \n" +
-	"\vattachments\x18\a \x03(\tR\vattachments\"\xde\x02\n" +
+	"\vattachments\x18\a \x03(\tR\vattachments\x121\n" +
+	"\x15is_wallet_not_created\x18\b \x01(\bR\x12isWalletNotCreated\"\xde\x02\n" +
 	"\x19CreateFundTransferRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12$\n" +
 	"\x0efrom_wallet_id\x18\x02 \x01(\tR\ffromWalletId\x12 \n" +

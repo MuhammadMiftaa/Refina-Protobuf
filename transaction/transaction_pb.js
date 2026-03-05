@@ -3505,7 +3505,8 @@ proto.transaction.CreateTransactionRequest.toObject = function(includeInstance, 
     amount: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
     transactionDate: jspb.Message.getFieldWithDefault(msg, 5, ""),
     description: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    attachmentsList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f
+    attachmentsList: (f = jspb.Message.getRepeatedField(msg, 7)) == null ? undefined : f,
+    isWalletNotCreated: jspb.Message.getBooleanFieldWithDefault(msg, 8, false)
   };
 
   if (includeInstance) {
@@ -3569,6 +3570,10 @@ proto.transaction.CreateTransactionRequest.deserializeBinaryFromReader = functio
     case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.addAttachments(value);
+      break;
+    case 8:
+      var value = /** @type {boolean} */ (reader.readBool());
+      msg.setIsWalletNotCreated(value);
       break;
     default:
       reader.skipField();
@@ -3645,6 +3650,13 @@ proto.transaction.CreateTransactionRequest.serializeBinaryToWriter = function(me
   if (f.length > 0) {
     writer.writeRepeatedString(
       7,
+      f
+    );
+  }
+  f = message.getIsWalletNotCreated();
+  if (f) {
+    writer.writeBool(
+      8,
       f
     );
   }
@@ -3793,6 +3805,24 @@ proto.transaction.CreateTransactionRequest.prototype.addAttachments = function(v
  */
 proto.transaction.CreateTransactionRequest.prototype.clearAttachmentsList = function() {
   return this.setAttachmentsList([]);
+};
+
+
+/**
+ * optional bool is_wallet_not_created = 8;
+ * @return {boolean}
+ */
+proto.transaction.CreateTransactionRequest.prototype.getIsWalletNotCreated = function() {
+  return /** @type {boolean} */ (jspb.Message.getBooleanFieldWithDefault(this, 8, false));
+};
+
+
+/**
+ * @param {boolean} value
+ * @return {!proto.transaction.CreateTransactionRequest} returns this
+ */
+proto.transaction.CreateTransactionRequest.prototype.setIsWalletNotCreated = function(value) {
+  return jspb.Message.setProto3BooleanField(this, 8, value);
 };
 
 
