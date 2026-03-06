@@ -36,10 +36,10 @@ export class AssetCode extends jspb.Message {
     setToeur(value: number): AssetCode;
     getToidr(): number;
     setToidr(value: number): AssetCode;
-    getCreatedat(): string;
-    setCreatedat(value: string): AssetCode;
-    getUpdatedat(): string;
-    setUpdatedat(value: string): AssetCode;
+    getCreatedAt(): string;
+    setCreatedAt(value: string): AssetCode;
+    getUpdatedAt(): string;
+    setUpdatedAt(value: string): AssetCode;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): AssetCode.AsObject;
@@ -59,8 +59,8 @@ export namespace AssetCode {
         tousd: number,
         toeur: number,
         toidr: number,
-        createdat: string,
-        updatedat: string,
+        createdAt: string,
+        updatedAt: string,
     }
 }
 
@@ -69,12 +69,12 @@ export class Investment extends jspb.Message {
     setId(value: string): Investment;
     getCode(): string;
     setCode(value: string): Investment;
-    getUserid(): string;
-    setUserid(value: string): Investment;
+    getUserId(): string;
+    setUserId(value: string): Investment;
     getQuantity(): number;
     setQuantity(value: number): Investment;
-    getInitialvaluation(): number;
-    setInitialvaluation(value: number): Investment;
+    getInitialValuation(): number;
+    setInitialValuation(value: number): Investment;
     getAmount(): number;
     setAmount(value: number): Investment;
     getDate(): string;
@@ -82,14 +82,14 @@ export class Investment extends jspb.Message {
     getDescription(): string;
     setDescription(value: string): Investment;
 
-    hasAssetcode(): boolean;
-    clearAssetcode(): void;
-    getAssetcode(): AssetCode | undefined;
-    setAssetcode(value?: AssetCode): Investment;
-    getCreatedat(): string;
-    setCreatedat(value: string): Investment;
-    getUpdatedat(): string;
-    setUpdatedat(value: string): Investment;
+    hasAsset(): boolean;
+    clearAsset(): void;
+    getAsset(): AssetCode | undefined;
+    setAsset(value?: AssetCode): Investment;
+    getCreatedAt(): string;
+    setCreatedAt(value: string): Investment;
+    getUpdatedAt(): string;
+    setUpdatedAt(value: string): Investment;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Investment.AsObject;
@@ -105,29 +105,29 @@ export namespace Investment {
     export type AsObject = {
         id: string,
         code: string,
-        userid: string,
+        userId: string,
         quantity: number,
-        initialvaluation: number,
+        initialValuation: number,
         amount: number,
         date: string,
         description: string,
-        assetcode?: AssetCode.AsObject,
-        createdat: string,
-        updatedat: string,
+        asset?: AssetCode.AsObject,
+        createdAt: string,
+        updatedAt: string,
     }
 }
 
 export class InvestmentSold extends jspb.Message { 
     getId(): string;
     setId(value: string): InvestmentSold;
-    getInvestmentid(): string;
-    setInvestmentid(value: string): InvestmentSold;
-    getUserid(): string;
-    setUserid(value: string): InvestmentSold;
+    getInvestmentId(): string;
+    setInvestmentId(value: string): InvestmentSold;
+    getUserId(): string;
+    setUserId(value: string): InvestmentSold;
     getQuantity(): number;
     setQuantity(value: number): InvestmentSold;
-    getSellprice(): number;
-    setSellprice(value: number): InvestmentSold;
+    getSellPrice(): number;
+    setSellPrice(value: number): InvestmentSold;
     getAmount(): number;
     setAmount(value: number): InvestmentSold;
     getDate(): string;
@@ -136,15 +136,15 @@ export class InvestmentSold extends jspb.Message {
     setDescription(value: string): InvestmentSold;
     getDeficit(): number;
     setDeficit(value: number): InvestmentSold;
-    getCreatedat(): string;
-    setCreatedat(value: string): InvestmentSold;
-    getUpdatedat(): string;
-    setUpdatedat(value: string): InvestmentSold;
+    getCreatedAt(): string;
+    setCreatedAt(value: string): InvestmentSold;
+    getUpdatedAt(): string;
+    setUpdatedAt(value: string): InvestmentSold;
 
-    hasAssetcode(): boolean;
-    clearAssetcode(): void;
-    getAssetcode(): AssetCode | undefined;
-    setAssetcode(value?: AssetCode): InvestmentSold;
+    hasAsset(): boolean;
+    clearAsset(): void;
+    getAsset(): AssetCode | undefined;
+    setAsset(value?: AssetCode): InvestmentSold;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): InvestmentSold.AsObject;
@@ -159,17 +159,17 @@ export class InvestmentSold extends jspb.Message {
 export namespace InvestmentSold {
     export type AsObject = {
         id: string,
-        investmentid: string,
-        userid: string,
+        investmentId: string,
+        userId: string,
         quantity: number,
-        sellprice: number,
+        sellPrice: number,
         amount: number,
         date: string,
         description: string,
         deficit: number,
-        createdat: string,
-        updatedat: string,
-        assetcode?: AssetCode.AsObject,
+        createdAt: string,
+        updatedAt: string,
+        asset?: AssetCode.AsObject,
     }
 }
 
@@ -234,16 +234,16 @@ export namespace GetInvestmentOptions {
 }
 
 export class GetUserInvestmentListRequest extends jspb.Message { 
-    getUserid(): string;
-    setUserid(value: string): GetUserInvestmentListRequest;
+    getUserId(): string;
+    setUserId(value: string): GetUserInvestmentListRequest;
     getPage(): number;
     setPage(value: number): GetUserInvestmentListRequest;
-    getPagesize(): number;
-    setPagesize(value: number): GetUserInvestmentListRequest;
-    getSortby(): string;
-    setSortby(value: string): GetUserInvestmentListRequest;
-    getSortorder(): string;
-    setSortorder(value: string): GetUserInvestmentListRequest;
+    getPageSize(): number;
+    setPageSize(value: number): GetUserInvestmentListRequest;
+    getSortBy(): string;
+    setSortBy(value: string): GetUserInvestmentListRequest;
+    getSortOrder(): string;
+    setSortOrder(value: string): GetUserInvestmentListRequest;
     getSearch(): string;
     setSearch(value: string): GetUserInvestmentListRequest;
     getCode(): string;
@@ -261,21 +261,21 @@ export class GetUserInvestmentListRequest extends jspb.Message {
 
 export namespace GetUserInvestmentListRequest {
     export type AsObject = {
-        userid: string,
+        userId: string,
         page: number,
-        pagesize: number,
-        sortby: string,
-        sortorder: string,
+        pageSize: number,
+        sortBy: string,
+        sortOrder: string,
         search: string,
         code: string,
     }
 }
 
 export class GetInvestmentDetailRequest extends jspb.Message { 
-    getUserid(): string;
-    setUserid(value: string): GetInvestmentDetailRequest;
-    getInvestmentid(): string;
-    setInvestmentid(value: string): GetInvestmentDetailRequest;
+    getUserId(): string;
+    setUserId(value: string): GetInvestmentDetailRequest;
+    getInvestmentId(): string;
+    setInvestmentId(value: string): GetInvestmentDetailRequest;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetInvestmentDetailRequest.AsObject;
@@ -289,22 +289,22 @@ export class GetInvestmentDetailRequest extends jspb.Message {
 
 export namespace GetInvestmentDetailRequest {
     export type AsObject = {
-        userid: string,
-        investmentid: string,
+        userId: string,
+        investmentId: string,
     }
 }
 
 export class CreateInvestmentRequest extends jspb.Message { 
-    getUserid(): string;
-    setUserid(value: string): CreateInvestmentRequest;
+    getUserId(): string;
+    setUserId(value: string): CreateInvestmentRequest;
     getCode(): string;
     setCode(value: string): CreateInvestmentRequest;
     getQuantity(): number;
     setQuantity(value: number): CreateInvestmentRequest;
     getAmount(): number;
     setAmount(value: number): CreateInvestmentRequest;
-    getInitialvaluation(): number;
-    setInitialvaluation(value: number): CreateInvestmentRequest;
+    getInitialValuation(): number;
+    setInitialValuation(value: number): CreateInvestmentRequest;
     getDate(): string;
     setDate(value: string): CreateInvestmentRequest;
     getDescription(): string;
@@ -322,21 +322,21 @@ export class CreateInvestmentRequest extends jspb.Message {
 
 export namespace CreateInvestmentRequest {
     export type AsObject = {
-        userid: string,
+        userId: string,
         code: string,
         quantity: number,
         amount: number,
-        initialvaluation: number,
+        initialValuation: number,
         date: string,
         description: string,
     }
 }
 
 export class SellInvestmentRequest extends jspb.Message { 
-    getUserid(): string;
-    setUserid(value: string): SellInvestmentRequest;
-    getAssetcode(): string;
-    setAssetcode(value: string): SellInvestmentRequest;
+    getUserId(): string;
+    setUserId(value: string): SellInvestmentRequest;
+    getAssetCode(): string;
+    setAssetCode(value: string): SellInvestmentRequest;
     getQuantity(): number;
     setQuantity(value: number): SellInvestmentRequest;
     getAmount(): number;
@@ -358,8 +358,8 @@ export class SellInvestmentRequest extends jspb.Message {
 
 export namespace SellInvestmentRequest {
     export type AsObject = {
-        userid: string,
-        assetcode: string,
+        userId: string,
+        assetCode: string,
         quantity: number,
         amount: number,
         date: string,
@@ -376,10 +376,10 @@ export class GetUserInvestmentListResponse extends jspb.Message {
     setTotal(value: number): GetUserInvestmentListResponse;
     getPage(): number;
     setPage(value: number): GetUserInvestmentListResponse;
-    getPagesize(): number;
-    setPagesize(value: number): GetUserInvestmentListResponse;
-    getTotalpages(): number;
-    setTotalpages(value: number): GetUserInvestmentListResponse;
+    getPageSize(): number;
+    setPageSize(value: number): GetUserInvestmentListResponse;
+    getTotalPages(): number;
+    setTotalPages(value: number): GetUserInvestmentListResponse;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetUserInvestmentListResponse.AsObject;
@@ -396,16 +396,16 @@ export namespace GetUserInvestmentListResponse {
         investmentsList: Array<Investment.AsObject>,
         total: number,
         page: number,
-        pagesize: number,
-        totalpages: number,
+        pageSize: number,
+        totalPages: number,
     }
 }
 
 export class SellInvestmentResponse extends jspb.Message { 
-    clearSoldrecordsList(): void;
-    getSoldrecordsList(): Array<InvestmentSold>;
-    setSoldrecordsList(value: Array<InvestmentSold>): SellInvestmentResponse;
-    addSoldrecords(value?: InvestmentSold, index?: number): InvestmentSold;
+    clearSoldRecordsList(): void;
+    getSoldRecordsList(): Array<InvestmentSold>;
+    setSoldRecordsList(value: Array<InvestmentSold>): SellInvestmentResponse;
+    addSoldRecords(value?: InvestmentSold, index?: number): InvestmentSold;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): SellInvestmentResponse.AsObject;
@@ -419,25 +419,25 @@ export class SellInvestmentResponse extends jspb.Message {
 
 export namespace SellInvestmentResponse {
     export type AsObject = {
-        soldrecordsList: Array<InvestmentSold.AsObject>,
+        soldRecordsList: Array<InvestmentSold.AsObject>,
     }
 }
 
 export class InvestmentSummaryResponse extends jspb.Message { 
-    getTotalinvestments(): number;
-    setTotalinvestments(value: number): InvestmentSummaryResponse;
-    getTotalinvested(): number;
-    setTotalinvested(value: number): InvestmentSummaryResponse;
-    getTotalcurrentvalue(): number;
-    setTotalcurrentvalue(value: number): InvestmentSummaryResponse;
-    getTotalprofitloss(): number;
-    setTotalprofitloss(value: number): InvestmentSummaryResponse;
-    getTotalprofitlosspct(): number;
-    setTotalprofitlosspct(value: number): InvestmentSummaryResponse;
-    getTotalsoldamount(): number;
-    setTotalsoldamount(value: number): InvestmentSummaryResponse;
-    getTotalrealizedgain(): number;
-    setTotalrealizedgain(value: number): InvestmentSummaryResponse;
+    getTotalInvestments(): number;
+    setTotalInvestments(value: number): InvestmentSummaryResponse;
+    getTotalInvested(): number;
+    setTotalInvested(value: number): InvestmentSummaryResponse;
+    getTotalCurrentValue(): number;
+    setTotalCurrentValue(value: number): InvestmentSummaryResponse;
+    getTotalProfitLoss(): number;
+    setTotalProfitLoss(value: number): InvestmentSummaryResponse;
+    getTotalProfitLossPct(): number;
+    setTotalProfitLossPct(value: number): InvestmentSummaryResponse;
+    getTotalSoldAmount(): number;
+    setTotalSoldAmount(value: number): InvestmentSummaryResponse;
+    getTotalRealizedGain(): number;
+    setTotalRealizedGain(value: number): InvestmentSummaryResponse;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): InvestmentSummaryResponse.AsObject;
@@ -451,21 +451,21 @@ export class InvestmentSummaryResponse extends jspb.Message {
 
 export namespace InvestmentSummaryResponse {
     export type AsObject = {
-        totalinvestments: number,
-        totalinvested: number,
-        totalcurrentvalue: number,
-        totalprofitloss: number,
-        totalprofitlosspct: number,
-        totalsoldamount: number,
-        totalrealizedgain: number,
+        totalInvestments: number,
+        totalInvested: number,
+        totalCurrentValue: number,
+        totalProfitLoss: number,
+        totalProfitLossPct: number,
+        totalSoldAmount: number,
+        totalRealizedGain: number,
     }
 }
 
 export class GetAssetCodesResponse extends jspb.Message { 
-    clearAssetcodesList(): void;
-    getAssetcodesList(): Array<AssetCode>;
-    setAssetcodesList(value: Array<AssetCode>): GetAssetCodesResponse;
-    addAssetcodes(value?: AssetCode, index?: number): AssetCode;
+    clearAssetCodesList(): void;
+    getAssetCodesList(): Array<AssetCode>;
+    setAssetCodesList(value: Array<AssetCode>): GetAssetCodesResponse;
+    addAssetCodes(value?: AssetCode, index?: number): AssetCode;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): GetAssetCodesResponse.AsObject;
@@ -479,6 +479,6 @@ export class GetAssetCodesResponse extends jspb.Message {
 
 export namespace GetAssetCodesResponse {
     export type AsObject = {
-        assetcodesList: Array<AssetCode.AsObject>,
+        assetCodesList: Array<AssetCode.AsObject>,
     }
 }

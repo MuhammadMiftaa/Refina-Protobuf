@@ -65,8 +65,8 @@ type AssetCode struct {
 	ToUSD         float64                `protobuf:"fixed64,4,opt,name=toUSD,proto3" json:"toUSD,omitempty"`
 	ToEUR         float64                `protobuf:"fixed64,5,opt,name=toEUR,proto3" json:"toEUR,omitempty"`
 	ToIDR         float64                `protobuf:"fixed64,6,opt,name=toIDR,proto3" json:"toIDR,omitempty"`
-	CreatedAt     string                 `protobuf:"bytes,7,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
-	UpdatedAt     string                 `protobuf:"bytes,8,opt,name=updatedAt,proto3" json:"updatedAt,omitempty"`
+	CreatedAt     string                 `protobuf:"bytes,7,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt     string                 `protobuf:"bytes,8,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -161,15 +161,15 @@ type Investment struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
 	Id               string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
 	Code             string                 `protobuf:"bytes,2,opt,name=code,proto3" json:"code,omitempty"`
-	UserId           string                 `protobuf:"bytes,3,opt,name=userId,proto3" json:"userId,omitempty"`
+	UserId           string                 `protobuf:"bytes,3,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Quantity         float64                `protobuf:"fixed64,4,opt,name=quantity,proto3" json:"quantity,omitempty"`
-	InitialValuation float64                `protobuf:"fixed64,5,opt,name=initialValuation,proto3" json:"initialValuation,omitempty"`
+	InitialValuation float64                `protobuf:"fixed64,5,opt,name=initial_valuation,json=initialValuation,proto3" json:"initial_valuation,omitempty"`
 	Amount           float64                `protobuf:"fixed64,6,opt,name=amount,proto3" json:"amount,omitempty"`
 	Date             string                 `protobuf:"bytes,7,opt,name=date,proto3" json:"date,omitempty"`
 	Description      string                 `protobuf:"bytes,8,opt,name=description,proto3" json:"description,omitempty"`
-	AssetCode        *AssetCode             `protobuf:"bytes,9,opt,name=assetCode,proto3" json:"assetCode,omitempty"`
-	CreatedAt        string                 `protobuf:"bytes,10,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
-	UpdatedAt        string                 `protobuf:"bytes,11,opt,name=updatedAt,proto3" json:"updatedAt,omitempty"`
+	Asset            *AssetCode             `protobuf:"bytes,9,opt,name=asset,proto3" json:"asset,omitempty"`
+	CreatedAt        string                 `protobuf:"bytes,10,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt        string                 `protobuf:"bytes,11,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -260,9 +260,9 @@ func (x *Investment) GetDescription() string {
 	return ""
 }
 
-func (x *Investment) GetAssetCode() *AssetCode {
+func (x *Investment) GetAsset() *AssetCode {
 	if x != nil {
-		return x.AssetCode
+		return x.Asset
 	}
 	return nil
 }
@@ -284,17 +284,17 @@ func (x *Investment) GetUpdatedAt() string {
 type InvestmentSold struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	InvestmentId  string                 `protobuf:"bytes,2,opt,name=investmentId,proto3" json:"investmentId,omitempty"`
-	UserId        string                 `protobuf:"bytes,3,opt,name=userId,proto3" json:"userId,omitempty"`
+	InvestmentId  string                 `protobuf:"bytes,2,opt,name=investment_id,json=investmentId,proto3" json:"investment_id,omitempty"`
+	UserId        string                 `protobuf:"bytes,3,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Quantity      float64                `protobuf:"fixed64,4,opt,name=quantity,proto3" json:"quantity,omitempty"`
-	SellPrice     float64                `protobuf:"fixed64,5,opt,name=sellPrice,proto3" json:"sellPrice,omitempty"`
+	SellPrice     float64                `protobuf:"fixed64,5,opt,name=sell_price,json=sellPrice,proto3" json:"sell_price,omitempty"`
 	Amount        float64                `protobuf:"fixed64,6,opt,name=amount,proto3" json:"amount,omitempty"`
 	Date          string                 `protobuf:"bytes,7,opt,name=date,proto3" json:"date,omitempty"`
 	Description   string                 `protobuf:"bytes,8,opt,name=description,proto3" json:"description,omitempty"`
 	Deficit       float64                `protobuf:"fixed64,9,opt,name=deficit,proto3" json:"deficit,omitempty"`
-	CreatedAt     string                 `protobuf:"bytes,10,opt,name=createdAt,proto3" json:"createdAt,omitempty"`
-	UpdatedAt     string                 `protobuf:"bytes,11,opt,name=updatedAt,proto3" json:"updatedAt,omitempty"`
-	AssetCode     *AssetCode             `protobuf:"bytes,12,opt,name=assetCode,proto3" json:"assetCode,omitempty"`
+	CreatedAt     string                 `protobuf:"bytes,10,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt     string                 `protobuf:"bytes,11,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	Asset         *AssetCode             `protobuf:"bytes,12,opt,name=asset,proto3" json:"asset,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -406,9 +406,9 @@ func (x *InvestmentSold) GetUpdatedAt() string {
 	return ""
 }
 
-func (x *InvestmentSold) GetAssetCode() *AssetCode {
+func (x *InvestmentSold) GetAsset() *AssetCode {
 	if x != nil {
-		return x.AssetCode
+		return x.Asset
 	}
 	return nil
 }
@@ -547,11 +547,11 @@ func (x *GetInvestmentOptions) GetLimit() int32 {
 
 type GetUserInvestmentListRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=userId,proto3" json:"userId,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Page          int32                  `protobuf:"varint,2,opt,name=page,proto3" json:"page,omitempty"`
-	PageSize      int32                  `protobuf:"varint,3,opt,name=pageSize,proto3" json:"pageSize,omitempty"`
-	SortBy        string                 `protobuf:"bytes,4,opt,name=sortBy,proto3" json:"sortBy,omitempty"`
-	SortOrder     string                 `protobuf:"bytes,5,opt,name=sortOrder,proto3" json:"sortOrder,omitempty"`
+	PageSize      int32                  `protobuf:"varint,3,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	SortBy        string                 `protobuf:"bytes,4,opt,name=sort_by,json=sortBy,proto3" json:"sort_by,omitempty"`
+	SortOrder     string                 `protobuf:"bytes,5,opt,name=sort_order,json=sortOrder,proto3" json:"sort_order,omitempty"`
 	Search        string                 `protobuf:"bytes,6,opt,name=search,proto3" json:"search,omitempty"`
 	Code          string                 `protobuf:"bytes,7,opt,name=code,proto3" json:"code,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -639,8 +639,8 @@ func (x *GetUserInvestmentListRequest) GetCode() string {
 
 type GetInvestmentDetailRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=userId,proto3" json:"userId,omitempty"`
-	InvestmentId  string                 `protobuf:"bytes,2,opt,name=investmentId,proto3" json:"investmentId,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	InvestmentId  string                 `protobuf:"bytes,2,opt,name=investment_id,json=investmentId,proto3" json:"investment_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -691,11 +691,11 @@ func (x *GetInvestmentDetailRequest) GetInvestmentId() string {
 
 type CreateInvestmentRequest struct {
 	state            protoimpl.MessageState `protogen:"open.v1"`
-	UserId           string                 `protobuf:"bytes,1,opt,name=userId,proto3" json:"userId,omitempty"`
+	UserId           string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
 	Code             string                 `protobuf:"bytes,2,opt,name=code,proto3" json:"code,omitempty"`
 	Quantity         float64                `protobuf:"fixed64,3,opt,name=quantity,proto3" json:"quantity,omitempty"`
 	Amount           float64                `protobuf:"fixed64,4,opt,name=amount,proto3" json:"amount,omitempty"`
-	InitialValuation float64                `protobuf:"fixed64,5,opt,name=initialValuation,proto3" json:"initialValuation,omitempty"`
+	InitialValuation float64                `protobuf:"fixed64,5,opt,name=initial_valuation,json=initialValuation,proto3" json:"initial_valuation,omitempty"`
 	Date             string                 `protobuf:"bytes,6,opt,name=date,proto3" json:"date,omitempty"`
 	Description      string                 `protobuf:"bytes,7,opt,name=description,proto3" json:"description,omitempty"`
 	unknownFields    protoimpl.UnknownFields
@@ -783,8 +783,8 @@ func (x *CreateInvestmentRequest) GetDescription() string {
 
 type SellInvestmentRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	UserId        string                 `protobuf:"bytes,1,opt,name=userId,proto3" json:"userId,omitempty"`
-	Assetcode     string                 `protobuf:"bytes,2,opt,name=assetcode,proto3" json:"assetcode,omitempty"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	AssetCode     string                 `protobuf:"bytes,2,opt,name=asset_code,json=assetCode,proto3" json:"asset_code,omitempty"`
 	Quantity      float64                `protobuf:"fixed64,3,opt,name=quantity,proto3" json:"quantity,omitempty"`
 	Amount        float64                `protobuf:"fixed64,4,opt,name=amount,proto3" json:"amount,omitempty"`
 	Date          string                 `protobuf:"bytes,5,opt,name=date,proto3" json:"date,omitempty"`
@@ -830,9 +830,9 @@ func (x *SellInvestmentRequest) GetUserId() string {
 	return ""
 }
 
-func (x *SellInvestmentRequest) GetAssetcode() string {
+func (x *SellInvestmentRequest) GetAssetCode() string {
 	if x != nil {
-		return x.Assetcode
+		return x.AssetCode
 	}
 	return ""
 }
@@ -870,8 +870,8 @@ type GetUserInvestmentListResponse struct {
 	Investments   []*Investment          `protobuf:"bytes,1,rep,name=investments,proto3" json:"investments,omitempty"`
 	Total         int32                  `protobuf:"varint,2,opt,name=total,proto3" json:"total,omitempty"`
 	Page          int32                  `protobuf:"varint,3,opt,name=page,proto3" json:"page,omitempty"`
-	PageSize      int32                  `protobuf:"varint,4,opt,name=pageSize,proto3" json:"pageSize,omitempty"`
-	TotalPages    int32                  `protobuf:"varint,5,opt,name=totalPages,proto3" json:"totalPages,omitempty"`
+	PageSize      int32                  `protobuf:"varint,4,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"`
+	TotalPages    int32                  `protobuf:"varint,5,opt,name=total_pages,json=totalPages,proto3" json:"total_pages,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -943,7 +943,7 @@ func (x *GetUserInvestmentListResponse) GetTotalPages() int32 {
 
 type SellInvestmentResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	SoldRecords   []*InvestmentSold      `protobuf:"bytes,1,rep,name=soldRecords,proto3" json:"soldRecords,omitempty"`
+	SoldRecords   []*InvestmentSold      `protobuf:"bytes,1,rep,name=sold_records,json=soldRecords,proto3" json:"sold_records,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -987,13 +987,13 @@ func (x *SellInvestmentResponse) GetSoldRecords() []*InvestmentSold {
 
 type InvestmentSummaryResponse struct {
 	state              protoimpl.MessageState `protogen:"open.v1"`
-	TotalInvestments   int32                  `protobuf:"varint,1,opt,name=totalInvestments,proto3" json:"totalInvestments,omitempty"`
-	TotalInvested      float64                `protobuf:"fixed64,2,opt,name=totalInvested,proto3" json:"totalInvested,omitempty"`
-	TotalCurrentValue  float64                `protobuf:"fixed64,3,opt,name=totalCurrentValue,proto3" json:"totalCurrentValue,omitempty"`
-	TotalProfitLoss    float64                `protobuf:"fixed64,4,opt,name=totalProfitLoss,proto3" json:"totalProfitLoss,omitempty"`
-	TotalProfitLossPct float64                `protobuf:"fixed64,5,opt,name=totalProfitLossPct,proto3" json:"totalProfitLossPct,omitempty"`
-	TotalSoldAmount    float64                `protobuf:"fixed64,6,opt,name=totalSoldAmount,proto3" json:"totalSoldAmount,omitempty"`
-	TotalRealizedGain  float64                `protobuf:"fixed64,7,opt,name=totalRealizedGain,proto3" json:"totalRealizedGain,omitempty"`
+	TotalInvestments   int32                  `protobuf:"varint,1,opt,name=total_investments,json=totalInvestments,proto3" json:"total_investments,omitempty"`
+	TotalInvested      float64                `protobuf:"fixed64,2,opt,name=total_invested,json=totalInvested,proto3" json:"total_invested,omitempty"`
+	TotalCurrentValue  float64                `protobuf:"fixed64,3,opt,name=total_current_value,json=totalCurrentValue,proto3" json:"total_current_value,omitempty"`
+	TotalProfitLoss    float64                `protobuf:"fixed64,4,opt,name=total_profit_loss,json=totalProfitLoss,proto3" json:"total_profit_loss,omitempty"`
+	TotalProfitLossPct float64                `protobuf:"fixed64,5,opt,name=total_profit_loss_pct,json=totalProfitLossPct,proto3" json:"total_profit_loss_pct,omitempty"`
+	TotalSoldAmount    float64                `protobuf:"fixed64,6,opt,name=total_sold_amount,json=totalSoldAmount,proto3" json:"total_sold_amount,omitempty"`
+	TotalRealizedGain  float64                `protobuf:"fixed64,7,opt,name=total_realized_gain,json=totalRealizedGain,proto3" json:"total_realized_gain,omitempty"`
 	unknownFields      protoimpl.UnknownFields
 	sizeCache          protoimpl.SizeCache
 }
@@ -1079,7 +1079,7 @@ func (x *InvestmentSummaryResponse) GetTotalRealizedGain() float64 {
 
 type GetAssetCodesResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	AssetCodes    []*AssetCode           `protobuf:"bytes,1,rep,name=assetCodes,proto3" json:"assetCodes,omitempty"`
+	AssetCodes    []*AssetCode           `protobuf:"bytes,1,rep,name=asset_codes,json=assetCodes,proto3" json:"asset_codes,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -1127,97 +1127,104 @@ const file_investment_investment_proto_rawDesc = "" +
 	"\n" +
 	"\x1binvestment/investment.proto\x12\n" +
 	"investment\"\a\n" +
-	"\x05Empty\"\xc5\x01\n" +
+	"\x05Empty\"\xc7\x01\n" +
 	"\tAssetCode\x12\x12\n" +
 	"\x04code\x18\x01 \x01(\tR\x04code\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
 	"\x04unit\x18\x03 \x01(\tR\x04unit\x12\x14\n" +
 	"\x05toUSD\x18\x04 \x01(\x01R\x05toUSD\x12\x14\n" +
 	"\x05toEUR\x18\x05 \x01(\x01R\x05toEUR\x12\x14\n" +
-	"\x05toIDR\x18\x06 \x01(\x01R\x05toIDR\x12\x1c\n" +
-	"\tcreatedAt\x18\a \x01(\tR\tcreatedAt\x12\x1c\n" +
-	"\tupdatedAt\x18\b \x01(\tR\tupdatedAt\"\xcf\x02\n" +
+	"\x05toIDR\x18\x06 \x01(\x01R\x05toIDR\x12\x1d\n" +
+	"\n" +
+	"created_at\x18\a \x01(\tR\tcreatedAt\x12\x1d\n" +
+	"\n" +
+	"updated_at\x18\b \x01(\tR\tupdatedAt\"\xcb\x02\n" +
 	"\n" +
 	"Investment\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
-	"\x04code\x18\x02 \x01(\tR\x04code\x12\x16\n" +
-	"\x06userId\x18\x03 \x01(\tR\x06userId\x12\x1a\n" +
-	"\bquantity\x18\x04 \x01(\x01R\bquantity\x12*\n" +
-	"\x10initialValuation\x18\x05 \x01(\x01R\x10initialValuation\x12\x16\n" +
+	"\x04code\x18\x02 \x01(\tR\x04code\x12\x17\n" +
+	"\auser_id\x18\x03 \x01(\tR\x06userId\x12\x1a\n" +
+	"\bquantity\x18\x04 \x01(\x01R\bquantity\x12+\n" +
+	"\x11initial_valuation\x18\x05 \x01(\x01R\x10initialValuation\x12\x16\n" +
 	"\x06amount\x18\x06 \x01(\x01R\x06amount\x12\x12\n" +
 	"\x04date\x18\a \x01(\tR\x04date\x12 \n" +
-	"\vdescription\x18\b \x01(\tR\vdescription\x123\n" +
-	"\tassetCode\x18\t \x01(\v2\x15.investment.AssetCodeR\tassetCode\x12\x1c\n" +
-	"\tcreatedAt\x18\n" +
-	" \x01(\tR\tcreatedAt\x12\x1c\n" +
-	"\tupdatedAt\x18\v \x01(\tR\tupdatedAt\"\xef\x02\n" +
+	"\vdescription\x18\b \x01(\tR\vdescription\x12+\n" +
+	"\x05asset\x18\t \x01(\v2\x15.investment.AssetCodeR\x05asset\x12\x1d\n" +
+	"\n" +
+	"created_at\x18\n" +
+	" \x01(\tR\tcreatedAt\x12\x1d\n" +
+	"\n" +
+	"updated_at\x18\v \x01(\tR\tupdatedAt\"\xec\x02\n" +
 	"\x0eInvestmentSold\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\tR\x02id\x12\"\n" +
-	"\finvestmentId\x18\x02 \x01(\tR\finvestmentId\x12\x16\n" +
-	"\x06userId\x18\x03 \x01(\tR\x06userId\x12\x1a\n" +
-	"\bquantity\x18\x04 \x01(\x01R\bquantity\x12\x1c\n" +
-	"\tsellPrice\x18\x05 \x01(\x01R\tsellPrice\x12\x16\n" +
+	"\x02id\x18\x01 \x01(\tR\x02id\x12#\n" +
+	"\rinvestment_id\x18\x02 \x01(\tR\finvestmentId\x12\x17\n" +
+	"\auser_id\x18\x03 \x01(\tR\x06userId\x12\x1a\n" +
+	"\bquantity\x18\x04 \x01(\x01R\bquantity\x12\x1d\n" +
+	"\n" +
+	"sell_price\x18\x05 \x01(\x01R\tsellPrice\x12\x16\n" +
 	"\x06amount\x18\x06 \x01(\x01R\x06amount\x12\x12\n" +
 	"\x04date\x18\a \x01(\tR\x04date\x12 \n" +
 	"\vdescription\x18\b \x01(\tR\vdescription\x12\x18\n" +
-	"\adeficit\x18\t \x01(\x01R\adeficit\x12\x1c\n" +
-	"\tcreatedAt\x18\n" +
-	" \x01(\tR\tcreatedAt\x12\x1c\n" +
-	"\tupdatedAt\x18\v \x01(\tR\tupdatedAt\x123\n" +
-	"\tassetCode\x18\f \x01(\v2\x15.investment.AssetCodeR\tassetCode\"\x1e\n" +
+	"\adeficit\x18\t \x01(\x01R\adeficit\x12\x1d\n" +
+	"\n" +
+	"created_at\x18\n" +
+	" \x01(\tR\tcreatedAt\x12\x1d\n" +
+	"\n" +
+	"updated_at\x18\v \x01(\tR\tupdatedAt\x12+\n" +
+	"\x05asset\x18\f \x01(\v2\x15.investment.AssetCodeR\x05asset\"\x1e\n" +
 	"\fInvestmentID\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"\x18\n" +
 	"\x06UserID\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\",\n" +
 	"\x14GetInvestmentOptions\x12\x14\n" +
-	"\x05limit\x18\x01 \x01(\x05R\x05limit\"\xc8\x01\n" +
-	"\x1cGetUserInvestmentListRequest\x12\x16\n" +
-	"\x06userId\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
-	"\x04page\x18\x02 \x01(\x05R\x04page\x12\x1a\n" +
-	"\bpageSize\x18\x03 \x01(\x05R\bpageSize\x12\x16\n" +
-	"\x06sortBy\x18\x04 \x01(\tR\x06sortBy\x12\x1c\n" +
-	"\tsortOrder\x18\x05 \x01(\tR\tsortOrder\x12\x16\n" +
+	"\x05limit\x18\x01 \x01(\x05R\x05limit\"\xcc\x01\n" +
+	"\x1cGetUserInvestmentListRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
+	"\x04page\x18\x02 \x01(\x05R\x04page\x12\x1b\n" +
+	"\tpage_size\x18\x03 \x01(\x05R\bpageSize\x12\x17\n" +
+	"\asort_by\x18\x04 \x01(\tR\x06sortBy\x12\x1d\n" +
+	"\n" +
+	"sort_order\x18\x05 \x01(\tR\tsortOrder\x12\x16\n" +
 	"\x06search\x18\x06 \x01(\tR\x06search\x12\x12\n" +
-	"\x04code\x18\a \x01(\tR\x04code\"X\n" +
-	"\x1aGetInvestmentDetailRequest\x12\x16\n" +
-	"\x06userId\x18\x01 \x01(\tR\x06userId\x12\"\n" +
-	"\finvestmentId\x18\x02 \x01(\tR\finvestmentId\"\xdb\x01\n" +
-	"\x17CreateInvestmentRequest\x12\x16\n" +
-	"\x06userId\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
+	"\x04code\x18\a \x01(\tR\x04code\"Z\n" +
+	"\x1aGetInvestmentDetailRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12#\n" +
+	"\rinvestment_id\x18\x02 \x01(\tR\finvestmentId\"\xdd\x01\n" +
+	"\x17CreateInvestmentRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x12\n" +
 	"\x04code\x18\x02 \x01(\tR\x04code\x12\x1a\n" +
 	"\bquantity\x18\x03 \x01(\x01R\bquantity\x12\x16\n" +
-	"\x06amount\x18\x04 \x01(\x01R\x06amount\x12*\n" +
-	"\x10initialValuation\x18\x05 \x01(\x01R\x10initialValuation\x12\x12\n" +
+	"\x06amount\x18\x04 \x01(\x01R\x06amount\x12+\n" +
+	"\x11initial_valuation\x18\x05 \x01(\x01R\x10initialValuation\x12\x12\n" +
 	"\x04date\x18\x06 \x01(\tR\x04date\x12 \n" +
-	"\vdescription\x18\a \x01(\tR\vdescription\"\xb7\x01\n" +
-	"\x15SellInvestmentRequest\x12\x16\n" +
-	"\x06userId\x18\x01 \x01(\tR\x06userId\x12\x1c\n" +
-	"\tassetcode\x18\x02 \x01(\tR\tassetcode\x12\x1a\n" +
+	"\vdescription\x18\a \x01(\tR\vdescription\"\xb9\x01\n" +
+	"\x15SellInvestmentRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1d\n" +
+	"\n" +
+	"asset_code\x18\x02 \x01(\tR\tassetCode\x12\x1a\n" +
 	"\bquantity\x18\x03 \x01(\x01R\bquantity\x12\x16\n" +
 	"\x06amount\x18\x04 \x01(\x01R\x06amount\x12\x12\n" +
 	"\x04date\x18\x05 \x01(\tR\x04date\x12 \n" +
-	"\vdescription\x18\x06 \x01(\tR\vdescription\"\xbf\x01\n" +
+	"\vdescription\x18\x06 \x01(\tR\vdescription\"\xc1\x01\n" +
 	"\x1dGetUserInvestmentListResponse\x128\n" +
 	"\vinvestments\x18\x01 \x03(\v2\x16.investment.InvestmentR\vinvestments\x12\x14\n" +
 	"\x05total\x18\x02 \x01(\x05R\x05total\x12\x12\n" +
-	"\x04page\x18\x03 \x01(\x05R\x04page\x12\x1a\n" +
-	"\bpageSize\x18\x04 \x01(\x05R\bpageSize\x12\x1e\n" +
-	"\n" +
-	"totalPages\x18\x05 \x01(\x05R\n" +
-	"totalPages\"V\n" +
-	"\x16SellInvestmentResponse\x12<\n" +
-	"\vsoldRecords\x18\x01 \x03(\v2\x1a.investment.InvestmentSoldR\vsoldRecords\"\xcd\x02\n" +
-	"\x19InvestmentSummaryResponse\x12*\n" +
-	"\x10totalInvestments\x18\x01 \x01(\x05R\x10totalInvestments\x12$\n" +
-	"\rtotalInvested\x18\x02 \x01(\x01R\rtotalInvested\x12,\n" +
-	"\x11totalCurrentValue\x18\x03 \x01(\x01R\x11totalCurrentValue\x12(\n" +
-	"\x0ftotalProfitLoss\x18\x04 \x01(\x01R\x0ftotalProfitLoss\x12.\n" +
-	"\x12totalProfitLossPct\x18\x05 \x01(\x01R\x12totalProfitLossPct\x12(\n" +
-	"\x0ftotalSoldAmount\x18\x06 \x01(\x01R\x0ftotalSoldAmount\x12,\n" +
-	"\x11totalRealizedGain\x18\a \x01(\x01R\x11totalRealizedGain\"N\n" +
-	"\x15GetAssetCodesResponse\x125\n" +
-	"\n" +
-	"assetCodes\x18\x01 \x03(\v2\x15.investment.AssetCodeR\n" +
+	"\x04page\x18\x03 \x01(\x05R\x04page\x12\x1b\n" +
+	"\tpage_size\x18\x04 \x01(\x05R\bpageSize\x12\x1f\n" +
+	"\vtotal_pages\x18\x05 \x01(\x05R\n" +
+	"totalPages\"W\n" +
+	"\x16SellInvestmentResponse\x12=\n" +
+	"\fsold_records\x18\x01 \x03(\v2\x1a.investment.InvestmentSoldR\vsoldRecords\"\xda\x02\n" +
+	"\x19InvestmentSummaryResponse\x12+\n" +
+	"\x11total_investments\x18\x01 \x01(\x05R\x10totalInvestments\x12%\n" +
+	"\x0etotal_invested\x18\x02 \x01(\x01R\rtotalInvested\x12.\n" +
+	"\x13total_current_value\x18\x03 \x01(\x01R\x11totalCurrentValue\x12*\n" +
+	"\x11total_profit_loss\x18\x04 \x01(\x01R\x0ftotalProfitLoss\x121\n" +
+	"\x15total_profit_loss_pct\x18\x05 \x01(\x01R\x12totalProfitLossPct\x12*\n" +
+	"\x11total_sold_amount\x18\x06 \x01(\x01R\x0ftotalSoldAmount\x12.\n" +
+	"\x13total_realized_gain\x18\a \x01(\x01R\x11totalRealizedGain\"O\n" +
+	"\x15GetAssetCodesResponse\x126\n" +
+	"\vasset_codes\x18\x01 \x03(\v2\x15.investment.AssetCodeR\n" +
 	"assetCodes2\xae\x05\n" +
 	"\x11InvestmentService\x12L\n" +
 	"\x0eGetInvestments\x12 .investment.GetInvestmentOptions\x1a\x16.investment.Investment0\x01\x12B\n" +
@@ -1260,11 +1267,11 @@ var file_investment_investment_proto_goTypes = []any{
 	(*GetAssetCodesResponse)(nil),         // 14: investment.GetAssetCodesResponse
 }
 var file_investment_investment_proto_depIdxs = []int32{
-	1,  // 0: investment.Investment.assetCode:type_name -> investment.AssetCode
-	1,  // 1: investment.InvestmentSold.assetCode:type_name -> investment.AssetCode
+	1,  // 0: investment.Investment.asset:type_name -> investment.AssetCode
+	1,  // 1: investment.InvestmentSold.asset:type_name -> investment.AssetCode
 	2,  // 2: investment.GetUserInvestmentListResponse.investments:type_name -> investment.Investment
-	3,  // 3: investment.SellInvestmentResponse.soldRecords:type_name -> investment.InvestmentSold
-	1,  // 4: investment.GetAssetCodesResponse.assetCodes:type_name -> investment.AssetCode
+	3,  // 3: investment.SellInvestmentResponse.sold_records:type_name -> investment.InvestmentSold
+	1,  // 4: investment.GetAssetCodesResponse.asset_codes:type_name -> investment.AssetCode
 	6,  // 5: investment.InvestmentService.GetInvestments:input_type -> investment.GetInvestmentOptions
 	5,  // 6: investment.InvestmentService.GetUserInvestments:input_type -> investment.UserID
 	7,  // 7: investment.InvestmentService.GetUserInvestmentList:input_type -> investment.GetUserInvestmentListRequest

@@ -490,8 +490,8 @@ proto.investment.AssetCode.toObject = function(includeInstance, msg) {
     tousd: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
     toeur: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
     toidr: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
-    createdat: jspb.Message.getFieldWithDefault(msg, 7, ""),
-    updatedat: jspb.Message.getFieldWithDefault(msg, 8, "")
+    createdAt: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    updatedAt: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
   if (includeInstance) {
@@ -554,11 +554,11 @@ proto.investment.AssetCode.deserializeBinaryFromReader = function(msg, reader) {
       break;
     case 7:
       var value = /** @type {string} */ (reader.readString());
-      msg.setCreatedat(value);
+      msg.setCreatedAt(value);
       break;
     case 8:
       var value = /** @type {string} */ (reader.readString());
-      msg.setUpdatedat(value);
+      msg.setUpdatedAt(value);
       break;
     default:
       reader.skipField();
@@ -631,14 +631,14 @@ proto.investment.AssetCode.serializeBinaryToWriter = function(message, writer) {
       f
     );
   }
-  f = message.getCreatedat();
+  f = message.getCreatedAt();
   if (f.length > 0) {
     writer.writeString(
       7,
       f
     );
   }
-  f = message.getUpdatedat();
+  f = message.getUpdatedAt();
   if (f.length > 0) {
     writer.writeString(
       8,
@@ -757,10 +757,10 @@ proto.investment.AssetCode.prototype.setToidr = function(value) {
 
 
 /**
- * optional string createdAt = 7;
+ * optional string created_at = 7;
  * @return {string}
  */
-proto.investment.AssetCode.prototype.getCreatedat = function() {
+proto.investment.AssetCode.prototype.getCreatedAt = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
 };
 
@@ -769,16 +769,16 @@ proto.investment.AssetCode.prototype.getCreatedat = function() {
  * @param {string} value
  * @return {!proto.investment.AssetCode} returns this
  */
-proto.investment.AssetCode.prototype.setCreatedat = function(value) {
+proto.investment.AssetCode.prototype.setCreatedAt = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
 /**
- * optional string updatedAt = 8;
+ * optional string updated_at = 8;
  * @return {string}
  */
-proto.investment.AssetCode.prototype.getUpdatedat = function() {
+proto.investment.AssetCode.prototype.getUpdatedAt = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
 };
 
@@ -787,7 +787,7 @@ proto.investment.AssetCode.prototype.getUpdatedat = function() {
  * @param {string} value
  * @return {!proto.investment.AssetCode} returns this
  */
-proto.investment.AssetCode.prototype.setUpdatedat = function(value) {
+proto.investment.AssetCode.prototype.setUpdatedAt = function(value) {
   return jspb.Message.setProto3StringField(this, 8, value);
 };
 
@@ -826,15 +826,15 @@ proto.investment.Investment.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
     code: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    userid: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    userId: jspb.Message.getFieldWithDefault(msg, 3, ""),
     quantity: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
-    initialvaluation: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
+    initialValuation: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
     amount: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
     date: jspb.Message.getFieldWithDefault(msg, 7, ""),
     description: jspb.Message.getFieldWithDefault(msg, 8, ""),
-    assetcode: (f = msg.getAssetcode()) && proto.investment.AssetCode.toObject(includeInstance, f),
-    createdat: jspb.Message.getFieldWithDefault(msg, 10, ""),
-    updatedat: jspb.Message.getFieldWithDefault(msg, 11, "")
+    asset: (f = msg.getAsset()) && proto.investment.AssetCode.toObject(includeInstance, f),
+    createdAt: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    updatedAt: jspb.Message.getFieldWithDefault(msg, 11, "")
   };
 
   if (includeInstance) {
@@ -881,7 +881,7 @@ proto.investment.Investment.deserializeBinaryFromReader = function(msg, reader) 
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setUserid(value);
+      msg.setUserId(value);
       break;
     case 4:
       var value = /** @type {number} */ (reader.readDouble());
@@ -889,7 +889,7 @@ proto.investment.Investment.deserializeBinaryFromReader = function(msg, reader) 
       break;
     case 5:
       var value = /** @type {number} */ (reader.readDouble());
-      msg.setInitialvaluation(value);
+      msg.setInitialValuation(value);
       break;
     case 6:
       var value = /** @type {number} */ (reader.readDouble());
@@ -906,15 +906,15 @@ proto.investment.Investment.deserializeBinaryFromReader = function(msg, reader) 
     case 9:
       var value = new proto.investment.AssetCode;
       reader.readMessage(value,proto.investment.AssetCode.deserializeBinaryFromReader);
-      msg.setAssetcode(value);
+      msg.setAsset(value);
       break;
     case 10:
       var value = /** @type {string} */ (reader.readString());
-      msg.setCreatedat(value);
+      msg.setCreatedAt(value);
       break;
     case 11:
       var value = /** @type {string} */ (reader.readString());
-      msg.setUpdatedat(value);
+      msg.setUpdatedAt(value);
       break;
     default:
       reader.skipField();
@@ -959,7 +959,7 @@ proto.investment.Investment.serializeBinaryToWriter = function(message, writer) 
       f
     );
   }
-  f = message.getUserid();
+  f = message.getUserId();
   if (f.length > 0) {
     writer.writeString(
       3,
@@ -973,7 +973,7 @@ proto.investment.Investment.serializeBinaryToWriter = function(message, writer) 
       f
     );
   }
-  f = message.getInitialvaluation();
+  f = message.getInitialValuation();
   if (f !== 0.0) {
     writer.writeDouble(
       5,
@@ -1001,7 +1001,7 @@ proto.investment.Investment.serializeBinaryToWriter = function(message, writer) 
       f
     );
   }
-  f = message.getAssetcode();
+  f = message.getAsset();
   if (f != null) {
     writer.writeMessage(
       9,
@@ -1009,14 +1009,14 @@ proto.investment.Investment.serializeBinaryToWriter = function(message, writer) 
       proto.investment.AssetCode.serializeBinaryToWriter
     );
   }
-  f = message.getCreatedat();
+  f = message.getCreatedAt();
   if (f.length > 0) {
     writer.writeString(
       10,
       f
     );
   }
-  f = message.getUpdatedat();
+  f = message.getUpdatedAt();
   if (f.length > 0) {
     writer.writeString(
       11,
@@ -1063,10 +1063,10 @@ proto.investment.Investment.prototype.setCode = function(value) {
 
 
 /**
- * optional string userId = 3;
+ * optional string user_id = 3;
  * @return {string}
  */
-proto.investment.Investment.prototype.getUserid = function() {
+proto.investment.Investment.prototype.getUserId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -1075,7 +1075,7 @@ proto.investment.Investment.prototype.getUserid = function() {
  * @param {string} value
  * @return {!proto.investment.Investment} returns this
  */
-proto.investment.Investment.prototype.setUserid = function(value) {
+proto.investment.Investment.prototype.setUserId = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
@@ -1099,10 +1099,10 @@ proto.investment.Investment.prototype.setQuantity = function(value) {
 
 
 /**
- * optional double initialValuation = 5;
+ * optional double initial_valuation = 5;
  * @return {number}
  */
-proto.investment.Investment.prototype.getInitialvaluation = function() {
+proto.investment.Investment.prototype.getInitialValuation = function() {
   return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 5, 0.0));
 };
 
@@ -1111,7 +1111,7 @@ proto.investment.Investment.prototype.getInitialvaluation = function() {
  * @param {number} value
  * @return {!proto.investment.Investment} returns this
  */
-proto.investment.Investment.prototype.setInitialvaluation = function(value) {
+proto.investment.Investment.prototype.setInitialValuation = function(value) {
   return jspb.Message.setProto3FloatField(this, 5, value);
 };
 
@@ -1171,10 +1171,10 @@ proto.investment.Investment.prototype.setDescription = function(value) {
 
 
 /**
- * optional AssetCode assetCode = 9;
+ * optional AssetCode asset = 9;
  * @return {?proto.investment.AssetCode}
  */
-proto.investment.Investment.prototype.getAssetcode = function() {
+proto.investment.Investment.prototype.getAsset = function() {
   return /** @type{?proto.investment.AssetCode} */ (
     jspb.Message.getWrapperField(this, proto.investment.AssetCode, 9));
 };
@@ -1184,7 +1184,7 @@ proto.investment.Investment.prototype.getAssetcode = function() {
  * @param {?proto.investment.AssetCode|undefined} value
  * @return {!proto.investment.Investment} returns this
 */
-proto.investment.Investment.prototype.setAssetcode = function(value) {
+proto.investment.Investment.prototype.setAsset = function(value) {
   return jspb.Message.setWrapperField(this, 9, value);
 };
 
@@ -1193,8 +1193,8 @@ proto.investment.Investment.prototype.setAssetcode = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.investment.Investment} returns this
  */
-proto.investment.Investment.prototype.clearAssetcode = function() {
-  return this.setAssetcode(undefined);
+proto.investment.Investment.prototype.clearAsset = function() {
+  return this.setAsset(undefined);
 };
 
 
@@ -1202,16 +1202,16 @@ proto.investment.Investment.prototype.clearAssetcode = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.investment.Investment.prototype.hasAssetcode = function() {
+proto.investment.Investment.prototype.hasAsset = function() {
   return jspb.Message.getField(this, 9) != null;
 };
 
 
 /**
- * optional string createdAt = 10;
+ * optional string created_at = 10;
  * @return {string}
  */
-proto.investment.Investment.prototype.getCreatedat = function() {
+proto.investment.Investment.prototype.getCreatedAt = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
 };
 
@@ -1220,16 +1220,16 @@ proto.investment.Investment.prototype.getCreatedat = function() {
  * @param {string} value
  * @return {!proto.investment.Investment} returns this
  */
-proto.investment.Investment.prototype.setCreatedat = function(value) {
+proto.investment.Investment.prototype.setCreatedAt = function(value) {
   return jspb.Message.setProto3StringField(this, 10, value);
 };
 
 
 /**
- * optional string updatedAt = 11;
+ * optional string updated_at = 11;
  * @return {string}
  */
-proto.investment.Investment.prototype.getUpdatedat = function() {
+proto.investment.Investment.prototype.getUpdatedAt = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
 };
 
@@ -1238,7 +1238,7 @@ proto.investment.Investment.prototype.getUpdatedat = function() {
  * @param {string} value
  * @return {!proto.investment.Investment} returns this
  */
-proto.investment.Investment.prototype.setUpdatedat = function(value) {
+proto.investment.Investment.prototype.setUpdatedAt = function(value) {
   return jspb.Message.setProto3StringField(this, 11, value);
 };
 
@@ -1276,17 +1276,17 @@ proto.investment.InvestmentSold.prototype.toObject = function(opt_includeInstanc
 proto.investment.InvestmentSold.toObject = function(includeInstance, msg) {
   var f, obj = {
     id: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    investmentid: jspb.Message.getFieldWithDefault(msg, 2, ""),
-    userid: jspb.Message.getFieldWithDefault(msg, 3, ""),
+    investmentId: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    userId: jspb.Message.getFieldWithDefault(msg, 3, ""),
     quantity: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
-    sellprice: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
+    sellPrice: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
     amount: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
     date: jspb.Message.getFieldWithDefault(msg, 7, ""),
     description: jspb.Message.getFieldWithDefault(msg, 8, ""),
     deficit: jspb.Message.getFloatingPointFieldWithDefault(msg, 9, 0.0),
-    createdat: jspb.Message.getFieldWithDefault(msg, 10, ""),
-    updatedat: jspb.Message.getFieldWithDefault(msg, 11, ""),
-    assetcode: (f = msg.getAssetcode()) && proto.investment.AssetCode.toObject(includeInstance, f)
+    createdAt: jspb.Message.getFieldWithDefault(msg, 10, ""),
+    updatedAt: jspb.Message.getFieldWithDefault(msg, 11, ""),
+    asset: (f = msg.getAsset()) && proto.investment.AssetCode.toObject(includeInstance, f)
   };
 
   if (includeInstance) {
@@ -1329,11 +1329,11 @@ proto.investment.InvestmentSold.deserializeBinaryFromReader = function(msg, read
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setInvestmentid(value);
+      msg.setInvestmentId(value);
       break;
     case 3:
       var value = /** @type {string} */ (reader.readString());
-      msg.setUserid(value);
+      msg.setUserId(value);
       break;
     case 4:
       var value = /** @type {number} */ (reader.readDouble());
@@ -1341,7 +1341,7 @@ proto.investment.InvestmentSold.deserializeBinaryFromReader = function(msg, read
       break;
     case 5:
       var value = /** @type {number} */ (reader.readDouble());
-      msg.setSellprice(value);
+      msg.setSellPrice(value);
       break;
     case 6:
       var value = /** @type {number} */ (reader.readDouble());
@@ -1361,16 +1361,16 @@ proto.investment.InvestmentSold.deserializeBinaryFromReader = function(msg, read
       break;
     case 10:
       var value = /** @type {string} */ (reader.readString());
-      msg.setCreatedat(value);
+      msg.setCreatedAt(value);
       break;
     case 11:
       var value = /** @type {string} */ (reader.readString());
-      msg.setUpdatedat(value);
+      msg.setUpdatedAt(value);
       break;
     case 12:
       var value = new proto.investment.AssetCode;
       reader.readMessage(value,proto.investment.AssetCode.deserializeBinaryFromReader);
-      msg.setAssetcode(value);
+      msg.setAsset(value);
       break;
     default:
       reader.skipField();
@@ -1408,14 +1408,14 @@ proto.investment.InvestmentSold.serializeBinaryToWriter = function(message, writ
       f
     );
   }
-  f = message.getInvestmentid();
+  f = message.getInvestmentId();
   if (f.length > 0) {
     writer.writeString(
       2,
       f
     );
   }
-  f = message.getUserid();
+  f = message.getUserId();
   if (f.length > 0) {
     writer.writeString(
       3,
@@ -1429,7 +1429,7 @@ proto.investment.InvestmentSold.serializeBinaryToWriter = function(message, writ
       f
     );
   }
-  f = message.getSellprice();
+  f = message.getSellPrice();
   if (f !== 0.0) {
     writer.writeDouble(
       5,
@@ -1464,21 +1464,21 @@ proto.investment.InvestmentSold.serializeBinaryToWriter = function(message, writ
       f
     );
   }
-  f = message.getCreatedat();
+  f = message.getCreatedAt();
   if (f.length > 0) {
     writer.writeString(
       10,
       f
     );
   }
-  f = message.getUpdatedat();
+  f = message.getUpdatedAt();
   if (f.length > 0) {
     writer.writeString(
       11,
       f
     );
   }
-  f = message.getAssetcode();
+  f = message.getAsset();
   if (f != null) {
     writer.writeMessage(
       12,
@@ -1508,10 +1508,10 @@ proto.investment.InvestmentSold.prototype.setId = function(value) {
 
 
 /**
- * optional string investmentId = 2;
+ * optional string investment_id = 2;
  * @return {string}
  */
-proto.investment.InvestmentSold.prototype.getInvestmentid = function() {
+proto.investment.InvestmentSold.prototype.getInvestmentId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -1520,16 +1520,16 @@ proto.investment.InvestmentSold.prototype.getInvestmentid = function() {
  * @param {string} value
  * @return {!proto.investment.InvestmentSold} returns this
  */
-proto.investment.InvestmentSold.prototype.setInvestmentid = function(value) {
+proto.investment.InvestmentSold.prototype.setInvestmentId = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
 
 /**
- * optional string userId = 3;
+ * optional string user_id = 3;
  * @return {string}
  */
-proto.investment.InvestmentSold.prototype.getUserid = function() {
+proto.investment.InvestmentSold.prototype.getUserId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 3, ""));
 };
 
@@ -1538,7 +1538,7 @@ proto.investment.InvestmentSold.prototype.getUserid = function() {
  * @param {string} value
  * @return {!proto.investment.InvestmentSold} returns this
  */
-proto.investment.InvestmentSold.prototype.setUserid = function(value) {
+proto.investment.InvestmentSold.prototype.setUserId = function(value) {
   return jspb.Message.setProto3StringField(this, 3, value);
 };
 
@@ -1562,10 +1562,10 @@ proto.investment.InvestmentSold.prototype.setQuantity = function(value) {
 
 
 /**
- * optional double sellPrice = 5;
+ * optional double sell_price = 5;
  * @return {number}
  */
-proto.investment.InvestmentSold.prototype.getSellprice = function() {
+proto.investment.InvestmentSold.prototype.getSellPrice = function() {
   return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 5, 0.0));
 };
 
@@ -1574,7 +1574,7 @@ proto.investment.InvestmentSold.prototype.getSellprice = function() {
  * @param {number} value
  * @return {!proto.investment.InvestmentSold} returns this
  */
-proto.investment.InvestmentSold.prototype.setSellprice = function(value) {
+proto.investment.InvestmentSold.prototype.setSellPrice = function(value) {
   return jspb.Message.setProto3FloatField(this, 5, value);
 };
 
@@ -1652,10 +1652,10 @@ proto.investment.InvestmentSold.prototype.setDeficit = function(value) {
 
 
 /**
- * optional string createdAt = 10;
+ * optional string created_at = 10;
  * @return {string}
  */
-proto.investment.InvestmentSold.prototype.getCreatedat = function() {
+proto.investment.InvestmentSold.prototype.getCreatedAt = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 10, ""));
 };
 
@@ -1664,16 +1664,16 @@ proto.investment.InvestmentSold.prototype.getCreatedat = function() {
  * @param {string} value
  * @return {!proto.investment.InvestmentSold} returns this
  */
-proto.investment.InvestmentSold.prototype.setCreatedat = function(value) {
+proto.investment.InvestmentSold.prototype.setCreatedAt = function(value) {
   return jspb.Message.setProto3StringField(this, 10, value);
 };
 
 
 /**
- * optional string updatedAt = 11;
+ * optional string updated_at = 11;
  * @return {string}
  */
-proto.investment.InvestmentSold.prototype.getUpdatedat = function() {
+proto.investment.InvestmentSold.prototype.getUpdatedAt = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 11, ""));
 };
 
@@ -1682,16 +1682,16 @@ proto.investment.InvestmentSold.prototype.getUpdatedat = function() {
  * @param {string} value
  * @return {!proto.investment.InvestmentSold} returns this
  */
-proto.investment.InvestmentSold.prototype.setUpdatedat = function(value) {
+proto.investment.InvestmentSold.prototype.setUpdatedAt = function(value) {
   return jspb.Message.setProto3StringField(this, 11, value);
 };
 
 
 /**
- * optional AssetCode assetCode = 12;
+ * optional AssetCode asset = 12;
  * @return {?proto.investment.AssetCode}
  */
-proto.investment.InvestmentSold.prototype.getAssetcode = function() {
+proto.investment.InvestmentSold.prototype.getAsset = function() {
   return /** @type{?proto.investment.AssetCode} */ (
     jspb.Message.getWrapperField(this, proto.investment.AssetCode, 12));
 };
@@ -1701,7 +1701,7 @@ proto.investment.InvestmentSold.prototype.getAssetcode = function() {
  * @param {?proto.investment.AssetCode|undefined} value
  * @return {!proto.investment.InvestmentSold} returns this
 */
-proto.investment.InvestmentSold.prototype.setAssetcode = function(value) {
+proto.investment.InvestmentSold.prototype.setAsset = function(value) {
   return jspb.Message.setWrapperField(this, 12, value);
 };
 
@@ -1710,8 +1710,8 @@ proto.investment.InvestmentSold.prototype.setAssetcode = function(value) {
  * Clears the message field making it undefined.
  * @return {!proto.investment.InvestmentSold} returns this
  */
-proto.investment.InvestmentSold.prototype.clearAssetcode = function() {
-  return this.setAssetcode(undefined);
+proto.investment.InvestmentSold.prototype.clearAsset = function() {
+  return this.setAsset(undefined);
 };
 
 
@@ -1719,7 +1719,7 @@ proto.investment.InvestmentSold.prototype.clearAssetcode = function() {
  * Returns whether this field is set.
  * @return {boolean}
  */
-proto.investment.InvestmentSold.prototype.hasAssetcode = function() {
+proto.investment.InvestmentSold.prototype.hasAsset = function() {
   return jspb.Message.getField(this, 12) != null;
 };
 
@@ -2146,11 +2146,11 @@ proto.investment.GetUserInvestmentListRequest.prototype.toObject = function(opt_
  */
 proto.investment.GetUserInvestmentListRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    userid: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    userId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     page: jspb.Message.getFieldWithDefault(msg, 2, 0),
-    pagesize: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    sortby: jspb.Message.getFieldWithDefault(msg, 4, ""),
-    sortorder: jspb.Message.getFieldWithDefault(msg, 5, ""),
+    pageSize: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    sortBy: jspb.Message.getFieldWithDefault(msg, 4, ""),
+    sortOrder: jspb.Message.getFieldWithDefault(msg, 5, ""),
     search: jspb.Message.getFieldWithDefault(msg, 6, ""),
     code: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
@@ -2191,7 +2191,7 @@ proto.investment.GetUserInvestmentListRequest.deserializeBinaryFromReader = func
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setUserid(value);
+      msg.setUserId(value);
       break;
     case 2:
       var value = /** @type {number} */ (reader.readInt32());
@@ -2199,15 +2199,15 @@ proto.investment.GetUserInvestmentListRequest.deserializeBinaryFromReader = func
       break;
     case 3:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setPagesize(value);
+      msg.setPageSize(value);
       break;
     case 4:
       var value = /** @type {string} */ (reader.readString());
-      msg.setSortby(value);
+      msg.setSortBy(value);
       break;
     case 5:
       var value = /** @type {string} */ (reader.readString());
-      msg.setSortorder(value);
+      msg.setSortOrder(value);
       break;
     case 6:
       var value = /** @type {string} */ (reader.readString());
@@ -2246,7 +2246,7 @@ proto.investment.GetUserInvestmentListRequest.prototype.serializeBinary = functi
  */
 proto.investment.GetUserInvestmentListRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getUserid();
+  f = message.getUserId();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -2260,21 +2260,21 @@ proto.investment.GetUserInvestmentListRequest.serializeBinaryToWriter = function
       f
     );
   }
-  f = message.getPagesize();
+  f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
       3,
       f
     );
   }
-  f = message.getSortby();
+  f = message.getSortBy();
   if (f.length > 0) {
     writer.writeString(
       4,
       f
     );
   }
-  f = message.getSortorder();
+  f = message.getSortOrder();
   if (f.length > 0) {
     writer.writeString(
       5,
@@ -2299,10 +2299,10 @@ proto.investment.GetUserInvestmentListRequest.serializeBinaryToWriter = function
 
 
 /**
- * optional string userId = 1;
+ * optional string user_id = 1;
  * @return {string}
  */
-proto.investment.GetUserInvestmentListRequest.prototype.getUserid = function() {
+proto.investment.GetUserInvestmentListRequest.prototype.getUserId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -2311,7 +2311,7 @@ proto.investment.GetUserInvestmentListRequest.prototype.getUserid = function() {
  * @param {string} value
  * @return {!proto.investment.GetUserInvestmentListRequest} returns this
  */
-proto.investment.GetUserInvestmentListRequest.prototype.setUserid = function(value) {
+proto.investment.GetUserInvestmentListRequest.prototype.setUserId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -2335,10 +2335,10 @@ proto.investment.GetUserInvestmentListRequest.prototype.setPage = function(value
 
 
 /**
- * optional int32 pageSize = 3;
+ * optional int32 page_size = 3;
  * @return {number}
  */
-proto.investment.GetUserInvestmentListRequest.prototype.getPagesize = function() {
+proto.investment.GetUserInvestmentListRequest.prototype.getPageSize = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 3, 0));
 };
 
@@ -2347,16 +2347,16 @@ proto.investment.GetUserInvestmentListRequest.prototype.getPagesize = function()
  * @param {number} value
  * @return {!proto.investment.GetUserInvestmentListRequest} returns this
  */
-proto.investment.GetUserInvestmentListRequest.prototype.setPagesize = function(value) {
+proto.investment.GetUserInvestmentListRequest.prototype.setPageSize = function(value) {
   return jspb.Message.setProto3IntField(this, 3, value);
 };
 
 
 /**
- * optional string sortBy = 4;
+ * optional string sort_by = 4;
  * @return {string}
  */
-proto.investment.GetUserInvestmentListRequest.prototype.getSortby = function() {
+proto.investment.GetUserInvestmentListRequest.prototype.getSortBy = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 4, ""));
 };
 
@@ -2365,16 +2365,16 @@ proto.investment.GetUserInvestmentListRequest.prototype.getSortby = function() {
  * @param {string} value
  * @return {!proto.investment.GetUserInvestmentListRequest} returns this
  */
-proto.investment.GetUserInvestmentListRequest.prototype.setSortby = function(value) {
+proto.investment.GetUserInvestmentListRequest.prototype.setSortBy = function(value) {
   return jspb.Message.setProto3StringField(this, 4, value);
 };
 
 
 /**
- * optional string sortOrder = 5;
+ * optional string sort_order = 5;
  * @return {string}
  */
-proto.investment.GetUserInvestmentListRequest.prototype.getSortorder = function() {
+proto.investment.GetUserInvestmentListRequest.prototype.getSortOrder = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 5, ""));
 };
 
@@ -2383,7 +2383,7 @@ proto.investment.GetUserInvestmentListRequest.prototype.getSortorder = function(
  * @param {string} value
  * @return {!proto.investment.GetUserInvestmentListRequest} returns this
  */
-proto.investment.GetUserInvestmentListRequest.prototype.setSortorder = function(value) {
+proto.investment.GetUserInvestmentListRequest.prototype.setSortOrder = function(value) {
   return jspb.Message.setProto3StringField(this, 5, value);
 };
 
@@ -2456,8 +2456,8 @@ proto.investment.GetInvestmentDetailRequest.prototype.toObject = function(opt_in
  */
 proto.investment.GetInvestmentDetailRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    userid: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    investmentid: jspb.Message.getFieldWithDefault(msg, 2, "")
+    userId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    investmentId: jspb.Message.getFieldWithDefault(msg, 2, "")
   };
 
   if (includeInstance) {
@@ -2496,11 +2496,11 @@ proto.investment.GetInvestmentDetailRequest.deserializeBinaryFromReader = functi
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setUserid(value);
+      msg.setUserId(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setInvestmentid(value);
+      msg.setInvestmentId(value);
       break;
     default:
       reader.skipField();
@@ -2531,14 +2531,14 @@ proto.investment.GetInvestmentDetailRequest.prototype.serializeBinary = function
  */
 proto.investment.GetInvestmentDetailRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getUserid();
+  f = message.getUserId();
   if (f.length > 0) {
     writer.writeString(
       1,
       f
     );
   }
-  f = message.getInvestmentid();
+  f = message.getInvestmentId();
   if (f.length > 0) {
     writer.writeString(
       2,
@@ -2549,10 +2549,10 @@ proto.investment.GetInvestmentDetailRequest.serializeBinaryToWriter = function(m
 
 
 /**
- * optional string userId = 1;
+ * optional string user_id = 1;
  * @return {string}
  */
-proto.investment.GetInvestmentDetailRequest.prototype.getUserid = function() {
+proto.investment.GetInvestmentDetailRequest.prototype.getUserId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -2561,16 +2561,16 @@ proto.investment.GetInvestmentDetailRequest.prototype.getUserid = function() {
  * @param {string} value
  * @return {!proto.investment.GetInvestmentDetailRequest} returns this
  */
-proto.investment.GetInvestmentDetailRequest.prototype.setUserid = function(value) {
+proto.investment.GetInvestmentDetailRequest.prototype.setUserId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * optional string investmentId = 2;
+ * optional string investment_id = 2;
  * @return {string}
  */
-proto.investment.GetInvestmentDetailRequest.prototype.getInvestmentid = function() {
+proto.investment.GetInvestmentDetailRequest.prototype.getInvestmentId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -2579,7 +2579,7 @@ proto.investment.GetInvestmentDetailRequest.prototype.getInvestmentid = function
  * @param {string} value
  * @return {!proto.investment.GetInvestmentDetailRequest} returns this
  */
-proto.investment.GetInvestmentDetailRequest.prototype.setInvestmentid = function(value) {
+proto.investment.GetInvestmentDetailRequest.prototype.setInvestmentId = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -2616,11 +2616,11 @@ proto.investment.CreateInvestmentRequest.prototype.toObject = function(opt_inclu
  */
 proto.investment.CreateInvestmentRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    userid: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    userId: jspb.Message.getFieldWithDefault(msg, 1, ""),
     code: jspb.Message.getFieldWithDefault(msg, 2, ""),
     quantity: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
     amount: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
-    initialvaluation: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
+    initialValuation: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
     date: jspb.Message.getFieldWithDefault(msg, 6, ""),
     description: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
@@ -2661,7 +2661,7 @@ proto.investment.CreateInvestmentRequest.deserializeBinaryFromReader = function(
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setUserid(value);
+      msg.setUserId(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
@@ -2677,7 +2677,7 @@ proto.investment.CreateInvestmentRequest.deserializeBinaryFromReader = function(
       break;
     case 5:
       var value = /** @type {number} */ (reader.readDouble());
-      msg.setInitialvaluation(value);
+      msg.setInitialValuation(value);
       break;
     case 6:
       var value = /** @type {string} */ (reader.readString());
@@ -2716,7 +2716,7 @@ proto.investment.CreateInvestmentRequest.prototype.serializeBinary = function() 
  */
 proto.investment.CreateInvestmentRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getUserid();
+  f = message.getUserId();
   if (f.length > 0) {
     writer.writeString(
       1,
@@ -2744,7 +2744,7 @@ proto.investment.CreateInvestmentRequest.serializeBinaryToWriter = function(mess
       f
     );
   }
-  f = message.getInitialvaluation();
+  f = message.getInitialValuation();
   if (f !== 0.0) {
     writer.writeDouble(
       5,
@@ -2769,10 +2769,10 @@ proto.investment.CreateInvestmentRequest.serializeBinaryToWriter = function(mess
 
 
 /**
- * optional string userId = 1;
+ * optional string user_id = 1;
  * @return {string}
  */
-proto.investment.CreateInvestmentRequest.prototype.getUserid = function() {
+proto.investment.CreateInvestmentRequest.prototype.getUserId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -2781,7 +2781,7 @@ proto.investment.CreateInvestmentRequest.prototype.getUserid = function() {
  * @param {string} value
  * @return {!proto.investment.CreateInvestmentRequest} returns this
  */
-proto.investment.CreateInvestmentRequest.prototype.setUserid = function(value) {
+proto.investment.CreateInvestmentRequest.prototype.setUserId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
@@ -2841,10 +2841,10 @@ proto.investment.CreateInvestmentRequest.prototype.setAmount = function(value) {
 
 
 /**
- * optional double initialValuation = 5;
+ * optional double initial_valuation = 5;
  * @return {number}
  */
-proto.investment.CreateInvestmentRequest.prototype.getInitialvaluation = function() {
+proto.investment.CreateInvestmentRequest.prototype.getInitialValuation = function() {
   return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 5, 0.0));
 };
 
@@ -2853,7 +2853,7 @@ proto.investment.CreateInvestmentRequest.prototype.getInitialvaluation = functio
  * @param {number} value
  * @return {!proto.investment.CreateInvestmentRequest} returns this
  */
-proto.investment.CreateInvestmentRequest.prototype.setInitialvaluation = function(value) {
+proto.investment.CreateInvestmentRequest.prototype.setInitialValuation = function(value) {
   return jspb.Message.setProto3FloatField(this, 5, value);
 };
 
@@ -2926,8 +2926,8 @@ proto.investment.SellInvestmentRequest.prototype.toObject = function(opt_include
  */
 proto.investment.SellInvestmentRequest.toObject = function(includeInstance, msg) {
   var f, obj = {
-    userid: jspb.Message.getFieldWithDefault(msg, 1, ""),
-    assetcode: jspb.Message.getFieldWithDefault(msg, 2, ""),
+    userId: jspb.Message.getFieldWithDefault(msg, 1, ""),
+    assetCode: jspb.Message.getFieldWithDefault(msg, 2, ""),
     quantity: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
     amount: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
     date: jspb.Message.getFieldWithDefault(msg, 5, ""),
@@ -2970,11 +2970,11 @@ proto.investment.SellInvestmentRequest.deserializeBinaryFromReader = function(ms
     switch (field) {
     case 1:
       var value = /** @type {string} */ (reader.readString());
-      msg.setUserid(value);
+      msg.setUserId(value);
       break;
     case 2:
       var value = /** @type {string} */ (reader.readString());
-      msg.setAssetcode(value);
+      msg.setAssetCode(value);
       break;
     case 3:
       var value = /** @type {number} */ (reader.readDouble());
@@ -3021,14 +3021,14 @@ proto.investment.SellInvestmentRequest.prototype.serializeBinary = function() {
  */
 proto.investment.SellInvestmentRequest.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getUserid();
+  f = message.getUserId();
   if (f.length > 0) {
     writer.writeString(
       1,
       f
     );
   }
-  f = message.getAssetcode();
+  f = message.getAssetCode();
   if (f.length > 0) {
     writer.writeString(
       2,
@@ -3067,10 +3067,10 @@ proto.investment.SellInvestmentRequest.serializeBinaryToWriter = function(messag
 
 
 /**
- * optional string userId = 1;
+ * optional string user_id = 1;
  * @return {string}
  */
-proto.investment.SellInvestmentRequest.prototype.getUserid = function() {
+proto.investment.SellInvestmentRequest.prototype.getUserId = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 1, ""));
 };
 
@@ -3079,16 +3079,16 @@ proto.investment.SellInvestmentRequest.prototype.getUserid = function() {
  * @param {string} value
  * @return {!proto.investment.SellInvestmentRequest} returns this
  */
-proto.investment.SellInvestmentRequest.prototype.setUserid = function(value) {
+proto.investment.SellInvestmentRequest.prototype.setUserId = function(value) {
   return jspb.Message.setProto3StringField(this, 1, value);
 };
 
 
 /**
- * optional string assetcode = 2;
+ * optional string asset_code = 2;
  * @return {string}
  */
-proto.investment.SellInvestmentRequest.prototype.getAssetcode = function() {
+proto.investment.SellInvestmentRequest.prototype.getAssetCode = function() {
   return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 2, ""));
 };
 
@@ -3097,7 +3097,7 @@ proto.investment.SellInvestmentRequest.prototype.getAssetcode = function() {
  * @param {string} value
  * @return {!proto.investment.SellInvestmentRequest} returns this
  */
-proto.investment.SellInvestmentRequest.prototype.setAssetcode = function(value) {
+proto.investment.SellInvestmentRequest.prototype.setAssetCode = function(value) {
   return jspb.Message.setProto3StringField(this, 2, value);
 };
 
@@ -3217,8 +3217,8 @@ proto.investment.GetUserInvestmentListResponse.toObject = function(includeInstan
     proto.investment.Investment.toObject, includeInstance),
     total: jspb.Message.getFieldWithDefault(msg, 2, 0),
     page: jspb.Message.getFieldWithDefault(msg, 3, 0),
-    pagesize: jspb.Message.getFieldWithDefault(msg, 4, 0),
-    totalpages: jspb.Message.getFieldWithDefault(msg, 5, 0)
+    pageSize: jspb.Message.getFieldWithDefault(msg, 4, 0),
+    totalPages: jspb.Message.getFieldWithDefault(msg, 5, 0)
   };
 
   if (includeInstance) {
@@ -3270,11 +3270,11 @@ proto.investment.GetUserInvestmentListResponse.deserializeBinaryFromReader = fun
       break;
     case 4:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setPagesize(value);
+      msg.setPageSize(value);
       break;
     case 5:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setTotalpages(value);
+      msg.setTotalPages(value);
       break;
     default:
       reader.skipField();
@@ -3327,14 +3327,14 @@ proto.investment.GetUserInvestmentListResponse.serializeBinaryToWriter = functio
       f
     );
   }
-  f = message.getPagesize();
+  f = message.getPageSize();
   if (f !== 0) {
     writer.writeInt32(
       4,
       f
     );
   }
-  f = message.getTotalpages();
+  f = message.getTotalPages();
   if (f !== 0) {
     writer.writeInt32(
       5,
@@ -3419,10 +3419,10 @@ proto.investment.GetUserInvestmentListResponse.prototype.setPage = function(valu
 
 
 /**
- * optional int32 pageSize = 4;
+ * optional int32 page_size = 4;
  * @return {number}
  */
-proto.investment.GetUserInvestmentListResponse.prototype.getPagesize = function() {
+proto.investment.GetUserInvestmentListResponse.prototype.getPageSize = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 4, 0));
 };
 
@@ -3431,16 +3431,16 @@ proto.investment.GetUserInvestmentListResponse.prototype.getPagesize = function(
  * @param {number} value
  * @return {!proto.investment.GetUserInvestmentListResponse} returns this
  */
-proto.investment.GetUserInvestmentListResponse.prototype.setPagesize = function(value) {
+proto.investment.GetUserInvestmentListResponse.prototype.setPageSize = function(value) {
   return jspb.Message.setProto3IntField(this, 4, value);
 };
 
 
 /**
- * optional int32 totalPages = 5;
+ * optional int32 total_pages = 5;
  * @return {number}
  */
-proto.investment.GetUserInvestmentListResponse.prototype.getTotalpages = function() {
+proto.investment.GetUserInvestmentListResponse.prototype.getTotalPages = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 5, 0));
 };
 
@@ -3449,7 +3449,7 @@ proto.investment.GetUserInvestmentListResponse.prototype.getTotalpages = functio
  * @param {number} value
  * @return {!proto.investment.GetUserInvestmentListResponse} returns this
  */
-proto.investment.GetUserInvestmentListResponse.prototype.setTotalpages = function(value) {
+proto.investment.GetUserInvestmentListResponse.prototype.setTotalPages = function(value) {
   return jspb.Message.setProto3IntField(this, 5, value);
 };
 
@@ -3493,7 +3493,7 @@ proto.investment.SellInvestmentResponse.prototype.toObject = function(opt_includ
  */
 proto.investment.SellInvestmentResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    soldrecordsList: jspb.Message.toObjectList(msg.getSoldrecordsList(),
+    soldRecordsList: jspb.Message.toObjectList(msg.getSoldRecordsList(),
     proto.investment.InvestmentSold.toObject, includeInstance)
   };
 
@@ -3534,7 +3534,7 @@ proto.investment.SellInvestmentResponse.deserializeBinaryFromReader = function(m
     case 1:
       var value = new proto.investment.InvestmentSold;
       reader.readMessage(value,proto.investment.InvestmentSold.deserializeBinaryFromReader);
-      msg.addSoldrecords(value);
+      msg.addSoldRecords(value);
       break;
     default:
       reader.skipField();
@@ -3565,7 +3565,7 @@ proto.investment.SellInvestmentResponse.prototype.serializeBinary = function() {
  */
 proto.investment.SellInvestmentResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getSoldrecordsList();
+  f = message.getSoldRecordsList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
@@ -3577,10 +3577,10 @@ proto.investment.SellInvestmentResponse.serializeBinaryToWriter = function(messa
 
 
 /**
- * repeated InvestmentSold soldRecords = 1;
+ * repeated InvestmentSold sold_records = 1;
  * @return {!Array<!proto.investment.InvestmentSold>}
  */
-proto.investment.SellInvestmentResponse.prototype.getSoldrecordsList = function() {
+proto.investment.SellInvestmentResponse.prototype.getSoldRecordsList = function() {
   return /** @type{!Array<!proto.investment.InvestmentSold>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.investment.InvestmentSold, 1));
 };
@@ -3590,7 +3590,7 @@ proto.investment.SellInvestmentResponse.prototype.getSoldrecordsList = function(
  * @param {!Array<!proto.investment.InvestmentSold>} value
  * @return {!proto.investment.SellInvestmentResponse} returns this
 */
-proto.investment.SellInvestmentResponse.prototype.setSoldrecordsList = function(value) {
+proto.investment.SellInvestmentResponse.prototype.setSoldRecordsList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
@@ -3600,7 +3600,7 @@ proto.investment.SellInvestmentResponse.prototype.setSoldrecordsList = function(
  * @param {number=} opt_index
  * @return {!proto.investment.InvestmentSold}
  */
-proto.investment.SellInvestmentResponse.prototype.addSoldrecords = function(opt_value, opt_index) {
+proto.investment.SellInvestmentResponse.prototype.addSoldRecords = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.investment.InvestmentSold, opt_index);
 };
 
@@ -3609,8 +3609,8 @@ proto.investment.SellInvestmentResponse.prototype.addSoldrecords = function(opt_
  * Clears the list making it empty but non-null.
  * @return {!proto.investment.SellInvestmentResponse} returns this
  */
-proto.investment.SellInvestmentResponse.prototype.clearSoldrecordsList = function() {
-  return this.setSoldrecordsList([]);
+proto.investment.SellInvestmentResponse.prototype.clearSoldRecordsList = function() {
+  return this.setSoldRecordsList([]);
 };
 
 
@@ -3646,13 +3646,13 @@ proto.investment.InvestmentSummaryResponse.prototype.toObject = function(opt_inc
  */
 proto.investment.InvestmentSummaryResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    totalinvestments: jspb.Message.getFieldWithDefault(msg, 1, 0),
-    totalinvested: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-    totalcurrentvalue: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
-    totalprofitloss: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
-    totalprofitlosspct: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
-    totalsoldamount: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
-    totalrealizedgain: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0)
+    totalInvestments: jspb.Message.getFieldWithDefault(msg, 1, 0),
+    totalInvested: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
+    totalCurrentValue: jspb.Message.getFloatingPointFieldWithDefault(msg, 3, 0.0),
+    totalProfitLoss: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0),
+    totalProfitLossPct: jspb.Message.getFloatingPointFieldWithDefault(msg, 5, 0.0),
+    totalSoldAmount: jspb.Message.getFloatingPointFieldWithDefault(msg, 6, 0.0),
+    totalRealizedGain: jspb.Message.getFloatingPointFieldWithDefault(msg, 7, 0.0)
   };
 
   if (includeInstance) {
@@ -3691,31 +3691,31 @@ proto.investment.InvestmentSummaryResponse.deserializeBinaryFromReader = functio
     switch (field) {
     case 1:
       var value = /** @type {number} */ (reader.readInt32());
-      msg.setTotalinvestments(value);
+      msg.setTotalInvestments(value);
       break;
     case 2:
       var value = /** @type {number} */ (reader.readDouble());
-      msg.setTotalinvested(value);
+      msg.setTotalInvested(value);
       break;
     case 3:
       var value = /** @type {number} */ (reader.readDouble());
-      msg.setTotalcurrentvalue(value);
+      msg.setTotalCurrentValue(value);
       break;
     case 4:
       var value = /** @type {number} */ (reader.readDouble());
-      msg.setTotalprofitloss(value);
+      msg.setTotalProfitLoss(value);
       break;
     case 5:
       var value = /** @type {number} */ (reader.readDouble());
-      msg.setTotalprofitlosspct(value);
+      msg.setTotalProfitLossPct(value);
       break;
     case 6:
       var value = /** @type {number} */ (reader.readDouble());
-      msg.setTotalsoldamount(value);
+      msg.setTotalSoldAmount(value);
       break;
     case 7:
       var value = /** @type {number} */ (reader.readDouble());
-      msg.setTotalrealizedgain(value);
+      msg.setTotalRealizedGain(value);
       break;
     default:
       reader.skipField();
@@ -3746,49 +3746,49 @@ proto.investment.InvestmentSummaryResponse.prototype.serializeBinary = function(
  */
 proto.investment.InvestmentSummaryResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getTotalinvestments();
+  f = message.getTotalInvestments();
   if (f !== 0) {
     writer.writeInt32(
       1,
       f
     );
   }
-  f = message.getTotalinvested();
+  f = message.getTotalInvested();
   if (f !== 0.0) {
     writer.writeDouble(
       2,
       f
     );
   }
-  f = message.getTotalcurrentvalue();
+  f = message.getTotalCurrentValue();
   if (f !== 0.0) {
     writer.writeDouble(
       3,
       f
     );
   }
-  f = message.getTotalprofitloss();
+  f = message.getTotalProfitLoss();
   if (f !== 0.0) {
     writer.writeDouble(
       4,
       f
     );
   }
-  f = message.getTotalprofitlosspct();
+  f = message.getTotalProfitLossPct();
   if (f !== 0.0) {
     writer.writeDouble(
       5,
       f
     );
   }
-  f = message.getTotalsoldamount();
+  f = message.getTotalSoldAmount();
   if (f !== 0.0) {
     writer.writeDouble(
       6,
       f
     );
   }
-  f = message.getTotalrealizedgain();
+  f = message.getTotalRealizedGain();
   if (f !== 0.0) {
     writer.writeDouble(
       7,
@@ -3799,10 +3799,10 @@ proto.investment.InvestmentSummaryResponse.serializeBinaryToWriter = function(me
 
 
 /**
- * optional int32 totalInvestments = 1;
+ * optional int32 total_investments = 1;
  * @return {number}
  */
-proto.investment.InvestmentSummaryResponse.prototype.getTotalinvestments = function() {
+proto.investment.InvestmentSummaryResponse.prototype.getTotalInvestments = function() {
   return /** @type {number} */ (jspb.Message.getFieldWithDefault(this, 1, 0));
 };
 
@@ -3811,16 +3811,16 @@ proto.investment.InvestmentSummaryResponse.prototype.getTotalinvestments = funct
  * @param {number} value
  * @return {!proto.investment.InvestmentSummaryResponse} returns this
  */
-proto.investment.InvestmentSummaryResponse.prototype.setTotalinvestments = function(value) {
+proto.investment.InvestmentSummaryResponse.prototype.setTotalInvestments = function(value) {
   return jspb.Message.setProto3IntField(this, 1, value);
 };
 
 
 /**
- * optional double totalInvested = 2;
+ * optional double total_invested = 2;
  * @return {number}
  */
-proto.investment.InvestmentSummaryResponse.prototype.getTotalinvested = function() {
+proto.investment.InvestmentSummaryResponse.prototype.getTotalInvested = function() {
   return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 2, 0.0));
 };
 
@@ -3829,16 +3829,16 @@ proto.investment.InvestmentSummaryResponse.prototype.getTotalinvested = function
  * @param {number} value
  * @return {!proto.investment.InvestmentSummaryResponse} returns this
  */
-proto.investment.InvestmentSummaryResponse.prototype.setTotalinvested = function(value) {
+proto.investment.InvestmentSummaryResponse.prototype.setTotalInvested = function(value) {
   return jspb.Message.setProto3FloatField(this, 2, value);
 };
 
 
 /**
- * optional double totalCurrentValue = 3;
+ * optional double total_current_value = 3;
  * @return {number}
  */
-proto.investment.InvestmentSummaryResponse.prototype.getTotalcurrentvalue = function() {
+proto.investment.InvestmentSummaryResponse.prototype.getTotalCurrentValue = function() {
   return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 3, 0.0));
 };
 
@@ -3847,16 +3847,16 @@ proto.investment.InvestmentSummaryResponse.prototype.getTotalcurrentvalue = func
  * @param {number} value
  * @return {!proto.investment.InvestmentSummaryResponse} returns this
  */
-proto.investment.InvestmentSummaryResponse.prototype.setTotalcurrentvalue = function(value) {
+proto.investment.InvestmentSummaryResponse.prototype.setTotalCurrentValue = function(value) {
   return jspb.Message.setProto3FloatField(this, 3, value);
 };
 
 
 /**
- * optional double totalProfitLoss = 4;
+ * optional double total_profit_loss = 4;
  * @return {number}
  */
-proto.investment.InvestmentSummaryResponse.prototype.getTotalprofitloss = function() {
+proto.investment.InvestmentSummaryResponse.prototype.getTotalProfitLoss = function() {
   return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 4, 0.0));
 };
 
@@ -3865,16 +3865,16 @@ proto.investment.InvestmentSummaryResponse.prototype.getTotalprofitloss = functi
  * @param {number} value
  * @return {!proto.investment.InvestmentSummaryResponse} returns this
  */
-proto.investment.InvestmentSummaryResponse.prototype.setTotalprofitloss = function(value) {
+proto.investment.InvestmentSummaryResponse.prototype.setTotalProfitLoss = function(value) {
   return jspb.Message.setProto3FloatField(this, 4, value);
 };
 
 
 /**
- * optional double totalProfitLossPct = 5;
+ * optional double total_profit_loss_pct = 5;
  * @return {number}
  */
-proto.investment.InvestmentSummaryResponse.prototype.getTotalprofitlosspct = function() {
+proto.investment.InvestmentSummaryResponse.prototype.getTotalProfitLossPct = function() {
   return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 5, 0.0));
 };
 
@@ -3883,16 +3883,16 @@ proto.investment.InvestmentSummaryResponse.prototype.getTotalprofitlosspct = fun
  * @param {number} value
  * @return {!proto.investment.InvestmentSummaryResponse} returns this
  */
-proto.investment.InvestmentSummaryResponse.prototype.setTotalprofitlosspct = function(value) {
+proto.investment.InvestmentSummaryResponse.prototype.setTotalProfitLossPct = function(value) {
   return jspb.Message.setProto3FloatField(this, 5, value);
 };
 
 
 /**
- * optional double totalSoldAmount = 6;
+ * optional double total_sold_amount = 6;
  * @return {number}
  */
-proto.investment.InvestmentSummaryResponse.prototype.getTotalsoldamount = function() {
+proto.investment.InvestmentSummaryResponse.prototype.getTotalSoldAmount = function() {
   return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 6, 0.0));
 };
 
@@ -3901,16 +3901,16 @@ proto.investment.InvestmentSummaryResponse.prototype.getTotalsoldamount = functi
  * @param {number} value
  * @return {!proto.investment.InvestmentSummaryResponse} returns this
  */
-proto.investment.InvestmentSummaryResponse.prototype.setTotalsoldamount = function(value) {
+proto.investment.InvestmentSummaryResponse.prototype.setTotalSoldAmount = function(value) {
   return jspb.Message.setProto3FloatField(this, 6, value);
 };
 
 
 /**
- * optional double totalRealizedGain = 7;
+ * optional double total_realized_gain = 7;
  * @return {number}
  */
-proto.investment.InvestmentSummaryResponse.prototype.getTotalrealizedgain = function() {
+proto.investment.InvestmentSummaryResponse.prototype.getTotalRealizedGain = function() {
   return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 7, 0.0));
 };
 
@@ -3919,7 +3919,7 @@ proto.investment.InvestmentSummaryResponse.prototype.getTotalrealizedgain = func
  * @param {number} value
  * @return {!proto.investment.InvestmentSummaryResponse} returns this
  */
-proto.investment.InvestmentSummaryResponse.prototype.setTotalrealizedgain = function(value) {
+proto.investment.InvestmentSummaryResponse.prototype.setTotalRealizedGain = function(value) {
   return jspb.Message.setProto3FloatField(this, 7, value);
 };
 
@@ -3963,7 +3963,7 @@ proto.investment.GetAssetCodesResponse.prototype.toObject = function(opt_include
  */
 proto.investment.GetAssetCodesResponse.toObject = function(includeInstance, msg) {
   var f, obj = {
-    assetcodesList: jspb.Message.toObjectList(msg.getAssetcodesList(),
+    assetCodesList: jspb.Message.toObjectList(msg.getAssetCodesList(),
     proto.investment.AssetCode.toObject, includeInstance)
   };
 
@@ -4004,7 +4004,7 @@ proto.investment.GetAssetCodesResponse.deserializeBinaryFromReader = function(ms
     case 1:
       var value = new proto.investment.AssetCode;
       reader.readMessage(value,proto.investment.AssetCode.deserializeBinaryFromReader);
-      msg.addAssetcodes(value);
+      msg.addAssetCodes(value);
       break;
     default:
       reader.skipField();
@@ -4035,7 +4035,7 @@ proto.investment.GetAssetCodesResponse.prototype.serializeBinary = function() {
  */
 proto.investment.GetAssetCodesResponse.serializeBinaryToWriter = function(message, writer) {
   var f = undefined;
-  f = message.getAssetcodesList();
+  f = message.getAssetCodesList();
   if (f.length > 0) {
     writer.writeRepeatedMessage(
       1,
@@ -4047,10 +4047,10 @@ proto.investment.GetAssetCodesResponse.serializeBinaryToWriter = function(messag
 
 
 /**
- * repeated AssetCode assetCodes = 1;
+ * repeated AssetCode asset_codes = 1;
  * @return {!Array<!proto.investment.AssetCode>}
  */
-proto.investment.GetAssetCodesResponse.prototype.getAssetcodesList = function() {
+proto.investment.GetAssetCodesResponse.prototype.getAssetCodesList = function() {
   return /** @type{!Array<!proto.investment.AssetCode>} */ (
     jspb.Message.getRepeatedWrapperField(this, proto.investment.AssetCode, 1));
 };
@@ -4060,7 +4060,7 @@ proto.investment.GetAssetCodesResponse.prototype.getAssetcodesList = function() 
  * @param {!Array<!proto.investment.AssetCode>} value
  * @return {!proto.investment.GetAssetCodesResponse} returns this
 */
-proto.investment.GetAssetCodesResponse.prototype.setAssetcodesList = function(value) {
+proto.investment.GetAssetCodesResponse.prototype.setAssetCodesList = function(value) {
   return jspb.Message.setRepeatedWrapperField(this, 1, value);
 };
 
@@ -4070,7 +4070,7 @@ proto.investment.GetAssetCodesResponse.prototype.setAssetcodesList = function(va
  * @param {number=} opt_index
  * @return {!proto.investment.AssetCode}
  */
-proto.investment.GetAssetCodesResponse.prototype.addAssetcodes = function(opt_value, opt_index) {
+proto.investment.GetAssetCodesResponse.prototype.addAssetCodes = function(opt_value, opt_index) {
   return jspb.Message.addToRepeatedWrapperField(this, 1, opt_value, proto.investment.AssetCode, opt_index);
 };
 
@@ -4079,8 +4079,8 @@ proto.investment.GetAssetCodesResponse.prototype.addAssetcodes = function(opt_va
  * Clears the list making it empty but non-null.
  * @return {!proto.investment.GetAssetCodesResponse} returns this
  */
-proto.investment.GetAssetCodesResponse.prototype.clearAssetcodesList = function() {
-  return this.setAssetcodesList([]);
+proto.investment.GetAssetCodesResponse.prototype.clearAssetCodesList = function() {
+  return this.setAssetCodesList([]);
 };
 
 

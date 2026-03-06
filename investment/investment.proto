@@ -26,37 +26,37 @@ message AssetCode {
     double toUSD = 4;
     double toEUR = 5;
     double toIDR = 6;
-    string createdAt = 7;
-    string updatedAt = 8;
+    string created_at = 7;
+    string updated_at = 8;
 }
 
 message Investment {
     string id = 1;
     string code = 2;
-    string userId = 3;
+    string user_id = 3;
     double quantity = 4;
-    double initialValuation = 5;
+    double initial_valuation = 5;
     double amount = 6;
     string date = 7;
     string description = 8;
-    AssetCode assetCode = 9;
-    string createdAt = 10;
-    string updatedAt = 11;
+    AssetCode asset = 9;
+    string created_at = 10;
+    string updated_at = 11;
 }
 
 message InvestmentSold {
     string id = 1;
-    string investmentId = 2;
-    string userId = 3;
+    string investment_id = 2;
+    string user_id = 3;
     double quantity = 4;
-    double sellPrice = 5;
+    double sell_price = 5;
     double amount = 6;
     string date = 7;
     string description = 8;
     double deficit = 9;
-    string createdAt = 10;
-    string updatedAt = 11;
-    AssetCode assetCode = 12;
+    string created_at = 10;
+    string updated_at = 11;
+    AssetCode asset = 12;
 }
 
 message InvestmentID {
@@ -74,33 +74,33 @@ message GetInvestmentOptions {
 // ── Request Messages ──
 
 message GetUserInvestmentListRequest {
-    string userId = 1;
+    string user_id = 1;
     int32 page = 2;
-    int32 pageSize = 3;
-    string sortBy = 4;
-    string sortOrder = 5;
+    int32 page_size = 3;
+    string sort_by = 4;
+    string sort_order = 5;
     string search = 6;
     string code = 7;
 }
 
 message GetInvestmentDetailRequest {
-    string userId = 1;
-    string investmentId = 2;
+    string user_id = 1;
+    string investment_id = 2;
 }
 
 message CreateInvestmentRequest {
-    string userId = 1;
+    string user_id = 1;
     string code = 2;
     double quantity = 3;
     double amount = 4;
-    double initialValuation = 5;
+    double initial_valuation = 5;
     string date = 6;
     string description = 7;
 }
 
 message SellInvestmentRequest {
-    string userId = 1;
-    string assetcode = 2;
+    string user_id = 1;
+    string asset_code = 2;
     double quantity = 3;
     double amount = 4;
     string date = 5;
@@ -113,24 +113,24 @@ message GetUserInvestmentListResponse {
     repeated Investment investments = 1;
     int32 total = 2;
     int32 page = 3;
-    int32 pageSize = 4;
-    int32 totalPages = 5;
+    int32 page_size = 4;
+    int32 total_pages = 5;
 }
 
 message SellInvestmentResponse {
-    repeated InvestmentSold soldRecords = 1;
+    repeated InvestmentSold sold_records = 1;
 }
 
 message InvestmentSummaryResponse {
-    int32 totalInvestments = 1;
-    double totalInvested = 2;
-    double totalCurrentValue = 3;
-    double totalProfitLoss = 4;
-    double totalProfitLossPct = 5;
-    double totalSoldAmount = 6;
-    double totalRealizedGain = 7;
+    int32 total_investments = 1;
+    double total_invested = 2;
+    double total_current_value = 3;
+    double total_profit_loss = 4;
+    double total_profit_loss_pct = 5;
+    double total_sold_amount = 6;
+    double total_realized_gain = 7;
 }
 
 message GetAssetCodesResponse {
-    repeated AssetCode assetCodes = 1;
+    repeated AssetCode asset_codes = 1;
 }
