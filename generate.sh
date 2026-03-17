@@ -71,6 +71,52 @@ generate_node() {
     fi
 }
 
+generate_php() {
+    echo "🔄 Generating PHP code for ${PROTO_NAME}..."
+
+    if ! command -v protoc &> /dev/null; then
+        echo "❌ protoc not found. Please install protoc first."
+        echo "   https://grpc.io/docs/protoc-installation/"
+        return 1
+    fi
+
+    # Generate to a temp directory first
+    TEMP_DIR=$(mktemp -d)
+
+    protoc \
+        --proto_path=. \
+        --php_out="$TEMP_DIR" \
+        "$PROTO_FILE"
+
+    if [ $? -ne 0 ]; then
+        echo "❌ Failed to generate PHP proto files"
+        rm -rf "$TEMP_DIR"
+        return 1
+    fi
+
+    # PHP generates to PascalCase dir (e.g., wallet -> Wallet/)
+    PASCAL_NAME="$(echo "${PROTO_NAME}" | awk '{print toupper(substr($0,1,1)) tolower(substr($0,2))}')"
+
+    # Move message class files into the proto folder (e.g., Wallet/*.php -> wallet/)
+    if [ -d "$TEMP_DIR/$PASCAL_NAME" ]; then
+        mv "$TEMP_DIR/$PASCAL_NAME"/*.php "./$PROTO_NAME/"
+    fi
+
+    # Move GPBMetadata files into the proto folder as well
+    if [ -d "$TEMP_DIR/GPBMetadata/$PASCAL_NAME" ]; then
+        mv "$TEMP_DIR/GPBMetadata/$PASCAL_NAME"/*.php "./$PROTO_NAME/"
+    fi
+
+    rm -rf "$TEMP_DIR"
+
+    # Cleanup leftover empty directories from previous runs
+    rm -rf "./$PASCAL_NAME"
+    rm -rf "./GPBMetadata"
+
+    echo "✅ PHP proto files generated!"
+    echo "📁 ${PROTO_NAME}/*.php"
+}
+
 case "$LANGUAGE" in
     "go")
         generate_go
@@ -78,12 +124,17 @@ case "$LANGUAGE" in
     "node")
         generate_node
         ;;
+    "php")
+        generate_php
+        ;;
     "all")
         echo "🚀 Generating for all languages..."
         echo ""
         generate_go
         echo ""
         generate_node
+        echo ""
+        generate_php
         echo ""
         echo "✅ All proto files generated!"
         ;;
