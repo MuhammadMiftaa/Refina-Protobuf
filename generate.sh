@@ -75,17 +75,28 @@ generate_php() {
     echo "🔄 Generating PHP code for ${PROTO_NAME}..."
 
     if ! command -v protoc &> /dev/null; then
-        echo "❌ protoc not found. Please install protoc first."
-        echo "   https://grpc.io/docs/protoc-installation/"
+        echo "❌ protoc not found."
         return 1
     fi
 
-    # Generate to a temp directory first
+    if ! command -v grpc_php_plugin &> /dev/null; then
+        echo "⚠️  grpc_php_plugin not found"
+        echo "   Install via: pecl install grpc"
+        echo "   atau download dari: https://github.com/grpc/grpc"
+        return 1
+    fi
+
     TEMP_DIR=$(mktemp -d)
 
     protoc \
         --proto_path=. \
         --php_out="$TEMP_DIR" \
+        "$PROTO_FILE"
+
+    protoc \
+        --proto_path=. \
+        --grpc_out="$TEMP_DIR" \
+        --plugin=protoc-gen-grpc=$(which grpc_php_plugin) \
         "$PROTO_FILE"
 
     if [ $? -ne 0 ]; then
@@ -94,27 +105,23 @@ generate_php() {
         return 1
     fi
 
-    # PHP generates to PascalCase dir (e.g., wallet -> Wallet/)
     PASCAL_NAME="$(echo "${PROTO_NAME}" | awk '{print toupper(substr($0,1,1)) tolower(substr($0,2))}')"
 
-    # Move message class files into the proto folder (e.g., Wallet/*.php -> wallet/)
     if [ -d "$TEMP_DIR/$PASCAL_NAME" ]; then
         mv "$TEMP_DIR/$PASCAL_NAME"/*.php "./$PROTO_NAME/"
     fi
 
-    # Move GPBMetadata files into the proto folder as well
     if [ -d "$TEMP_DIR/GPBMetadata/$PASCAL_NAME" ]; then
         mv "$TEMP_DIR/GPBMetadata/$PASCAL_NAME"/*.php "./$PROTO_NAME/"
     fi
 
     rm -rf "$TEMP_DIR"
-
-    # Cleanup leftover empty directories from previous runs
     rm -rf "./$PASCAL_NAME"
     rm -rf "./GPBMetadata"
 
     echo "✅ PHP proto files generated!"
-    echo "📁 ${PROTO_NAME}/*.php"
+    echo "📁 ${PROTO_NAME}/*.php  (messages)"
+    echo "📁 ${PROTO_NAME}/*Client.php  (gRPC client)"
 }
 
 case "$LANGUAGE" in
