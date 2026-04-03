@@ -4,6 +4,28 @@
 var grpc = require('@grpc/grpc-js');
 var dashboard_dashboard_pb = require('../dashboard/dashboard_pb.js');
 
+function serialize_dashboard_GetCategoryTransactionsRequest(arg) {
+  if (!(arg instanceof dashboard_dashboard_pb.GetCategoryTransactionsRequest)) {
+    throw new Error('Expected argument of type dashboard.GetCategoryTransactionsRequest');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_dashboard_GetCategoryTransactionsRequest(buffer_arg) {
+  return dashboard_dashboard_pb.GetCategoryTransactionsRequest.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
+function serialize_dashboard_GetCategoryTransactionsResponse(arg) {
+  if (!(arg instanceof dashboard_dashboard_pb.GetCategoryTransactionsResponse)) {
+    throw new Error('Expected argument of type dashboard.GetCategoryTransactionsResponse');
+  }
+  return Buffer.from(arg.serializeBinary());
+}
+
+function deserialize_dashboard_GetCategoryTransactionsResponse(buffer_arg) {
+  return dashboard_dashboard_pb.GetCategoryTransactionsResponse.deserializeBinary(new Uint8Array(buffer_arg));
+}
+
 function serialize_dashboard_GetUserBalanceRequest(arg) {
   if (!(arg instanceof dashboard_dashboard_pb.GetUserBalanceRequest)) {
     throw new Error('Expected argument of type dashboard.GetUserBalanceRequest');
@@ -130,6 +152,17 @@ var DashboardServiceService = exports.DashboardServiceService = {
     requestDeserialize: deserialize_dashboard_GetUserTransactionsRequest,
     responseSerialize: serialize_dashboard_GetUserTransactionsResponse,
     responseDeserialize: deserialize_dashboard_GetUserTransactionsResponse,
+  },
+  getCategoryTransactions: {
+    path: '/dashboard.DashboardService/GetCategoryTransactions',
+    requestStream: false,
+    responseStream: false,
+    requestType: dashboard_dashboard_pb.GetCategoryTransactionsRequest,
+    responseType: dashboard_dashboard_pb.GetCategoryTransactionsResponse,
+    requestSerialize: serialize_dashboard_GetCategoryTransactionsRequest,
+    requestDeserialize: deserialize_dashboard_GetCategoryTransactionsRequest,
+    responseSerialize: serialize_dashboard_GetCategoryTransactionsResponse,
+    responseDeserialize: deserialize_dashboard_GetCategoryTransactionsResponse,
   },
   getUserBalance: {
     path: '/dashboard.DashboardService/GetUserBalance',

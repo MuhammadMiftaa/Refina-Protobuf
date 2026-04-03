@@ -254,14 +254,15 @@ func (x *GetUserTransactionsRequest) GetDateOption() *DateOption {
 }
 
 type TransactionCategory struct {
-	state             protoimpl.MessageState `protogen:"open.v1"`
-	CategoryId        string                 `protobuf:"bytes,1,opt,name=category_id,json=categoryId,proto3" json:"category_id,omitempty"`
-	CategoryName      string                 `protobuf:"bytes,2,opt,name=category_name,json=categoryName,proto3" json:"category_name,omitempty"`
-	CategoryType      string                 `protobuf:"bytes,3,opt,name=category_type,json=categoryType,proto3" json:"category_type,omitempty"`
-	TotalAmount       float64                `protobuf:"fixed64,4,opt,name=total_amount,json=totalAmount,proto3" json:"total_amount,omitempty"`
-	TotalTransactions int32                  `protobuf:"varint,5,opt,name=total_transactions,json=totalTransactions,proto3" json:"total_transactions,omitempty"`
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
+	state              protoimpl.MessageState `protogen:"open.v1"`
+	CategoryId         string                 `protobuf:"bytes,1,opt,name=category_id,json=categoryId,proto3" json:"category_id,omitempty"`
+	CategoryName       string                 `protobuf:"bytes,2,opt,name=category_name,json=categoryName,proto3" json:"category_name,omitempty"`
+	CategoryType       string                 `protobuf:"bytes,3,opt,name=category_type,json=categoryType,proto3" json:"category_type,omitempty"`
+	TotalAmount        float64                `protobuf:"fixed64,4,opt,name=total_amount,json=totalAmount,proto3" json:"total_amount,omitempty"`
+	TotalTransactions  int32                  `protobuf:"varint,5,opt,name=total_transactions,json=totalTransactions,proto3" json:"total_transactions,omitempty"`
+	ParentCategoryName string                 `protobuf:"bytes,6,opt,name=parent_category_name,json=parentCategoryName,proto3" json:"parent_category_name,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
 }
 
 func (x *TransactionCategory) Reset() {
@@ -329,6 +330,13 @@ func (x *TransactionCategory) GetTotalTransactions() int32 {
 	return 0
 }
 
+func (x *TransactionCategory) GetParentCategoryName() string {
+	if x != nil {
+		return x.ParentCategoryName
+	}
+	return ""
+}
+
 type GetUserTransactionsResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Categories    []*TransactionCategory `protobuf:"bytes,1,rep,name=categories,proto3" json:"categories,omitempty"`
@@ -373,6 +381,226 @@ func (x *GetUserTransactionsResponse) GetCategories() []*TransactionCategory {
 	return nil
 }
 
+type GetCategoryTransactionsRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	CategoryId    string                 `protobuf:"bytes,2,opt,name=category_id,json=categoryId,proto3" json:"category_id,omitempty"`
+	WalletId      string                 `protobuf:"bytes,3,opt,name=wallet_id,json=walletId,proto3" json:"wallet_id,omitempty"`
+	DateOption    *DateOption            `protobuf:"bytes,4,opt,name=date_option,json=dateOption,proto3" json:"date_option,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *GetCategoryTransactionsRequest) Reset() {
+	*x = GetCategoryTransactionsRequest{}
+	mi := &file_dashboard_dashboard_proto_msgTypes[6]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetCategoryTransactionsRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCategoryTransactionsRequest) ProtoMessage() {}
+
+func (x *GetCategoryTransactionsRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_dashboard_dashboard_proto_msgTypes[6]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCategoryTransactionsRequest.ProtoReflect.Descriptor instead.
+func (*GetCategoryTransactionsRequest) Descriptor() ([]byte, []int) {
+	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{6}
+}
+
+func (x *GetCategoryTransactionsRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *GetCategoryTransactionsRequest) GetCategoryId() string {
+	if x != nil {
+		return x.CategoryId
+	}
+	return ""
+}
+
+func (x *GetCategoryTransactionsRequest) GetWalletId() string {
+	if x != nil {
+		return x.WalletId
+	}
+	return ""
+}
+
+func (x *GetCategoryTransactionsRequest) GetDateOption() *DateOption {
+	if x != nil {
+		return x.DateOption
+	}
+	return nil
+}
+
+type CategoryTransactionItem struct {
+	state           protoimpl.MessageState `protogen:"open.v1"`
+	TransactionId   string                 `protobuf:"bytes,1,opt,name=transaction_id,json=transactionId,proto3" json:"transaction_id,omitempty"`
+	Description     string                 `protobuf:"bytes,2,opt,name=description,proto3" json:"description,omitempty"`
+	TransactionDate string                 `protobuf:"bytes,3,opt,name=transaction_date,json=transactionDate,proto3" json:"transaction_date,omitempty"`
+	Amount          float64                `protobuf:"fixed64,4,opt,name=amount,proto3" json:"amount,omitempty"`
+	WalletName      string                 `protobuf:"bytes,5,opt,name=wallet_name,json=walletName,proto3" json:"wallet_name,omitempty"`
+	unknownFields   protoimpl.UnknownFields
+	sizeCache       protoimpl.SizeCache
+}
+
+func (x *CategoryTransactionItem) Reset() {
+	*x = CategoryTransactionItem{}
+	mi := &file_dashboard_dashboard_proto_msgTypes[7]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *CategoryTransactionItem) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CategoryTransactionItem) ProtoMessage() {}
+
+func (x *CategoryTransactionItem) ProtoReflect() protoreflect.Message {
+	mi := &file_dashboard_dashboard_proto_msgTypes[7]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CategoryTransactionItem.ProtoReflect.Descriptor instead.
+func (*CategoryTransactionItem) Descriptor() ([]byte, []int) {
+	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{7}
+}
+
+func (x *CategoryTransactionItem) GetTransactionId() string {
+	if x != nil {
+		return x.TransactionId
+	}
+	return ""
+}
+
+func (x *CategoryTransactionItem) GetDescription() string {
+	if x != nil {
+		return x.Description
+	}
+	return ""
+}
+
+func (x *CategoryTransactionItem) GetTransactionDate() string {
+	if x != nil {
+		return x.TransactionDate
+	}
+	return ""
+}
+
+func (x *CategoryTransactionItem) GetAmount() float64 {
+	if x != nil {
+		return x.Amount
+	}
+	return 0
+}
+
+func (x *CategoryTransactionItem) GetWalletName() string {
+	if x != nil {
+		return x.WalletName
+	}
+	return ""
+}
+
+type GetCategoryTransactionsResponse struct {
+	state              protoimpl.MessageState     `protogen:"open.v1"`
+	CategoryId         string                     `protobuf:"bytes,1,opt,name=category_id,json=categoryId,proto3" json:"category_id,omitempty"`
+	CategoryName       string                     `protobuf:"bytes,2,opt,name=category_name,json=categoryName,proto3" json:"category_name,omitempty"`
+	CategoryType       string                     `protobuf:"bytes,3,opt,name=category_type,json=categoryType,proto3" json:"category_type,omitempty"`
+	ParentCategoryName string                     `protobuf:"bytes,4,opt,name=parent_category_name,json=parentCategoryName,proto3" json:"parent_category_name,omitempty"`
+	Transactions       []*CategoryTransactionItem `protobuf:"bytes,5,rep,name=transactions,proto3" json:"transactions,omitempty"`
+	unknownFields      protoimpl.UnknownFields
+	sizeCache          protoimpl.SizeCache
+}
+
+func (x *GetCategoryTransactionsResponse) Reset() {
+	*x = GetCategoryTransactionsResponse{}
+	mi := &file_dashboard_dashboard_proto_msgTypes[8]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *GetCategoryTransactionsResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCategoryTransactionsResponse) ProtoMessage() {}
+
+func (x *GetCategoryTransactionsResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_dashboard_dashboard_proto_msgTypes[8]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCategoryTransactionsResponse.ProtoReflect.Descriptor instead.
+func (*GetCategoryTransactionsResponse) Descriptor() ([]byte, []int) {
+	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{8}
+}
+
+func (x *GetCategoryTransactionsResponse) GetCategoryId() string {
+	if x != nil {
+		return x.CategoryId
+	}
+	return ""
+}
+
+func (x *GetCategoryTransactionsResponse) GetCategoryName() string {
+	if x != nil {
+		return x.CategoryName
+	}
+	return ""
+}
+
+func (x *GetCategoryTransactionsResponse) GetCategoryType() string {
+	if x != nil {
+		return x.CategoryType
+	}
+	return ""
+}
+
+func (x *GetCategoryTransactionsResponse) GetParentCategoryName() string {
+	if x != nil {
+		return x.ParentCategoryName
+	}
+	return ""
+}
+
+func (x *GetCategoryTransactionsResponse) GetTransactions() []*CategoryTransactionItem {
+	if x != nil {
+		return x.Transactions
+	}
+	return nil
+}
+
 type GetUserBalanceRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	UserId        string                 `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
@@ -385,7 +613,7 @@ type GetUserBalanceRequest struct {
 
 func (x *GetUserBalanceRequest) Reset() {
 	*x = GetUserBalanceRequest{}
-	mi := &file_dashboard_dashboard_proto_msgTypes[6]
+	mi := &file_dashboard_dashboard_proto_msgTypes[9]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -397,7 +625,7 @@ func (x *GetUserBalanceRequest) String() string {
 func (*GetUserBalanceRequest) ProtoMessage() {}
 
 func (x *GetUserBalanceRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_dashboard_dashboard_proto_msgTypes[6]
+	mi := &file_dashboard_dashboard_proto_msgTypes[9]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -410,7 +638,7 @@ func (x *GetUserBalanceRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserBalanceRequest.ProtoReflect.Descriptor instead.
 func (*GetUserBalanceRequest) Descriptor() ([]byte, []int) {
-	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{6}
+	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{9}
 }
 
 func (x *GetUserBalanceRequest) GetUserId() string {
@@ -462,7 +690,7 @@ type BalanceSnapshot struct {
 
 func (x *BalanceSnapshot) Reset() {
 	*x = BalanceSnapshot{}
-	mi := &file_dashboard_dashboard_proto_msgTypes[7]
+	mi := &file_dashboard_dashboard_proto_msgTypes[10]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -474,7 +702,7 @@ func (x *BalanceSnapshot) String() string {
 func (*BalanceSnapshot) ProtoMessage() {}
 
 func (x *BalanceSnapshot) ProtoReflect() protoreflect.Message {
-	mi := &file_dashboard_dashboard_proto_msgTypes[7]
+	mi := &file_dashboard_dashboard_proto_msgTypes[10]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -487,7 +715,7 @@ func (x *BalanceSnapshot) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use BalanceSnapshot.ProtoReflect.Descriptor instead.
 func (*BalanceSnapshot) Descriptor() ([]byte, []int) {
-	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{7}
+	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{10}
 }
 
 func (x *BalanceSnapshot) GetWalletId() string {
@@ -590,7 +818,7 @@ type GetUserBalanceResponse struct {
 
 func (x *GetUserBalanceResponse) Reset() {
 	*x = GetUserBalanceResponse{}
-	mi := &file_dashboard_dashboard_proto_msgTypes[8]
+	mi := &file_dashboard_dashboard_proto_msgTypes[11]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -602,7 +830,7 @@ func (x *GetUserBalanceResponse) String() string {
 func (*GetUserBalanceResponse) ProtoMessage() {}
 
 func (x *GetUserBalanceResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_dashboard_dashboard_proto_msgTypes[8]
+	mi := &file_dashboard_dashboard_proto_msgTypes[11]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -615,7 +843,7 @@ func (x *GetUserBalanceResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserBalanceResponse.ProtoReflect.Descriptor instead.
 func (*GetUserBalanceResponse) Descriptor() ([]byte, []int) {
-	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{8}
+	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{11}
 }
 
 func (x *GetUserBalanceResponse) GetSnapshots() []*BalanceSnapshot {
@@ -636,7 +864,7 @@ type GetUserFinancialSummaryRequest struct {
 
 func (x *GetUserFinancialSummaryRequest) Reset() {
 	*x = GetUserFinancialSummaryRequest{}
-	mi := &file_dashboard_dashboard_proto_msgTypes[9]
+	mi := &file_dashboard_dashboard_proto_msgTypes[12]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -648,7 +876,7 @@ func (x *GetUserFinancialSummaryRequest) String() string {
 func (*GetUserFinancialSummaryRequest) ProtoMessage() {}
 
 func (x *GetUserFinancialSummaryRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_dashboard_dashboard_proto_msgTypes[9]
+	mi := &file_dashboard_dashboard_proto_msgTypes[12]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -661,7 +889,7 @@ func (x *GetUserFinancialSummaryRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserFinancialSummaryRequest.ProtoReflect.Descriptor instead.
 func (*GetUserFinancialSummaryRequest) Descriptor() ([]byte, []int) {
-	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{9}
+	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{12}
 }
 
 func (x *GetUserFinancialSummaryRequest) GetUserId() string {
@@ -698,7 +926,7 @@ type CategorySummary struct {
 
 func (x *CategorySummary) Reset() {
 	*x = CategorySummary{}
-	mi := &file_dashboard_dashboard_proto_msgTypes[10]
+	mi := &file_dashboard_dashboard_proto_msgTypes[13]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -710,7 +938,7 @@ func (x *CategorySummary) String() string {
 func (*CategorySummary) ProtoMessage() {}
 
 func (x *CategorySummary) ProtoReflect() protoreflect.Message {
-	mi := &file_dashboard_dashboard_proto_msgTypes[10]
+	mi := &file_dashboard_dashboard_proto_msgTypes[13]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -723,7 +951,7 @@ func (x *CategorySummary) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use CategorySummary.ProtoReflect.Descriptor instead.
 func (*CategorySummary) Descriptor() ([]byte, []int) {
-	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{10}
+	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{13}
 }
 
 func (x *CategorySummary) GetCategoryId() string {
@@ -778,7 +1006,7 @@ type WalletSummary struct {
 
 func (x *WalletSummary) Reset() {
 	*x = WalletSummary{}
-	mi := &file_dashboard_dashboard_proto_msgTypes[11]
+	mi := &file_dashboard_dashboard_proto_msgTypes[14]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -790,7 +1018,7 @@ func (x *WalletSummary) String() string {
 func (*WalletSummary) ProtoMessage() {}
 
 func (x *WalletSummary) ProtoReflect() protoreflect.Message {
-	mi := &file_dashboard_dashboard_proto_msgTypes[11]
+	mi := &file_dashboard_dashboard_proto_msgTypes[14]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -803,7 +1031,7 @@ func (x *WalletSummary) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use WalletSummary.ProtoReflect.Descriptor instead.
 func (*WalletSummary) Descriptor() ([]byte, []int) {
-	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{11}
+	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{14}
 }
 
 func (x *WalletSummary) GetWalletId() string {
@@ -887,7 +1115,7 @@ type InvestmentSummary struct {
 
 func (x *InvestmentSummary) Reset() {
 	*x = InvestmentSummary{}
-	mi := &file_dashboard_dashboard_proto_msgTypes[12]
+	mi := &file_dashboard_dashboard_proto_msgTypes[15]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -899,7 +1127,7 @@ func (x *InvestmentSummary) String() string {
 func (*InvestmentSummary) ProtoMessage() {}
 
 func (x *InvestmentSummary) ProtoReflect() protoreflect.Message {
-	mi := &file_dashboard_dashboard_proto_msgTypes[12]
+	mi := &file_dashboard_dashboard_proto_msgTypes[15]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -912,7 +1140,7 @@ func (x *InvestmentSummary) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use InvestmentSummary.ProtoReflect.Descriptor instead.
 func (*InvestmentSummary) Descriptor() ([]byte, []int) {
-	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{12}
+	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{15}
 }
 
 func (x *InvestmentSummary) GetTotalInvested() float64 {
@@ -998,7 +1226,7 @@ type NetWorthSummary struct {
 
 func (x *NetWorthSummary) Reset() {
 	*x = NetWorthSummary{}
-	mi := &file_dashboard_dashboard_proto_msgTypes[13]
+	mi := &file_dashboard_dashboard_proto_msgTypes[16]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1010,7 +1238,7 @@ func (x *NetWorthSummary) String() string {
 func (*NetWorthSummary) ProtoMessage() {}
 
 func (x *NetWorthSummary) ProtoReflect() protoreflect.Message {
-	mi := &file_dashboard_dashboard_proto_msgTypes[13]
+	mi := &file_dashboard_dashboard_proto_msgTypes[16]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1023,7 +1251,7 @@ func (x *NetWorthSummary) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NetWorthSummary.ProtoReflect.Descriptor instead.
 func (*NetWorthSummary) Descriptor() ([]byte, []int) {
-	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{13}
+	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{16}
 }
 
 func (x *NetWorthSummary) GetTotal() float64 {
@@ -1111,7 +1339,7 @@ type FinancialSummary struct {
 
 func (x *FinancialSummary) Reset() {
 	*x = FinancialSummary{}
-	mi := &file_dashboard_dashboard_proto_msgTypes[14]
+	mi := &file_dashboard_dashboard_proto_msgTypes[17]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1123,7 +1351,7 @@ func (x *FinancialSummary) String() string {
 func (*FinancialSummary) ProtoMessage() {}
 
 func (x *FinancialSummary) ProtoReflect() protoreflect.Message {
-	mi := &file_dashboard_dashboard_proto_msgTypes[14]
+	mi := &file_dashboard_dashboard_proto_msgTypes[17]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1136,7 +1364,7 @@ func (x *FinancialSummary) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use FinancialSummary.ProtoReflect.Descriptor instead.
 func (*FinancialSummary) Descriptor() ([]byte, []int) {
-	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{14}
+	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{17}
 }
 
 func (x *FinancialSummary) GetUserId() string {
@@ -1386,7 +1614,7 @@ type GetUserFinancialSummaryResponse struct {
 
 func (x *GetUserFinancialSummaryResponse) Reset() {
 	*x = GetUserFinancialSummaryResponse{}
-	mi := &file_dashboard_dashboard_proto_msgTypes[15]
+	mi := &file_dashboard_dashboard_proto_msgTypes[18]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1398,7 +1626,7 @@ func (x *GetUserFinancialSummaryResponse) String() string {
 func (*GetUserFinancialSummaryResponse) ProtoMessage() {}
 
 func (x *GetUserFinancialSummaryResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_dashboard_dashboard_proto_msgTypes[15]
+	mi := &file_dashboard_dashboard_proto_msgTypes[18]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1411,7 +1639,7 @@ func (x *GetUserFinancialSummaryResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserFinancialSummaryResponse.ProtoReflect.Descriptor instead.
 func (*GetUserFinancialSummaryResponse) Descriptor() ([]byte, []int) {
-	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{15}
+	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{18}
 }
 
 func (x *GetUserFinancialSummaryResponse) GetSummaries() []*FinancialSummary {
@@ -1430,7 +1658,7 @@ type GetUserNetWorthCompositionRequest struct {
 
 func (x *GetUserNetWorthCompositionRequest) Reset() {
 	*x = GetUserNetWorthCompositionRequest{}
-	mi := &file_dashboard_dashboard_proto_msgTypes[16]
+	mi := &file_dashboard_dashboard_proto_msgTypes[19]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1442,7 +1670,7 @@ func (x *GetUserNetWorthCompositionRequest) String() string {
 func (*GetUserNetWorthCompositionRequest) ProtoMessage() {}
 
 func (x *GetUserNetWorthCompositionRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_dashboard_dashboard_proto_msgTypes[16]
+	mi := &file_dashboard_dashboard_proto_msgTypes[19]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1455,7 +1683,7 @@ func (x *GetUserNetWorthCompositionRequest) ProtoReflect() protoreflect.Message 
 
 // Deprecated: Use GetUserNetWorthCompositionRequest.ProtoReflect.Descriptor instead.
 func (*GetUserNetWorthCompositionRequest) Descriptor() ([]byte, []int) {
-	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{16}
+	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{19}
 }
 
 func (x *GetUserNetWorthCompositionRequest) GetUserId() string {
@@ -1476,7 +1704,7 @@ type NetWorthSliceDetails struct {
 
 func (x *NetWorthSliceDetails) Reset() {
 	*x = NetWorthSliceDetails{}
-	mi := &file_dashboard_dashboard_proto_msgTypes[17]
+	mi := &file_dashboard_dashboard_proto_msgTypes[20]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1488,7 +1716,7 @@ func (x *NetWorthSliceDetails) String() string {
 func (*NetWorthSliceDetails) ProtoMessage() {}
 
 func (x *NetWorthSliceDetails) ProtoReflect() protoreflect.Message {
-	mi := &file_dashboard_dashboard_proto_msgTypes[17]
+	mi := &file_dashboard_dashboard_proto_msgTypes[20]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1501,7 +1729,7 @@ func (x *NetWorthSliceDetails) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NetWorthSliceDetails.ProtoReflect.Descriptor instead.
 func (*NetWorthSliceDetails) Descriptor() ([]byte, []int) {
-	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{17}
+	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{20}
 }
 
 func (x *NetWorthSliceDetails) GetItemCount() int32 {
@@ -1537,7 +1765,7 @@ type NetWorthSlice struct {
 
 func (x *NetWorthSlice) Reset() {
 	*x = NetWorthSlice{}
-	mi := &file_dashboard_dashboard_proto_msgTypes[18]
+	mi := &file_dashboard_dashboard_proto_msgTypes[21]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1549,7 +1777,7 @@ func (x *NetWorthSlice) String() string {
 func (*NetWorthSlice) ProtoMessage() {}
 
 func (x *NetWorthSlice) ProtoReflect() protoreflect.Message {
-	mi := &file_dashboard_dashboard_proto_msgTypes[18]
+	mi := &file_dashboard_dashboard_proto_msgTypes[21]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1562,7 +1790,7 @@ func (x *NetWorthSlice) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NetWorthSlice.ProtoReflect.Descriptor instead.
 func (*NetWorthSlice) Descriptor() ([]byte, []int) {
-	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{18}
+	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{21}
 }
 
 func (x *NetWorthSlice) GetLabel() string {
@@ -1604,7 +1832,7 @@ type NetWorthComposition struct {
 
 func (x *NetWorthComposition) Reset() {
 	*x = NetWorthComposition{}
-	mi := &file_dashboard_dashboard_proto_msgTypes[19]
+	mi := &file_dashboard_dashboard_proto_msgTypes[22]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1616,7 +1844,7 @@ func (x *NetWorthComposition) String() string {
 func (*NetWorthComposition) ProtoMessage() {}
 
 func (x *NetWorthComposition) ProtoReflect() protoreflect.Message {
-	mi := &file_dashboard_dashboard_proto_msgTypes[19]
+	mi := &file_dashboard_dashboard_proto_msgTypes[22]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1629,7 +1857,7 @@ func (x *NetWorthComposition) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use NetWorthComposition.ProtoReflect.Descriptor instead.
 func (*NetWorthComposition) Descriptor() ([]byte, []int) {
-	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{19}
+	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{22}
 }
 
 func (x *NetWorthComposition) GetUserId() string {
@@ -1670,7 +1898,7 @@ type DashboardWallet struct {
 
 func (x *DashboardWallet) Reset() {
 	*x = DashboardWallet{}
-	mi := &file_dashboard_dashboard_proto_msgTypes[20]
+	mi := &file_dashboard_dashboard_proto_msgTypes[23]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1682,7 +1910,7 @@ func (x *DashboardWallet) String() string {
 func (*DashboardWallet) ProtoMessage() {}
 
 func (x *DashboardWallet) ProtoReflect() protoreflect.Message {
-	mi := &file_dashboard_dashboard_proto_msgTypes[20]
+	mi := &file_dashboard_dashboard_proto_msgTypes[23]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1695,7 +1923,7 @@ func (x *DashboardWallet) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use DashboardWallet.ProtoReflect.Descriptor instead.
 func (*DashboardWallet) Descriptor() ([]byte, []int) {
-	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{20}
+	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{23}
 }
 
 func (x *DashboardWallet) GetWalletId() string {
@@ -1770,7 +1998,7 @@ type GetUserWalletsResponse struct {
 
 func (x *GetUserWalletsResponse) Reset() {
 	*x = GetUserWalletsResponse{}
-	mi := &file_dashboard_dashboard_proto_msgTypes[21]
+	mi := &file_dashboard_dashboard_proto_msgTypes[24]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -1782,7 +2010,7 @@ func (x *GetUserWalletsResponse) String() string {
 func (*GetUserWalletsResponse) ProtoMessage() {}
 
 func (x *GetUserWalletsResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_dashboard_dashboard_proto_msgTypes[21]
+	mi := &file_dashboard_dashboard_proto_msgTypes[24]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -1795,7 +2023,7 @@ func (x *GetUserWalletsResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use GetUserWalletsResponse.ProtoReflect.Descriptor instead.
 func (*GetUserWalletsResponse) Descriptor() ([]byte, []int) {
-	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{21}
+	return file_dashboard_dashboard_proto_rawDescGZIP(), []int{24}
 }
 
 func (x *GetUserWalletsResponse) GetWallets() []*DashboardWallet {
@@ -1826,18 +2054,40 @@ const file_dashboard_dashboard_proto_rawDesc = "" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1b\n" +
 	"\twallet_id\x18\x02 \x01(\tR\bwalletId\x126\n" +
 	"\vdate_option\x18\x03 \x01(\v2\x15.dashboard.DateOptionR\n" +
-	"dateOption\"\xd2\x01\n" +
+	"dateOption\"\x84\x02\n" +
 	"\x13TransactionCategory\x12\x1f\n" +
 	"\vcategory_id\x18\x01 \x01(\tR\n" +
 	"categoryId\x12#\n" +
 	"\rcategory_name\x18\x02 \x01(\tR\fcategoryName\x12#\n" +
 	"\rcategory_type\x18\x03 \x01(\tR\fcategoryType\x12!\n" +
 	"\ftotal_amount\x18\x04 \x01(\x01R\vtotalAmount\x12-\n" +
-	"\x12total_transactions\x18\x05 \x01(\x05R\x11totalTransactions\"]\n" +
+	"\x12total_transactions\x18\x05 \x01(\x05R\x11totalTransactions\x120\n" +
+	"\x14parent_category_name\x18\x06 \x01(\tR\x12parentCategoryName\"]\n" +
 	"\x1bGetUserTransactionsResponse\x12>\n" +
 	"\n" +
 	"categories\x18\x01 \x03(\v2\x1e.dashboard.TransactionCategoryR\n" +
-	"categories\"\x9b\x01\n" +
+	"categories\"\xaf\x01\n" +
+	"\x1eGetCategoryTransactionsRequest\x12\x17\n" +
+	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1f\n" +
+	"\vcategory_id\x18\x02 \x01(\tR\n" +
+	"categoryId\x12\x1b\n" +
+	"\twallet_id\x18\x03 \x01(\tR\bwalletId\x126\n" +
+	"\vdate_option\x18\x04 \x01(\v2\x15.dashboard.DateOptionR\n" +
+	"dateOption\"\xc6\x01\n" +
+	"\x17CategoryTransactionItem\x12%\n" +
+	"\x0etransaction_id\x18\x01 \x01(\tR\rtransactionId\x12 \n" +
+	"\vdescription\x18\x02 \x01(\tR\vdescription\x12)\n" +
+	"\x10transaction_date\x18\x03 \x01(\tR\x0ftransactionDate\x12\x16\n" +
+	"\x06amount\x18\x04 \x01(\x01R\x06amount\x12\x1f\n" +
+	"\vwallet_name\x18\x05 \x01(\tR\n" +
+	"walletName\"\x86\x02\n" +
+	"\x1fGetCategoryTransactionsResponse\x12\x1f\n" +
+	"\vcategory_id\x18\x01 \x01(\tR\n" +
+	"categoryId\x12#\n" +
+	"\rcategory_name\x18\x02 \x01(\tR\fcategoryName\x12#\n" +
+	"\rcategory_type\x18\x03 \x01(\tR\fcategoryType\x120\n" +
+	"\x14parent_category_name\x18\x04 \x01(\tR\x12parentCategoryName\x12F\n" +
+	"\ftransactions\x18\x05 \x03(\v2\".dashboard.CategoryTransactionItemR\ftransactions\"\x9b\x01\n" +
 	"\x15GetUserBalanceRequest\x12\x17\n" +
 	"\auser_id\x18\x01 \x01(\tR\x06userId\x12\x1b\n" +
 	"\twallet_id\x18\x02 \x01(\tR\bwalletId\x12 \n" +
@@ -1986,9 +2236,10 @@ const file_dashboard_dashboard_proto_rawDesc = "" +
 	"\x04icon\x18\b \x01(\tR\x04icon\x12\x1b\n" +
 	"\tis_active\x18\t \x01(\bR\bisActive\"N\n" +
 	"\x16GetUserWalletsResponse\x124\n" +
-	"\awallets\x18\x01 \x03(\v2\x1a.dashboard.DashboardWalletR\awallets2\xf5\x03\n" +
+	"\awallets\x18\x01 \x03(\v2\x1a.dashboard.DashboardWalletR\awallets2\xe7\x04\n" +
 	"\x10DashboardService\x12d\n" +
-	"\x13GetUserTransactions\x12%.dashboard.GetUserTransactionsRequest\x1a&.dashboard.GetUserTransactionsResponse\x12U\n" +
+	"\x13GetUserTransactions\x12%.dashboard.GetUserTransactionsRequest\x1a&.dashboard.GetUserTransactionsResponse\x12p\n" +
+	"\x17GetCategoryTransactions\x12).dashboard.GetCategoryTransactionsRequest\x1a*.dashboard.GetCategoryTransactionsResponse\x12U\n" +
 	"\x0eGetUserBalance\x12 .dashboard.GetUserBalanceRequest\x1a!.dashboard.GetUserBalanceResponse\x12p\n" +
 	"\x17GetUserFinancialSummary\x12).dashboard.GetUserFinancialSummaryRequest\x1a*.dashboard.GetUserFinancialSummaryResponse\x12j\n" +
 	"\x1aGetUserNetWorthComposition\x12,.dashboard.GetUserNetWorthCompositionRequest\x1a\x1e.dashboard.NetWorthComposition\x12F\n" +
@@ -2006,7 +2257,7 @@ func file_dashboard_dashboard_proto_rawDescGZIP() []byte {
 	return file_dashboard_dashboard_proto_rawDescData
 }
 
-var file_dashboard_dashboard_proto_msgTypes = make([]protoimpl.MessageInfo, 22)
+var file_dashboard_dashboard_proto_msgTypes = make([]protoimpl.MessageInfo, 25)
 var file_dashboard_dashboard_proto_goTypes = []any{
 	(*UserID)(nil),                            // 0: dashboard.UserID
 	(*DateRange)(nil),                         // 1: dashboard.DateRange
@@ -2014,54 +2265,61 @@ var file_dashboard_dashboard_proto_goTypes = []any{
 	(*GetUserTransactionsRequest)(nil),        // 3: dashboard.GetUserTransactionsRequest
 	(*TransactionCategory)(nil),               // 4: dashboard.TransactionCategory
 	(*GetUserTransactionsResponse)(nil),       // 5: dashboard.GetUserTransactionsResponse
-	(*GetUserBalanceRequest)(nil),             // 6: dashboard.GetUserBalanceRequest
-	(*BalanceSnapshot)(nil),                   // 7: dashboard.BalanceSnapshot
-	(*GetUserBalanceResponse)(nil),            // 8: dashboard.GetUserBalanceResponse
-	(*GetUserFinancialSummaryRequest)(nil),    // 9: dashboard.GetUserFinancialSummaryRequest
-	(*CategorySummary)(nil),                   // 10: dashboard.CategorySummary
-	(*WalletSummary)(nil),                     // 11: dashboard.WalletSummary
-	(*InvestmentSummary)(nil),                 // 12: dashboard.InvestmentSummary
-	(*NetWorthSummary)(nil),                   // 13: dashboard.NetWorthSummary
-	(*FinancialSummary)(nil),                  // 14: dashboard.FinancialSummary
-	(*GetUserFinancialSummaryResponse)(nil),   // 15: dashboard.GetUserFinancialSummaryResponse
-	(*GetUserNetWorthCompositionRequest)(nil), // 16: dashboard.GetUserNetWorthCompositionRequest
-	(*NetWorthSliceDetails)(nil),              // 17: dashboard.NetWorthSliceDetails
-	(*NetWorthSlice)(nil),                     // 18: dashboard.NetWorthSlice
-	(*NetWorthComposition)(nil),               // 19: dashboard.NetWorthComposition
-	(*DashboardWallet)(nil),                   // 20: dashboard.DashboardWallet
-	(*GetUserWalletsResponse)(nil),            // 21: dashboard.GetUserWalletsResponse
+	(*GetCategoryTransactionsRequest)(nil),    // 6: dashboard.GetCategoryTransactionsRequest
+	(*CategoryTransactionItem)(nil),           // 7: dashboard.CategoryTransactionItem
+	(*GetCategoryTransactionsResponse)(nil),   // 8: dashboard.GetCategoryTransactionsResponse
+	(*GetUserBalanceRequest)(nil),             // 9: dashboard.GetUserBalanceRequest
+	(*BalanceSnapshot)(nil),                   // 10: dashboard.BalanceSnapshot
+	(*GetUserBalanceResponse)(nil),            // 11: dashboard.GetUserBalanceResponse
+	(*GetUserFinancialSummaryRequest)(nil),    // 12: dashboard.GetUserFinancialSummaryRequest
+	(*CategorySummary)(nil),                   // 13: dashboard.CategorySummary
+	(*WalletSummary)(nil),                     // 14: dashboard.WalletSummary
+	(*InvestmentSummary)(nil),                 // 15: dashboard.InvestmentSummary
+	(*NetWorthSummary)(nil),                   // 16: dashboard.NetWorthSummary
+	(*FinancialSummary)(nil),                  // 17: dashboard.FinancialSummary
+	(*GetUserFinancialSummaryResponse)(nil),   // 18: dashboard.GetUserFinancialSummaryResponse
+	(*GetUserNetWorthCompositionRequest)(nil), // 19: dashboard.GetUserNetWorthCompositionRequest
+	(*NetWorthSliceDetails)(nil),              // 20: dashboard.NetWorthSliceDetails
+	(*NetWorthSlice)(nil),                     // 21: dashboard.NetWorthSlice
+	(*NetWorthComposition)(nil),               // 22: dashboard.NetWorthComposition
+	(*DashboardWallet)(nil),                   // 23: dashboard.DashboardWallet
+	(*GetUserWalletsResponse)(nil),            // 24: dashboard.GetUserWalletsResponse
 }
 var file_dashboard_dashboard_proto_depIdxs = []int32{
 	1,  // 0: dashboard.DateOption.range:type_name -> dashboard.DateRange
 	2,  // 1: dashboard.GetUserTransactionsRequest.date_option:type_name -> dashboard.DateOption
 	4,  // 2: dashboard.GetUserTransactionsResponse.categories:type_name -> dashboard.TransactionCategory
-	1,  // 3: dashboard.GetUserBalanceRequest.range:type_name -> dashboard.DateRange
-	7,  // 4: dashboard.GetUserBalanceResponse.snapshots:type_name -> dashboard.BalanceSnapshot
-	1,  // 5: dashboard.GetUserFinancialSummaryRequest.range:type_name -> dashboard.DateRange
-	12, // 6: dashboard.FinancialSummary.investment_summary:type_name -> dashboard.InvestmentSummary
-	13, // 7: dashboard.FinancialSummary.net_worth:type_name -> dashboard.NetWorthSummary
-	10, // 8: dashboard.FinancialSummary.top_expense_categories:type_name -> dashboard.CategorySummary
-	10, // 9: dashboard.FinancialSummary.top_income_categories:type_name -> dashboard.CategorySummary
-	11, // 10: dashboard.FinancialSummary.wallet_summaries:type_name -> dashboard.WalletSummary
-	14, // 11: dashboard.GetUserFinancialSummaryResponse.summaries:type_name -> dashboard.FinancialSummary
-	17, // 12: dashboard.NetWorthSlice.details:type_name -> dashboard.NetWorthSliceDetails
-	18, // 13: dashboard.NetWorthComposition.slices:type_name -> dashboard.NetWorthSlice
-	20, // 14: dashboard.GetUserWalletsResponse.wallets:type_name -> dashboard.DashboardWallet
-	3,  // 15: dashboard.DashboardService.GetUserTransactions:input_type -> dashboard.GetUserTransactionsRequest
-	6,  // 16: dashboard.DashboardService.GetUserBalance:input_type -> dashboard.GetUserBalanceRequest
-	9,  // 17: dashboard.DashboardService.GetUserFinancialSummary:input_type -> dashboard.GetUserFinancialSummaryRequest
-	16, // 18: dashboard.DashboardService.GetUserNetWorthComposition:input_type -> dashboard.GetUserNetWorthCompositionRequest
-	0,  // 19: dashboard.DashboardService.GetUserWallets:input_type -> dashboard.UserID
-	5,  // 20: dashboard.DashboardService.GetUserTransactions:output_type -> dashboard.GetUserTransactionsResponse
-	8,  // 21: dashboard.DashboardService.GetUserBalance:output_type -> dashboard.GetUserBalanceResponse
-	15, // 22: dashboard.DashboardService.GetUserFinancialSummary:output_type -> dashboard.GetUserFinancialSummaryResponse
-	19, // 23: dashboard.DashboardService.GetUserNetWorthComposition:output_type -> dashboard.NetWorthComposition
-	21, // 24: dashboard.DashboardService.GetUserWallets:output_type -> dashboard.GetUserWalletsResponse
-	20, // [20:25] is the sub-list for method output_type
-	15, // [15:20] is the sub-list for method input_type
-	15, // [15:15] is the sub-list for extension type_name
-	15, // [15:15] is the sub-list for extension extendee
-	0,  // [0:15] is the sub-list for field type_name
+	2,  // 3: dashboard.GetCategoryTransactionsRequest.date_option:type_name -> dashboard.DateOption
+	7,  // 4: dashboard.GetCategoryTransactionsResponse.transactions:type_name -> dashboard.CategoryTransactionItem
+	1,  // 5: dashboard.GetUserBalanceRequest.range:type_name -> dashboard.DateRange
+	10, // 6: dashboard.GetUserBalanceResponse.snapshots:type_name -> dashboard.BalanceSnapshot
+	1,  // 7: dashboard.GetUserFinancialSummaryRequest.range:type_name -> dashboard.DateRange
+	15, // 8: dashboard.FinancialSummary.investment_summary:type_name -> dashboard.InvestmentSummary
+	16, // 9: dashboard.FinancialSummary.net_worth:type_name -> dashboard.NetWorthSummary
+	13, // 10: dashboard.FinancialSummary.top_expense_categories:type_name -> dashboard.CategorySummary
+	13, // 11: dashboard.FinancialSummary.top_income_categories:type_name -> dashboard.CategorySummary
+	14, // 12: dashboard.FinancialSummary.wallet_summaries:type_name -> dashboard.WalletSummary
+	17, // 13: dashboard.GetUserFinancialSummaryResponse.summaries:type_name -> dashboard.FinancialSummary
+	20, // 14: dashboard.NetWorthSlice.details:type_name -> dashboard.NetWorthSliceDetails
+	21, // 15: dashboard.NetWorthComposition.slices:type_name -> dashboard.NetWorthSlice
+	23, // 16: dashboard.GetUserWalletsResponse.wallets:type_name -> dashboard.DashboardWallet
+	3,  // 17: dashboard.DashboardService.GetUserTransactions:input_type -> dashboard.GetUserTransactionsRequest
+	6,  // 18: dashboard.DashboardService.GetCategoryTransactions:input_type -> dashboard.GetCategoryTransactionsRequest
+	9,  // 19: dashboard.DashboardService.GetUserBalance:input_type -> dashboard.GetUserBalanceRequest
+	12, // 20: dashboard.DashboardService.GetUserFinancialSummary:input_type -> dashboard.GetUserFinancialSummaryRequest
+	19, // 21: dashboard.DashboardService.GetUserNetWorthComposition:input_type -> dashboard.GetUserNetWorthCompositionRequest
+	0,  // 22: dashboard.DashboardService.GetUserWallets:input_type -> dashboard.UserID
+	5,  // 23: dashboard.DashboardService.GetUserTransactions:output_type -> dashboard.GetUserTransactionsResponse
+	8,  // 24: dashboard.DashboardService.GetCategoryTransactions:output_type -> dashboard.GetCategoryTransactionsResponse
+	11, // 25: dashboard.DashboardService.GetUserBalance:output_type -> dashboard.GetUserBalanceResponse
+	18, // 26: dashboard.DashboardService.GetUserFinancialSummary:output_type -> dashboard.GetUserFinancialSummaryResponse
+	22, // 27: dashboard.DashboardService.GetUserNetWorthComposition:output_type -> dashboard.NetWorthComposition
+	24, // 28: dashboard.DashboardService.GetUserWallets:output_type -> dashboard.GetUserWalletsResponse
+	23, // [23:29] is the sub-list for method output_type
+	17, // [17:23] is the sub-list for method input_type
+	17, // [17:17] is the sub-list for extension type_name
+	17, // [17:17] is the sub-list for extension extendee
+	0,  // [0:17] is the sub-list for field type_name
 }
 
 func init() { file_dashboard_dashboard_proto_init() }
@@ -2075,7 +2333,7 @@ func file_dashboard_dashboard_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_dashboard_dashboard_proto_rawDesc), len(file_dashboard_dashboard_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   22,
+			NumMessages:   25,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

@@ -124,6 +124,8 @@ export class TransactionCategory extends jspb.Message {
     setTotalAmount(value: number): TransactionCategory;
     getTotalTransactions(): number;
     setTotalTransactions(value: number): TransactionCategory;
+    getParentCategoryName(): string;
+    setParentCategoryName(value: string): TransactionCategory;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): TransactionCategory.AsObject;
@@ -142,6 +144,7 @@ export namespace TransactionCategory {
         categoryType: string,
         totalAmount: number,
         totalTransactions: number,
+        parentCategoryName: string,
     }
 }
 
@@ -164,6 +167,104 @@ export class GetUserTransactionsResponse extends jspb.Message {
 export namespace GetUserTransactionsResponse {
     export type AsObject = {
         categoriesList: Array<TransactionCategory.AsObject>,
+    }
+}
+
+export class GetCategoryTransactionsRequest extends jspb.Message { 
+    getUserId(): string;
+    setUserId(value: string): GetCategoryTransactionsRequest;
+    getCategoryId(): string;
+    setCategoryId(value: string): GetCategoryTransactionsRequest;
+    getWalletId(): string;
+    setWalletId(value: string): GetCategoryTransactionsRequest;
+
+    hasDateOption(): boolean;
+    clearDateOption(): void;
+    getDateOption(): DateOption | undefined;
+    setDateOption(value?: DateOption): GetCategoryTransactionsRequest;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): GetCategoryTransactionsRequest.AsObject;
+    static toObject(includeInstance: boolean, msg: GetCategoryTransactionsRequest): GetCategoryTransactionsRequest.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: GetCategoryTransactionsRequest, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): GetCategoryTransactionsRequest;
+    static deserializeBinaryFromReader(message: GetCategoryTransactionsRequest, reader: jspb.BinaryReader): GetCategoryTransactionsRequest;
+}
+
+export namespace GetCategoryTransactionsRequest {
+    export type AsObject = {
+        userId: string,
+        categoryId: string,
+        walletId: string,
+        dateOption?: DateOption.AsObject,
+    }
+}
+
+export class CategoryTransactionItem extends jspb.Message { 
+    getTransactionId(): string;
+    setTransactionId(value: string): CategoryTransactionItem;
+    getDescription(): string;
+    setDescription(value: string): CategoryTransactionItem;
+    getTransactionDate(): string;
+    setTransactionDate(value: string): CategoryTransactionItem;
+    getAmount(): number;
+    setAmount(value: number): CategoryTransactionItem;
+    getWalletName(): string;
+    setWalletName(value: string): CategoryTransactionItem;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): CategoryTransactionItem.AsObject;
+    static toObject(includeInstance: boolean, msg: CategoryTransactionItem): CategoryTransactionItem.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: CategoryTransactionItem, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): CategoryTransactionItem;
+    static deserializeBinaryFromReader(message: CategoryTransactionItem, reader: jspb.BinaryReader): CategoryTransactionItem;
+}
+
+export namespace CategoryTransactionItem {
+    export type AsObject = {
+        transactionId: string,
+        description: string,
+        transactionDate: string,
+        amount: number,
+        walletName: string,
+    }
+}
+
+export class GetCategoryTransactionsResponse extends jspb.Message { 
+    getCategoryId(): string;
+    setCategoryId(value: string): GetCategoryTransactionsResponse;
+    getCategoryName(): string;
+    setCategoryName(value: string): GetCategoryTransactionsResponse;
+    getCategoryType(): string;
+    setCategoryType(value: string): GetCategoryTransactionsResponse;
+    getParentCategoryName(): string;
+    setParentCategoryName(value: string): GetCategoryTransactionsResponse;
+    clearTransactionsList(): void;
+    getTransactionsList(): Array<CategoryTransactionItem>;
+    setTransactionsList(value: Array<CategoryTransactionItem>): GetCategoryTransactionsResponse;
+    addTransactions(value?: CategoryTransactionItem, index?: number): CategoryTransactionItem;
+
+    serializeBinary(): Uint8Array;
+    toObject(includeInstance?: boolean): GetCategoryTransactionsResponse.AsObject;
+    static toObject(includeInstance: boolean, msg: GetCategoryTransactionsResponse): GetCategoryTransactionsResponse.AsObject;
+    static extensions: {[key: number]: jspb.ExtensionFieldInfo<jspb.Message>};
+    static extensionsBinary: {[key: number]: jspb.ExtensionFieldBinaryInfo<jspb.Message>};
+    static serializeBinaryToWriter(message: GetCategoryTransactionsResponse, writer: jspb.BinaryWriter): void;
+    static deserializeBinary(bytes: Uint8Array): GetCategoryTransactionsResponse;
+    static deserializeBinaryFromReader(message: GetCategoryTransactionsResponse, reader: jspb.BinaryReader): GetCategoryTransactionsResponse;
+}
+
+export namespace GetCategoryTransactionsResponse {
+    export type AsObject = {
+        categoryId: string,
+        categoryName: string,
+        categoryType: string,
+        parentCategoryName: string,
+        transactionsList: Array<CategoryTransactionItem.AsObject>,
     }
 }
 

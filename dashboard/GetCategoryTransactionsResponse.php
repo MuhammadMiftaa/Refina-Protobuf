@@ -10,9 +10,9 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Generated from protobuf message <code>dashboard.TransactionCategory</code>
+ * Generated from protobuf message <code>dashboard.GetCategoryTransactionsResponse</code>
  */
-class TransactionCategory extends \Google\Protobuf\Internal\Message
+class GetCategoryTransactionsResponse extends \Google\Protobuf\Internal\Message
 {
     /**
      * Generated from protobuf field <code>string category_id = 1;</code>
@@ -27,17 +27,13 @@ class TransactionCategory extends \Google\Protobuf\Internal\Message
      */
     protected $category_type = '';
     /**
-     * Generated from protobuf field <code>double total_amount = 4;</code>
-     */
-    protected $total_amount = 0.0;
-    /**
-     * Generated from protobuf field <code>int32 total_transactions = 5;</code>
-     */
-    protected $total_transactions = 0;
-    /**
-     * Generated from protobuf field <code>string parent_category_name = 6;</code>
+     * Generated from protobuf field <code>string parent_category_name = 4;</code>
      */
     protected $parent_category_name = '';
+    /**
+     * Generated from protobuf field <code>repeated .dashboard.CategoryTransactionItem transactions = 5;</code>
+     */
+    private $transactions;
 
     /**
      * Constructor.
@@ -48,9 +44,8 @@ class TransactionCategory extends \Google\Protobuf\Internal\Message
      *     @type string $category_id
      *     @type string $category_name
      *     @type string $category_type
-     *     @type float $total_amount
-     *     @type int $total_transactions
      *     @type string $parent_category_name
+     *     @type array<\Dashboard\CategoryTransactionItem>|\Google\Protobuf\Internal\RepeatedField $transactions
      * }
      */
     public function __construct($data = NULL) {
@@ -125,51 +120,7 @@ class TransactionCategory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>double total_amount = 4;</code>
-     * @return float
-     */
-    public function getTotalAmount()
-    {
-        return $this->total_amount;
-    }
-
-    /**
-     * Generated from protobuf field <code>double total_amount = 4;</code>
-     * @param float $var
-     * @return $this
-     */
-    public function setTotalAmount($var)
-    {
-        GPBUtil::checkDouble($var);
-        $this->total_amount = $var;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>int32 total_transactions = 5;</code>
-     * @return int
-     */
-    public function getTotalTransactions()
-    {
-        return $this->total_transactions;
-    }
-
-    /**
-     * Generated from protobuf field <code>int32 total_transactions = 5;</code>
-     * @param int $var
-     * @return $this
-     */
-    public function setTotalTransactions($var)
-    {
-        GPBUtil::checkInt32($var);
-        $this->total_transactions = $var;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>string parent_category_name = 6;</code>
+     * Generated from protobuf field <code>string parent_category_name = 4;</code>
      * @return string
      */
     public function getParentCategoryName()
@@ -178,7 +129,7 @@ class TransactionCategory extends \Google\Protobuf\Internal\Message
     }
 
     /**
-     * Generated from protobuf field <code>string parent_category_name = 6;</code>
+     * Generated from protobuf field <code>string parent_category_name = 4;</code>
      * @param string $var
      * @return $this
      */
@@ -186,6 +137,28 @@ class TransactionCategory extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->parent_category_name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .dashboard.CategoryTransactionItem transactions = 5;</code>
+     * @return \Google\Protobuf\Internal\RepeatedField
+     */
+    public function getTransactions()
+    {
+        return $this->transactions;
+    }
+
+    /**
+     * Generated from protobuf field <code>repeated .dashboard.CategoryTransactionItem transactions = 5;</code>
+     * @param array<\Dashboard\CategoryTransactionItem>|\Google\Protobuf\Internal\RepeatedField $var
+     * @return $this
+     */
+    public function setTransactions($var)
+    {
+        $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \Dashboard\CategoryTransactionItem::class);
+        $this->transactions = $arr;
 
         return $this;
     }

@@ -20,6 +20,7 @@ const _ = grpc.SupportPackageIsVersion9
 
 const (
 	DashboardService_GetUserTransactions_FullMethodName        = "/dashboard.DashboardService/GetUserTransactions"
+	DashboardService_GetCategoryTransactions_FullMethodName    = "/dashboard.DashboardService/GetCategoryTransactions"
 	DashboardService_GetUserBalance_FullMethodName             = "/dashboard.DashboardService/GetUserBalance"
 	DashboardService_GetUserFinancialSummary_FullMethodName    = "/dashboard.DashboardService/GetUserFinancialSummary"
 	DashboardService_GetUserNetWorthComposition_FullMethodName = "/dashboard.DashboardService/GetUserNetWorthComposition"
@@ -31,6 +32,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type DashboardServiceClient interface {
 	GetUserTransactions(ctx context.Context, in *GetUserTransactionsRequest, opts ...grpc.CallOption) (*GetUserTransactionsResponse, error)
+	GetCategoryTransactions(ctx context.Context, in *GetCategoryTransactionsRequest, opts ...grpc.CallOption) (*GetCategoryTransactionsResponse, error)
 	GetUserBalance(ctx context.Context, in *GetUserBalanceRequest, opts ...grpc.CallOption) (*GetUserBalanceResponse, error)
 	GetUserFinancialSummary(ctx context.Context, in *GetUserFinancialSummaryRequest, opts ...grpc.CallOption) (*GetUserFinancialSummaryResponse, error)
 	GetUserNetWorthComposition(ctx context.Context, in *GetUserNetWorthCompositionRequest, opts ...grpc.CallOption) (*NetWorthComposition, error)
@@ -49,6 +51,16 @@ func (c *dashboardServiceClient) GetUserTransactions(ctx context.Context, in *Ge
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
 	out := new(GetUserTransactionsResponse)
 	err := c.cc.Invoke(ctx, DashboardService_GetUserTransactions_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *dashboardServiceClient) GetCategoryTransactions(ctx context.Context, in *GetCategoryTransactionsRequest, opts ...grpc.CallOption) (*GetCategoryTransactionsResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(GetCategoryTransactionsResponse)
+	err := c.cc.Invoke(ctx, DashboardService_GetCategoryTransactions_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
@@ -100,6 +112,7 @@ func (c *dashboardServiceClient) GetUserWallets(ctx context.Context, in *UserID,
 // for forward compatibility.
 type DashboardServiceServer interface {
 	GetUserTransactions(context.Context, *GetUserTransactionsRequest) (*GetUserTransactionsResponse, error)
+	GetCategoryTransactions(context.Context, *GetCategoryTransactionsRequest) (*GetCategoryTransactionsResponse, error)
 	GetUserBalance(context.Context, *GetUserBalanceRequest) (*GetUserBalanceResponse, error)
 	GetUserFinancialSummary(context.Context, *GetUserFinancialSummaryRequest) (*GetUserFinancialSummaryResponse, error)
 	GetUserNetWorthComposition(context.Context, *GetUserNetWorthCompositionRequest) (*NetWorthComposition, error)
@@ -116,6 +129,9 @@ type UnimplementedDashboardServiceServer struct{}
 
 func (UnimplementedDashboardServiceServer) GetUserTransactions(context.Context, *GetUserTransactionsRequest) (*GetUserTransactionsResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetUserTransactions not implemented")
+}
+func (UnimplementedDashboardServiceServer) GetCategoryTransactions(context.Context, *GetCategoryTransactionsRequest) (*GetCategoryTransactionsResponse, error) {
+	return nil, status.Error(codes.Unimplemented, "method GetCategoryTransactions not implemented")
 }
 func (UnimplementedDashboardServiceServer) GetUserBalance(context.Context, *GetUserBalanceRequest) (*GetUserBalanceResponse, error) {
 	return nil, status.Error(codes.Unimplemented, "method GetUserBalance not implemented")
@@ -164,6 +180,24 @@ func _DashboardService_GetUserTransactions_Handler(srv interface{}, ctx context.
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(DashboardServiceServer).GetUserTransactions(ctx, req.(*GetUserTransactionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _DashboardService_GetCategoryTransactions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetCategoryTransactionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(DashboardServiceServer).GetCategoryTransactions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: DashboardService_GetCategoryTransactions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(DashboardServiceServer).GetCategoryTransactions(ctx, req.(*GetCategoryTransactionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -250,6 +284,10 @@ var DashboardService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetUserTransactions",
 			Handler:    _DashboardService_GetUserTransactions_Handler,
+		},
+		{
+			MethodName: "GetCategoryTransactions",
+			Handler:    _DashboardService_GetCategoryTransactions_Handler,
 		},
 		{
 			MethodName: "GetUserBalance",

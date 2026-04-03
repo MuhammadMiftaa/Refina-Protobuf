@@ -10,6 +10,7 @@ option go_package = "github.com/MuhammadMiftaa/Refina-Protobuf/dashboard";
 
 service DashboardService {
     rpc GetUserTransactions (GetUserTransactionsRequest) returns (GetUserTransactionsResponse);
+    rpc GetCategoryTransactions (GetCategoryTransactionsRequest) returns (GetCategoryTransactionsResponse);
     rpc GetUserBalance (GetUserBalanceRequest) returns (GetUserBalanceResponse);
     rpc GetUserFinancialSummary (GetUserFinancialSummaryRequest) returns (GetUserFinancialSummaryResponse);
     rpc GetUserNetWorthComposition (GetUserNetWorthCompositionRequest) returns (NetWorthComposition);
@@ -53,10 +54,38 @@ message TransactionCategory {
     string category_type = 3;
     double total_amount = 4;
     int32 total_transactions = 5;
+    string parent_category_name = 6;
 }
 
 message GetUserTransactionsResponse {
     repeated TransactionCategory categories = 1;
+}
+
+// ═══════════════════════════════════════════════
+// Category Transactions (transaction list per category)
+// ═══════════════════════════════════════════════
+
+message GetCategoryTransactionsRequest {
+    string user_id = 1;
+    string category_id = 2;
+    string wallet_id = 3;
+    DateOption date_option = 4;
+}
+
+message CategoryTransactionItem {
+    string transaction_id = 1;
+    string description = 2;
+    string transaction_date = 3;
+    double amount = 4;
+    string wallet_name = 5;
+}
+
+message GetCategoryTransactionsResponse {
+    string category_id = 1;
+    string category_name = 2;
+    string category_type = 3;
+    string parent_category_name = 4;
+    repeated CategoryTransactionItem transactions = 5;
 }
 
 // ═══════════════════════════════════════════════

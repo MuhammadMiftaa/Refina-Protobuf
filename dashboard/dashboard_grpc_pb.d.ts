@@ -9,6 +9,7 @@ import * as dashboard_dashboard_pb from "../dashboard/dashboard_pb";
 
 interface IDashboardServiceService extends grpc.ServiceDefinition<grpc.UntypedServiceImplementation> {
     getUserTransactions: IDashboardServiceService_IGetUserTransactions;
+    getCategoryTransactions: IDashboardServiceService_IGetCategoryTransactions;
     getUserBalance: IDashboardServiceService_IGetUserBalance;
     getUserFinancialSummary: IDashboardServiceService_IGetUserFinancialSummary;
     getUserNetWorthComposition: IDashboardServiceService_IGetUserNetWorthComposition;
@@ -23,6 +24,15 @@ interface IDashboardServiceService_IGetUserTransactions extends grpc.MethodDefin
     requestDeserialize: grpc.deserialize<dashboard_dashboard_pb.GetUserTransactionsRequest>;
     responseSerialize: grpc.serialize<dashboard_dashboard_pb.GetUserTransactionsResponse>;
     responseDeserialize: grpc.deserialize<dashboard_dashboard_pb.GetUserTransactionsResponse>;
+}
+interface IDashboardServiceService_IGetCategoryTransactions extends grpc.MethodDefinition<dashboard_dashboard_pb.GetCategoryTransactionsRequest, dashboard_dashboard_pb.GetCategoryTransactionsResponse> {
+    path: "/dashboard.DashboardService/GetCategoryTransactions";
+    requestStream: false;
+    responseStream: false;
+    requestSerialize: grpc.serialize<dashboard_dashboard_pb.GetCategoryTransactionsRequest>;
+    requestDeserialize: grpc.deserialize<dashboard_dashboard_pb.GetCategoryTransactionsRequest>;
+    responseSerialize: grpc.serialize<dashboard_dashboard_pb.GetCategoryTransactionsResponse>;
+    responseDeserialize: grpc.deserialize<dashboard_dashboard_pb.GetCategoryTransactionsResponse>;
 }
 interface IDashboardServiceService_IGetUserBalance extends grpc.MethodDefinition<dashboard_dashboard_pb.GetUserBalanceRequest, dashboard_dashboard_pb.GetUserBalanceResponse> {
     path: "/dashboard.DashboardService/GetUserBalance";
@@ -65,6 +75,7 @@ export const DashboardServiceService: IDashboardServiceService;
 
 export interface IDashboardServiceServer extends grpc.UntypedServiceImplementation {
     getUserTransactions: grpc.handleUnaryCall<dashboard_dashboard_pb.GetUserTransactionsRequest, dashboard_dashboard_pb.GetUserTransactionsResponse>;
+    getCategoryTransactions: grpc.handleUnaryCall<dashboard_dashboard_pb.GetCategoryTransactionsRequest, dashboard_dashboard_pb.GetCategoryTransactionsResponse>;
     getUserBalance: grpc.handleUnaryCall<dashboard_dashboard_pb.GetUserBalanceRequest, dashboard_dashboard_pb.GetUserBalanceResponse>;
     getUserFinancialSummary: grpc.handleUnaryCall<dashboard_dashboard_pb.GetUserFinancialSummaryRequest, dashboard_dashboard_pb.GetUserFinancialSummaryResponse>;
     getUserNetWorthComposition: grpc.handleUnaryCall<dashboard_dashboard_pb.GetUserNetWorthCompositionRequest, dashboard_dashboard_pb.NetWorthComposition>;
@@ -75,6 +86,9 @@ export interface IDashboardServiceClient {
     getUserTransactions(request: dashboard_dashboard_pb.GetUserTransactionsRequest, callback: (error: grpc.ServiceError | null, response: dashboard_dashboard_pb.GetUserTransactionsResponse) => void): grpc.ClientUnaryCall;
     getUserTransactions(request: dashboard_dashboard_pb.GetUserTransactionsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: dashboard_dashboard_pb.GetUserTransactionsResponse) => void): grpc.ClientUnaryCall;
     getUserTransactions(request: dashboard_dashboard_pb.GetUserTransactionsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: dashboard_dashboard_pb.GetUserTransactionsResponse) => void): grpc.ClientUnaryCall;
+    getCategoryTransactions(request: dashboard_dashboard_pb.GetCategoryTransactionsRequest, callback: (error: grpc.ServiceError | null, response: dashboard_dashboard_pb.GetCategoryTransactionsResponse) => void): grpc.ClientUnaryCall;
+    getCategoryTransactions(request: dashboard_dashboard_pb.GetCategoryTransactionsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: dashboard_dashboard_pb.GetCategoryTransactionsResponse) => void): grpc.ClientUnaryCall;
+    getCategoryTransactions(request: dashboard_dashboard_pb.GetCategoryTransactionsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: dashboard_dashboard_pb.GetCategoryTransactionsResponse) => void): grpc.ClientUnaryCall;
     getUserBalance(request: dashboard_dashboard_pb.GetUserBalanceRequest, callback: (error: grpc.ServiceError | null, response: dashboard_dashboard_pb.GetUserBalanceResponse) => void): grpc.ClientUnaryCall;
     getUserBalance(request: dashboard_dashboard_pb.GetUserBalanceRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: dashboard_dashboard_pb.GetUserBalanceResponse) => void): grpc.ClientUnaryCall;
     getUserBalance(request: dashboard_dashboard_pb.GetUserBalanceRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: dashboard_dashboard_pb.GetUserBalanceResponse) => void): grpc.ClientUnaryCall;
@@ -94,6 +108,9 @@ export class DashboardServiceClient extends grpc.Client implements IDashboardSer
     public getUserTransactions(request: dashboard_dashboard_pb.GetUserTransactionsRequest, callback: (error: grpc.ServiceError | null, response: dashboard_dashboard_pb.GetUserTransactionsResponse) => void): grpc.ClientUnaryCall;
     public getUserTransactions(request: dashboard_dashboard_pb.GetUserTransactionsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: dashboard_dashboard_pb.GetUserTransactionsResponse) => void): grpc.ClientUnaryCall;
     public getUserTransactions(request: dashboard_dashboard_pb.GetUserTransactionsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: dashboard_dashboard_pb.GetUserTransactionsResponse) => void): grpc.ClientUnaryCall;
+    public getCategoryTransactions(request: dashboard_dashboard_pb.GetCategoryTransactionsRequest, callback: (error: grpc.ServiceError | null, response: dashboard_dashboard_pb.GetCategoryTransactionsResponse) => void): grpc.ClientUnaryCall;
+    public getCategoryTransactions(request: dashboard_dashboard_pb.GetCategoryTransactionsRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: dashboard_dashboard_pb.GetCategoryTransactionsResponse) => void): grpc.ClientUnaryCall;
+    public getCategoryTransactions(request: dashboard_dashboard_pb.GetCategoryTransactionsRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: dashboard_dashboard_pb.GetCategoryTransactionsResponse) => void): grpc.ClientUnaryCall;
     public getUserBalance(request: dashboard_dashboard_pb.GetUserBalanceRequest, callback: (error: grpc.ServiceError | null, response: dashboard_dashboard_pb.GetUserBalanceResponse) => void): grpc.ClientUnaryCall;
     public getUserBalance(request: dashboard_dashboard_pb.GetUserBalanceRequest, metadata: grpc.Metadata, callback: (error: grpc.ServiceError | null, response: dashboard_dashboard_pb.GetUserBalanceResponse) => void): grpc.ClientUnaryCall;
     public getUserBalance(request: dashboard_dashboard_pb.GetUserBalanceRequest, metadata: grpc.Metadata, options: Partial<grpc.CallOptions>, callback: (error: grpc.ServiceError | null, response: dashboard_dashboard_pb.GetUserBalanceResponse) => void): grpc.ClientUnaryCall;

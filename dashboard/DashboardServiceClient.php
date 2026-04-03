@@ -35,6 +35,20 @@ class DashboardServiceClient extends \Grpc\BaseStub {
     }
 
     /**
+     * @param \Dashboard\GetCategoryTransactionsRequest $argument input argument
+     * @param array $metadata metadata
+     * @param array $options call options
+     * @return \Grpc\UnaryCall
+     */
+    public function GetCategoryTransactions(\Dashboard\GetCategoryTransactionsRequest $argument,
+      $metadata = [], $options = []) {
+        return $this->_simpleRequest('/dashboard.DashboardService/GetCategoryTransactions',
+        $argument,
+        ['\Dashboard\GetCategoryTransactionsResponse', 'decode'],
+        $metadata, $options);
+    }
+
+    /**
      * @param \Dashboard\GetUserBalanceRequest $argument input argument
      * @param array $metadata metadata
      * @param array $options call options
