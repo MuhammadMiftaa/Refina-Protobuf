@@ -1,0 +1,102 @@
+syntax = "proto3";
+
+package scheduler;
+
+option go_package = "github.com/MuhammadMiftaa/Refina-Protobuf/scheduler";
+
+import "google/protobuf/timestamp.proto";
+
+service SchedulerService {
+  rpc GetScheduledJobs(GetScheduledJobsRequest) returns (GetScheduledJobsResponse) {}
+  rpc CreateScheduledJob(CreateScheduledJobRequest) returns (ScheduledJob) {}
+  rpc UpdateScheduledJob(UpdateScheduledJobRequest) returns (ScheduledJob) {}
+  rpc PauseScheduledJob(ScheduledJobID) returns (ScheduledJob) {}
+  rpc ResumeScheduledJob(ScheduledJobID) returns (ScheduledJob) {}
+  rpc DeleteScheduledJob(ScheduledJobID) returns (ScheduledJob) {}
+  rpc GetJobExecutionLogs(GetJobExecutionLogsRequest) returns (GetJobExecutionLogsResponse) {}
+}
+
+message ScheduledJob {
+  string id = 1;
+  string user_id = 2;
+  string schedule_type = 3;
+  string job_type = 4;
+  string description = 5;
+  double amount = 6;
+  string wallet_id = 7;
+  string wallet_name = 8;
+  string category_id = 9;
+  string category_name = 10;
+  string asset_code = 11;
+  string repeat_interval = 12;
+  string repeat_detail = 13;
+  google.protobuf.Timestamp start_date = 14;
+  google.protobuf.Timestamp end_date = 15;
+  string status = 16;
+  google.protobuf.Timestamp next_execution = 17;
+  google.protobuf.Timestamp last_execution = 18;
+  google.protobuf.Timestamp created_at = 19;
+  repeated JobExecutionLog execution_logs = 20;
+}
+
+message JobExecutionLog {
+  string id = 1;
+  string job_id = 2;
+  google.protobuf.Timestamp executed_at = 3;
+  string status = 4;
+  string reason = 5;
+}
+
+message GetScheduledJobsRequest {
+  string user_id = 1;
+  string status = 2;
+}
+
+message GetScheduledJobsResponse {
+  repeated ScheduledJob jobs = 1;
+}
+
+message CreateScheduledJobRequest {
+  string user_id = 1;
+  string schedule_type = 2;
+  string job_type = 3;
+  string description = 4;
+  double amount = 5;
+  string wallet_id = 6;
+  string category_id = 7;
+  string asset_code = 8;
+  string repeat_interval = 9;
+  string repeat_detail = 10;
+  google.protobuf.Timestamp start_date = 11;
+  google.protobuf.Timestamp end_date = 12;
+}
+
+message UpdateScheduledJobRequest {
+  string id = 1;
+  string description = 2;
+  double amount = 3;
+  string wallet_id = 4;
+  string category_id = 5;
+  string asset_code = 6;
+  string repeat_interval = 7;
+  string repeat_detail = 8;
+  google.protobuf.Timestamp start_date = 9;
+  google.protobuf.Timestamp end_date = 10;
+  string user_id = 11;
+}
+
+message ScheduledJobID {
+  string id = 1;
+  string user_id = 2;
+}
+
+message GetJobExecutionLogsRequest {
+  string job_id = 1;
+  int32 limit = 2;
+  int32 offset = 3;
+  string user_id = 4;
+}
+
+message GetJobExecutionLogsResponse {
+  repeated JobExecutionLog logs = 1;
+}
