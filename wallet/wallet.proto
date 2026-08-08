@@ -34,6 +34,8 @@ message Wallet {
     string updated_at = 10;
     int32 transaction_count = 11;
     WalletTypeDetail wallet_type_detail = 12;
+    // "asset" or "liability", denormalised from the wallet type.
+    string wallet_type_nature = 13;
 }
 
 message WalletTypeDetail {
@@ -43,6 +45,9 @@ message WalletTypeDetail {
     string description = 4;
     string created_at = 5;
     string updated_at = 6;
+    // "asset" for wallets holding money, "liability" for credit lines
+    // (credit card, paylater) whose balance is the remaining limit.
+    string nature = 7;
 }
 
 message WalletID {
@@ -83,8 +88,12 @@ message GetWalletTypesResponse {
 
 message WalletSummary {
     int32 total_wallets = 1;
+    // Sum of balances of asset wallets only. Liability wallets are excluded
+    // so that net worth is not inflated by unused credit.
     double total_balance = 2;
     int32 total_transactions = 3;
+    // Sum of remaining limits across liability wallets (credit cards, paylater).
+    double total_credit_available = 4;
 }
 
 // ── Admin Master Data Messages ──

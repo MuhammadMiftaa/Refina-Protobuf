@@ -473,7 +473,8 @@ proto.wallet.Wallet.toObject = function(includeInstance, msg) {
     createdAt: jspb.Message.getFieldWithDefault(msg, 9, ""),
     updatedAt: jspb.Message.getFieldWithDefault(msg, 10, ""),
     transactionCount: jspb.Message.getFieldWithDefault(msg, 11, 0),
-    walletTypeDetail: (f = msg.getWalletTypeDetail()) && proto.wallet.WalletTypeDetail.toObject(includeInstance, f)
+    walletTypeDetail: (f = msg.getWalletTypeDetail()) && proto.wallet.WalletTypeDetail.toObject(includeInstance, f),
+    walletTypeNature: jspb.Message.getFieldWithDefault(msg, 13, "")
   };
 
   if (includeInstance) {
@@ -558,6 +559,10 @@ proto.wallet.Wallet.deserializeBinaryFromReader = function(msg, reader) {
       var value = new proto.wallet.WalletTypeDetail;
       reader.readMessage(value,proto.wallet.WalletTypeDetail.deserializeBinaryFromReader);
       msg.setWalletTypeDetail(value);
+      break;
+    case 13:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setWalletTypeNature(value);
       break;
     default:
       reader.skipField();
@@ -671,6 +676,13 @@ proto.wallet.Wallet.serializeBinaryToWriter = function(message, writer) {
       12,
       f,
       proto.wallet.WalletTypeDetail.serializeBinaryToWriter
+    );
+  }
+  f = message.getWalletTypeNature();
+  if (f.length > 0) {
+    writer.writeString(
+      13,
+      f
     );
   }
 };
@@ -911,6 +923,24 @@ proto.wallet.Wallet.prototype.hasWalletTypeDetail = function() {
 };
 
 
+/**
+ * optional string wallet_type_nature = 13;
+ * @return {string}
+ */
+proto.wallet.Wallet.prototype.getWalletTypeNature = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 13, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.wallet.Wallet} returns this
+ */
+proto.wallet.Wallet.prototype.setWalletTypeNature = function(value) {
+  return jspb.Message.setProto3StringField(this, 13, value);
+};
+
+
 
 
 
@@ -948,7 +978,8 @@ proto.wallet.WalletTypeDetail.toObject = function(includeInstance, msg) {
     type: jspb.Message.getFieldWithDefault(msg, 3, ""),
     description: jspb.Message.getFieldWithDefault(msg, 4, ""),
     createdAt: jspb.Message.getFieldWithDefault(msg, 5, ""),
-    updatedAt: jspb.Message.getFieldWithDefault(msg, 6, "")
+    updatedAt: jspb.Message.getFieldWithDefault(msg, 6, ""),
+    nature: jspb.Message.getFieldWithDefault(msg, 7, "")
   };
 
   if (includeInstance) {
@@ -1008,6 +1039,10 @@ proto.wallet.WalletTypeDetail.deserializeBinaryFromReader = function(msg, reader
     case 6:
       var value = /** @type {string} */ (reader.readString());
       msg.setUpdatedAt(value);
+      break;
+    case 7:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setNature(value);
       break;
     default:
       reader.skipField();
@@ -1077,6 +1112,13 @@ proto.wallet.WalletTypeDetail.serializeBinaryToWriter = function(message, writer
   if (f.length > 0) {
     writer.writeString(
       6,
+      f
+    );
+  }
+  f = message.getNature();
+  if (f.length > 0) {
+    writer.writeString(
+      7,
       f
     );
   }
@@ -1188,6 +1230,24 @@ proto.wallet.WalletTypeDetail.prototype.getUpdatedAt = function() {
  */
 proto.wallet.WalletTypeDetail.prototype.setUpdatedAt = function(value) {
   return jspb.Message.setProto3StringField(this, 6, value);
+};
+
+
+/**
+ * optional string nature = 7;
+ * @return {string}
+ */
+proto.wallet.WalletTypeDetail.prototype.getNature = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 7, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.wallet.WalletTypeDetail} returns this
+ */
+proto.wallet.WalletTypeDetail.prototype.setNature = function(value) {
+  return jspb.Message.setProto3StringField(this, 7, value);
 };
 
 
@@ -2435,7 +2495,8 @@ proto.wallet.WalletSummary.toObject = function(includeInstance, msg) {
   var f, obj = {
     totalWallets: jspb.Message.getFieldWithDefault(msg, 1, 0),
     totalBalance: jspb.Message.getFloatingPointFieldWithDefault(msg, 2, 0.0),
-    totalTransactions: jspb.Message.getFieldWithDefault(msg, 3, 0)
+    totalTransactions: jspb.Message.getFieldWithDefault(msg, 3, 0),
+    totalCreditAvailable: jspb.Message.getFloatingPointFieldWithDefault(msg, 4, 0.0)
   };
 
   if (includeInstance) {
@@ -2484,6 +2545,10 @@ proto.wallet.WalletSummary.deserializeBinaryFromReader = function(msg, reader) {
       var value = /** @type {number} */ (reader.readInt32());
       msg.setTotalTransactions(value);
       break;
+    case 4:
+      var value = /** @type {number} */ (reader.readDouble());
+      msg.setTotalCreditAvailable(value);
+      break;
     default:
       reader.skipField();
       break;
@@ -2531,6 +2596,13 @@ proto.wallet.WalletSummary.serializeBinaryToWriter = function(message, writer) {
   if (f !== 0) {
     writer.writeInt32(
       3,
+      f
+    );
+  }
+  f = message.getTotalCreditAvailable();
+  if (f !== 0.0) {
+    writer.writeDouble(
+      4,
       f
     );
   }
@@ -2588,6 +2660,24 @@ proto.wallet.WalletSummary.prototype.getTotalTransactions = function() {
  */
 proto.wallet.WalletSummary.prototype.setTotalTransactions = function(value) {
   return jspb.Message.setProto3IntField(this, 3, value);
+};
+
+
+/**
+ * optional double total_credit_available = 4;
+ * @return {number}
+ */
+proto.wallet.WalletSummary.prototype.getTotalCreditAvailable = function() {
+  return /** @type {number} */ (jspb.Message.getFloatingPointFieldWithDefault(this, 4, 0.0));
+};
+
+
+/**
+ * @param {number} value
+ * @return {!proto.wallet.WalletSummary} returns this
+ */
+proto.wallet.WalletSummary.prototype.setTotalCreditAvailable = function(value) {
+  return jspb.Message.setProto3FloatField(this, 4, value);
 };
 
 

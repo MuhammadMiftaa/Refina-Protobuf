@@ -38,6 +38,13 @@ class WalletTypeDetail extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string updated_at = 6;</code>
      */
     protected $updated_at = '';
+    /**
+     * "asset" for wallets holding money, "liability" for credit lines
+     * (credit card, paylater) whose balance is the remaining limit.
+     *
+     * Generated from protobuf field <code>string nature = 7;</code>
+     */
+    protected $nature = '';
 
     /**
      * Constructor.
@@ -51,6 +58,9 @@ class WalletTypeDetail extends \Google\Protobuf\Internal\Message
      *     @type string $description
      *     @type string $created_at
      *     @type string $updated_at
+     *     @type string $nature
+     *           "asset" for wallets holding money, "liability" for credit lines
+     *           (credit card, paylater) whose balance is the remaining limit.
      * }
      */
     public function __construct($data = NULL) {
@@ -186,6 +196,34 @@ class WalletTypeDetail extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->updated_at = $var;
+
+        return $this;
+    }
+
+    /**
+     * "asset" for wallets holding money, "liability" for credit lines
+     * (credit card, paylater) whose balance is the remaining limit.
+     *
+     * Generated from protobuf field <code>string nature = 7;</code>
+     * @return string
+     */
+    public function getNature()
+    {
+        return $this->nature;
+    }
+
+    /**
+     * "asset" for wallets holding money, "liability" for credit lines
+     * (credit card, paylater) whose balance is the remaining limit.
+     *
+     * Generated from protobuf field <code>string nature = 7;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setNature($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->nature = $var;
 
         return $this;
     }

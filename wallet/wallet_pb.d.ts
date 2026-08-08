@@ -51,6 +51,8 @@ export class Wallet extends jspb.Message {
     clearWalletTypeDetail(): void;
     getWalletTypeDetail(): WalletTypeDetail | undefined;
     setWalletTypeDetail(value?: WalletTypeDetail): Wallet;
+    getWalletTypeNature(): string;
+    setWalletTypeNature(value: string): Wallet;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): Wallet.AsObject;
@@ -76,6 +78,7 @@ export namespace Wallet {
         updatedAt: string,
         transactionCount: number,
         walletTypeDetail?: WalletTypeDetail.AsObject,
+        walletTypeNature: string,
     }
 }
 
@@ -92,6 +95,8 @@ export class WalletTypeDetail extends jspb.Message {
     setCreatedAt(value: string): WalletTypeDetail;
     getUpdatedAt(): string;
     setUpdatedAt(value: string): WalletTypeDetail;
+    getNature(): string;
+    setNature(value: string): WalletTypeDetail;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): WalletTypeDetail.AsObject;
@@ -111,6 +116,7 @@ export namespace WalletTypeDetail {
         description: string,
         createdAt: string,
         updatedAt: string,
+        nature: string,
     }
 }
 
@@ -289,6 +295,8 @@ export class WalletSummary extends jspb.Message {
     setTotalBalance(value: number): WalletSummary;
     getTotalTransactions(): number;
     setTotalTransactions(value: number): WalletSummary;
+    getTotalCreditAvailable(): number;
+    setTotalCreditAvailable(value: number): WalletSummary;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): WalletSummary.AsObject;
@@ -305,6 +313,7 @@ export namespace WalletSummary {
         totalWallets: number,
         totalBalance: number,
         totalTransactions: number,
+        totalCreditAvailable: number,
     }
 }
 

@@ -19,6 +19,9 @@ class WalletSummary extends \Google\Protobuf\Internal\Message
      */
     protected $total_wallets = 0;
     /**
+     * Sum of balances of asset wallets only. Liability wallets are excluded
+     * so that net worth is not inflated by unused credit.
+     *
      * Generated from protobuf field <code>double total_balance = 2;</code>
      */
     protected $total_balance = 0.0;
@@ -26,6 +29,12 @@ class WalletSummary extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 total_transactions = 3;</code>
      */
     protected $total_transactions = 0;
+    /**
+     * Sum of remaining limits across liability wallets (credit cards, paylater).
+     *
+     * Generated from protobuf field <code>double total_credit_available = 4;</code>
+     */
+    protected $total_credit_available = 0.0;
 
     /**
      * Constructor.
@@ -35,7 +44,11 @@ class WalletSummary extends \Google\Protobuf\Internal\Message
      *
      *     @type int $total_wallets
      *     @type float $total_balance
+     *           Sum of balances of asset wallets only. Liability wallets are excluded
+     *           so that net worth is not inflated by unused credit.
      *     @type int $total_transactions
+     *     @type float $total_credit_available
+     *           Sum of remaining limits across liability wallets (credit cards, paylater).
      * }
      */
     public function __construct($data = NULL) {
@@ -66,6 +79,9 @@ class WalletSummary extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Sum of balances of asset wallets only. Liability wallets are excluded
+     * so that net worth is not inflated by unused credit.
+     *
      * Generated from protobuf field <code>double total_balance = 2;</code>
      * @return float
      */
@@ -75,6 +91,9 @@ class WalletSummary extends \Google\Protobuf\Internal\Message
     }
 
     /**
+     * Sum of balances of asset wallets only. Liability wallets are excluded
+     * so that net worth is not inflated by unused credit.
+     *
      * Generated from protobuf field <code>double total_balance = 2;</code>
      * @param float $var
      * @return $this
@@ -105,6 +124,32 @@ class WalletSummary extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->total_transactions = $var;
+
+        return $this;
+    }
+
+    /**
+     * Sum of remaining limits across liability wallets (credit cards, paylater).
+     *
+     * Generated from protobuf field <code>double total_credit_available = 4;</code>
+     * @return float
+     */
+    public function getTotalCreditAvailable()
+    {
+        return $this->total_credit_available;
+    }
+
+    /**
+     * Sum of remaining limits across liability wallets (credit cards, paylater).
+     *
+     * Generated from protobuf field <code>double total_credit_available = 4;</code>
+     * @param float $var
+     * @return $this
+     */
+    public function setTotalCreditAvailable($var)
+    {
+        GPBUtil::checkDouble($var);
+        $this->total_credit_available = $var;
 
         return $this;
     }

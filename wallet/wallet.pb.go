@@ -71,6 +71,8 @@ type Wallet struct {
 	UpdatedAt        string                 `protobuf:"bytes,10,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	TransactionCount int32                  `protobuf:"varint,11,opt,name=transaction_count,json=transactionCount,proto3" json:"transaction_count,omitempty"`
 	WalletTypeDetail *WalletTypeDetail      `protobuf:"bytes,12,opt,name=wallet_type_detail,json=walletTypeDetail,proto3" json:"wallet_type_detail,omitempty"`
+	// "asset" or "liability", denormalised from the wallet type.
+	WalletTypeNature string `protobuf:"bytes,13,opt,name=wallet_type_nature,json=walletTypeNature,proto3" json:"wallet_type_nature,omitempty"`
 	unknownFields    protoimpl.UnknownFields
 	sizeCache        protoimpl.SizeCache
 }
@@ -189,14 +191,24 @@ func (x *Wallet) GetWalletTypeDetail() *WalletTypeDetail {
 	return nil
 }
 
+func (x *Wallet) GetWalletTypeNature() string {
+	if x != nil {
+		return x.WalletTypeNature
+	}
+	return ""
+}
+
 type WalletTypeDetail struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Id            string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
-	Name          string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
-	Type          string                 `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
-	Description   string                 `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
-	CreatedAt     string                 `protobuf:"bytes,5,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
-	UpdatedAt     string                 `protobuf:"bytes,6,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	state       protoimpl.MessageState `protogen:"open.v1"`
+	Id          string                 `protobuf:"bytes,1,opt,name=id,proto3" json:"id,omitempty"`
+	Name        string                 `protobuf:"bytes,2,opt,name=name,proto3" json:"name,omitempty"`
+	Type        string                 `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"`
+	Description string                 `protobuf:"bytes,4,opt,name=description,proto3" json:"description,omitempty"`
+	CreatedAt   string                 `protobuf:"bytes,5,opt,name=created_at,json=createdAt,proto3" json:"created_at,omitempty"`
+	UpdatedAt   string                 `protobuf:"bytes,6,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
+	// "asset" for wallets holding money, "liability" for credit lines
+	// (credit card, paylater) whose balance is the remaining limit.
+	Nature        string `protobuf:"bytes,7,opt,name=nature,proto3" json:"nature,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -269,6 +281,13 @@ func (x *WalletTypeDetail) GetCreatedAt() string {
 func (x *WalletTypeDetail) GetUpdatedAt() string {
 	if x != nil {
 		return x.UpdatedAt
+	}
+	return ""
+}
+
+func (x *WalletTypeDetail) GetNature() string {
+	if x != nil {
+		return x.Nature
 	}
 	return ""
 }
@@ -646,12 +665,16 @@ func (x *GetWalletTypesResponse) GetWalletTypes() []*WalletTypeDetail {
 }
 
 type WalletSummary struct {
-	state             protoimpl.MessageState `protogen:"open.v1"`
-	TotalWallets      int32                  `protobuf:"varint,1,opt,name=total_wallets,json=totalWallets,proto3" json:"total_wallets,omitempty"`
-	TotalBalance      float64                `protobuf:"fixed64,2,opt,name=total_balance,json=totalBalance,proto3" json:"total_balance,omitempty"`
-	TotalTransactions int32                  `protobuf:"varint,3,opt,name=total_transactions,json=totalTransactions,proto3" json:"total_transactions,omitempty"`
-	unknownFields     protoimpl.UnknownFields
-	sizeCache         protoimpl.SizeCache
+	state        protoimpl.MessageState `protogen:"open.v1"`
+	TotalWallets int32                  `protobuf:"varint,1,opt,name=total_wallets,json=totalWallets,proto3" json:"total_wallets,omitempty"`
+	// Sum of balances of asset wallets only. Liability wallets are excluded
+	// so that net worth is not inflated by unused credit.
+	TotalBalance      float64 `protobuf:"fixed64,2,opt,name=total_balance,json=totalBalance,proto3" json:"total_balance,omitempty"`
+	TotalTransactions int32   `protobuf:"varint,3,opt,name=total_transactions,json=totalTransactions,proto3" json:"total_transactions,omitempty"`
+	// Sum of remaining limits across liability wallets (credit cards, paylater).
+	TotalCreditAvailable float64 `protobuf:"fixed64,4,opt,name=total_credit_available,json=totalCreditAvailable,proto3" json:"total_credit_available,omitempty"`
+	unknownFields        protoimpl.UnknownFields
+	sizeCache            protoimpl.SizeCache
 }
 
 func (x *WalletSummary) Reset() {
@@ -701,6 +724,13 @@ func (x *WalletSummary) GetTotalBalance() float64 {
 func (x *WalletSummary) GetTotalTransactions() int32 {
 	if x != nil {
 		return x.TotalTransactions
+	}
+	return 0
+}
+
+func (x *WalletSummary) GetTotalCreditAvailable() float64 {
+	if x != nil {
+		return x.TotalCreditAvailable
 	}
 	return 0
 }
@@ -906,7 +936,7 @@ var File_wallet_wallet_proto protoreflect.FileDescriptor
 const file_wallet_wallet_proto_rawDesc = "" +
 	"\n" +
 	"\x13wallet/wallet.proto\x12\x06wallet\"\a\n" +
-	"\x05Empty\"\x9b\x03\n" +
+	"\x05Empty\"\xc9\x03\n" +
 	"\x06Wallet\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x17\n" +
 	"\auser_id\x18\x02 \x01(\tR\x06userId\x12\x12\n" +
@@ -923,7 +953,8 @@ const file_wallet_wallet_proto_rawDesc = "" +
 	"updated_at\x18\n" +
 	" \x01(\tR\tupdatedAt\x12+\n" +
 	"\x11transaction_count\x18\v \x01(\x05R\x10transactionCount\x12F\n" +
-	"\x12wallet_type_detail\x18\f \x01(\v2\x18.wallet.WalletTypeDetailR\x10walletTypeDetail\"\xaa\x01\n" +
+	"\x12wallet_type_detail\x18\f \x01(\v2\x18.wallet.WalletTypeDetailR\x10walletTypeDetail\x12,\n" +
+	"\x12wallet_type_nature\x18\r \x01(\tR\x10walletTypeNature\"\xc2\x01\n" +
 	"\x10WalletTypeDetail\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
@@ -932,7 +963,8 @@ const file_wallet_wallet_proto_rawDesc = "" +
 	"\n" +
 	"created_at\x18\x05 \x01(\tR\tcreatedAt\x12\x1d\n" +
 	"\n" +
-	"updated_at\x18\x06 \x01(\tR\tupdatedAt\"\x1a\n" +
+	"updated_at\x18\x06 \x01(\tR\tupdatedAt\x12\x16\n" +
+	"\x06nature\x18\a \x01(\tR\x06nature\"\x1a\n" +
 	"\bWalletID\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"\x18\n" +
 	"\x06UserID\x12\x0e\n" +
@@ -954,11 +986,12 @@ const file_wallet_wallet_proto_rawDesc = "" +
 	"\x16GetUserWalletsResponse\x12(\n" +
 	"\awallets\x18\x01 \x03(\v2\x0e.wallet.WalletR\awallets\"U\n" +
 	"\x16GetWalletTypesResponse\x12;\n" +
-	"\fwallet_types\x18\x01 \x03(\v2\x18.wallet.WalletTypeDetailR\vwalletTypes\"\x88\x01\n" +
+	"\fwallet_types\x18\x01 \x03(\v2\x18.wallet.WalletTypeDetailR\vwalletTypes\"\xbe\x01\n" +
 	"\rWalletSummary\x12#\n" +
 	"\rtotal_wallets\x18\x01 \x01(\x05R\ftotalWallets\x12#\n" +
 	"\rtotal_balance\x18\x02 \x01(\x01R\ftotalBalance\x12-\n" +
-	"\x12total_transactions\x18\x03 \x01(\x05R\x11totalTransactions\"\x1e\n" +
+	"\x12total_transactions\x18\x03 \x01(\x05R\x11totalTransactions\x124\n" +
+	"\x16total_credit_available\x18\x04 \x01(\x01R\x14totalCreditAvailable\"\x1e\n" +
 	"\fWalletTypeID\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"\x99\x01\n" +
 	"\x16ListWalletTypesRequest\x12\x12\n" +
