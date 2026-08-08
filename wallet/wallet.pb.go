@@ -208,7 +208,10 @@ type WalletTypeDetail struct {
 	UpdatedAt   string                 `protobuf:"bytes,6,opt,name=updated_at,json=updatedAt,proto3" json:"updated_at,omitempty"`
 	// "asset" for wallets holding money, "liability" for credit lines
 	// (credit card, paylater) whose balance is the remaining limit.
-	Nature        string `protobuf:"bytes,7,opt,name=nature,proto3" json:"nature,omitempty"`
+	Nature string `protobuf:"bytes,7,opt,name=nature,proto3" json:"nature,omitempty"`
+	// Public URL of the type's logo. Empty for types created before uploads
+	// existed; consumers fall back to the legacy name-derived asset path.
+	IconUrl       string `protobuf:"bytes,8,opt,name=icon_url,json=iconUrl,proto3" json:"icon_url,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -288,6 +291,13 @@ func (x *WalletTypeDetail) GetUpdatedAt() string {
 func (x *WalletTypeDetail) GetNature() string {
 	if x != nil {
 		return x.Nature
+	}
+	return ""
+}
+
+func (x *WalletTypeDetail) GetIconUrl() string {
+	if x != nil {
+		return x.IconUrl
 	}
 	return ""
 }
@@ -954,7 +964,7 @@ const file_wallet_wallet_proto_rawDesc = "" +
 	" \x01(\tR\tupdatedAt\x12+\n" +
 	"\x11transaction_count\x18\v \x01(\x05R\x10transactionCount\x12F\n" +
 	"\x12wallet_type_detail\x18\f \x01(\v2\x18.wallet.WalletTypeDetailR\x10walletTypeDetail\x12,\n" +
-	"\x12wallet_type_nature\x18\r \x01(\tR\x10walletTypeNature\"\xc2\x01\n" +
+	"\x12wallet_type_nature\x18\r \x01(\tR\x10walletTypeNature\"\xdd\x01\n" +
 	"\x10WalletTypeDetail\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x12\n" +
@@ -964,7 +974,8 @@ const file_wallet_wallet_proto_rawDesc = "" +
 	"created_at\x18\x05 \x01(\tR\tcreatedAt\x12\x1d\n" +
 	"\n" +
 	"updated_at\x18\x06 \x01(\tR\tupdatedAt\x12\x16\n" +
-	"\x06nature\x18\a \x01(\tR\x06nature\"\x1a\n" +
+	"\x06nature\x18\a \x01(\tR\x06nature\x12\x19\n" +
+	"\bicon_url\x18\b \x01(\tR\aiconUrl\"\x1a\n" +
 	"\bWalletID\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\tR\x02id\"\x18\n" +
 	"\x06UserID\x12\x0e\n" +

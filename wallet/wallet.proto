@@ -48,6 +48,9 @@ message WalletTypeDetail {
     // "asset" for wallets holding money, "liability" for credit lines
     // (credit card, paylater) whose balance is the remaining limit.
     string nature = 7;
+    // Public URL of the type's logo. Empty for types created before uploads
+    // existed; consumers fall back to the legacy name-derived asset path.
+    string icon_url = 8;
 }
 
 message WalletID {

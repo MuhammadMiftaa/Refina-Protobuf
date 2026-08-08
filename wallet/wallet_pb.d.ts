@@ -97,6 +97,8 @@ export class WalletTypeDetail extends jspb.Message {
     setUpdatedAt(value: string): WalletTypeDetail;
     getNature(): string;
     setNature(value: string): WalletTypeDetail;
+    getIconUrl(): string;
+    setIconUrl(value: string): WalletTypeDetail;
 
     serializeBinary(): Uint8Array;
     toObject(includeInstance?: boolean): WalletTypeDetail.AsObject;
@@ -117,6 +119,7 @@ export namespace WalletTypeDetail {
         createdAt: string,
         updatedAt: string,
         nature: string,
+        iconUrl: string,
     }
 }
 

@@ -45,6 +45,13 @@ class WalletTypeDetail extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string nature = 7;</code>
      */
     protected $nature = '';
+    /**
+     * Public URL of the type's logo. Empty for types created before uploads
+     * existed; consumers fall back to the legacy name-derived asset path.
+     *
+     * Generated from protobuf field <code>string icon_url = 8;</code>
+     */
+    protected $icon_url = '';
 
     /**
      * Constructor.
@@ -61,6 +68,9 @@ class WalletTypeDetail extends \Google\Protobuf\Internal\Message
      *     @type string $nature
      *           "asset" for wallets holding money, "liability" for credit lines
      *           (credit card, paylater) whose balance is the remaining limit.
+     *     @type string $icon_url
+     *           Public URL of the type's logo. Empty for types created before uploads
+     *           existed; consumers fall back to the legacy name-derived asset path.
      * }
      */
     public function __construct($data = NULL) {
@@ -224,6 +234,34 @@ class WalletTypeDetail extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->nature = $var;
+
+        return $this;
+    }
+
+    /**
+     * Public URL of the type's logo. Empty for types created before uploads
+     * existed; consumers fall back to the legacy name-derived asset path.
+     *
+     * Generated from protobuf field <code>string icon_url = 8;</code>
+     * @return string
+     */
+    public function getIconUrl()
+    {
+        return $this->icon_url;
+    }
+
+    /**
+     * Public URL of the type's logo. Empty for types created before uploads
+     * existed; consumers fall back to the legacy name-derived asset path.
+     *
+     * Generated from protobuf field <code>string icon_url = 8;</code>
+     * @param string $var
+     * @return $this
+     */
+    public function setIconUrl($var)
+    {
+        GPBUtil::checkString($var, True);
+        $this->icon_url = $var;
 
         return $this;
     }

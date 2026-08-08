@@ -979,7 +979,8 @@ proto.wallet.WalletTypeDetail.toObject = function(includeInstance, msg) {
     description: jspb.Message.getFieldWithDefault(msg, 4, ""),
     createdAt: jspb.Message.getFieldWithDefault(msg, 5, ""),
     updatedAt: jspb.Message.getFieldWithDefault(msg, 6, ""),
-    nature: jspb.Message.getFieldWithDefault(msg, 7, "")
+    nature: jspb.Message.getFieldWithDefault(msg, 7, ""),
+    iconUrl: jspb.Message.getFieldWithDefault(msg, 8, "")
   };
 
   if (includeInstance) {
@@ -1043,6 +1044,10 @@ proto.wallet.WalletTypeDetail.deserializeBinaryFromReader = function(msg, reader
     case 7:
       var value = /** @type {string} */ (reader.readString());
       msg.setNature(value);
+      break;
+    case 8:
+      var value = /** @type {string} */ (reader.readString());
+      msg.setIconUrl(value);
       break;
     default:
       reader.skipField();
@@ -1119,6 +1124,13 @@ proto.wallet.WalletTypeDetail.serializeBinaryToWriter = function(message, writer
   if (f.length > 0) {
     writer.writeString(
       7,
+      f
+    );
+  }
+  f = message.getIconUrl();
+  if (f.length > 0) {
+    writer.writeString(
+      8,
       f
     );
   }
@@ -1248,6 +1260,24 @@ proto.wallet.WalletTypeDetail.prototype.getNature = function() {
  */
 proto.wallet.WalletTypeDetail.prototype.setNature = function(value) {
   return jspb.Message.setProto3StringField(this, 7, value);
+};
+
+
+/**
+ * optional string icon_url = 8;
+ * @return {string}
+ */
+proto.wallet.WalletTypeDetail.prototype.getIconUrl = function() {
+  return /** @type {string} */ (jspb.Message.getFieldWithDefault(this, 8, ""));
+};
+
+
+/**
+ * @param {string} value
+ * @return {!proto.wallet.WalletTypeDetail} returns this
+ */
+proto.wallet.WalletTypeDetail.prototype.setIconUrl = function(value) {
+  return jspb.Message.setProto3StringField(this, 8, value);
 };
 
 
